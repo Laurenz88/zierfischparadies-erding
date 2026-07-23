@@ -40,11 +40,11 @@ Ziel: 1:1-Nachbau (inhaltlich/strukturell) von https://zierfischparadies-erding.
 - [x] DSGVO-Einwilligungs-Checkbox mit Link zum Datenschutz-Modal, keine zusätzlichen Felder gegenüber dem Original
 - [ ] **Hinweis für Phase 7:** Datenschutzerklärung muss Netlify (nicht Formspree) als Formular-Verarbeiter nennen
 
-## Phase 5 — Newsletter & Kundendaten
-- [ ] Brevo-Newsletter mit Double-Opt-in (wie Original)
-- [ ] Optionale Felder Vorname/Interesse als Brevo-Kontaktattribute
-- [ ] `docs/anleitung-newsletter.md` für Inhaber (Kampagnen, Segmentierung, Abmeldung)
-- [ ] Keine Tracking-Cookies ohne Consent-Banner; ggf. cookiefreies Analytics vorschlagen
+## Phase 5 — Newsletter & Kundendaten ✅ abgeschlossen
+- [x] Brevo-Newsletter mit Double-Opt-in (wie Original, gleiche echte Formular-Action-URL aus dem Original weiterverwendet)
+- [x] Optionale Felder Vorname (`PRENOM`) und Interesse (`INTERESSE`: Süßwasser/Meerwasser/Aquariumbau) als Brevo-Kontaktattribute ergänzt
+- [x] `docs/anleitung-newsletter.md` für Inhaber (Attribute einrichten, Kampagnen, Segmentierung, Abmeldung), inkl. Screenshot-Platzhaltern
+- [x] Keine Tracking-Cookies ohne Consent-Banner; cookiefreies Plausible Analytics als Option dokumentiert (nur auf Wunsch, nicht implementiert)
 
 ## Phase 6 — Sicherheit
 - [ ] Security-Header (CSP streng, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, HSTS) via Hosting-Konfiguration

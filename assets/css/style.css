@@ -537,9 +537,13 @@ a { color: inherit; }
 .footer-copy { font-size: 0.78rem; color: var(--text-subtle); max-width: 34rem; }
 .footer-copy a { color: var(--text-subtle); text-decoration: underline; }
 .footer-newsletter-wrap { margin-top: 1.5rem; width: 100%; max-width: 26rem; }
-.footer-newsletter-inline { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; justify-content: center; }
-.footer-newsletter-inline label { width: 100%; font-size: 0.8rem; color: var(--text-muted); }
-.footer-newsletter-inline input { flex: 1 1 12rem; min-height: 44px; padding: 0.6rem 0.9rem; border-radius: 8px; border: 1px solid var(--border-subtle); background: rgba(255,255,255,0.04); color: var(--white); }
+.footer-newsletter-inline { display: flex; flex-direction: column; gap: 0.6rem; align-items: stretch; }
+.footer-newsletter-inline label { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.15rem; }
+.footer-newsletter-inline input, .footer-newsletter-inline select {
+  width: 100%; min-height: 44px; padding: 0.6rem 0.9rem; border-radius: 8px;
+  border: 1px solid var(--border-subtle); background: rgba(255,255,255,0.04); color: var(--white);
+  font-family: inherit; font-size: 0.9rem;
+}
 .btn-newsletter-mini { min-height: 44px; padding: 0 1.1rem; border-radius: 8px; border: none; background: var(--gold); color: var(--bg-dark); font-weight: 600; cursor: pointer; }
 .footer-newsletter-legal { width: 100%; font-size: 0.72rem; color: var(--text-subtle); margin-top: 0.4rem; }
 

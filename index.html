@@ -379,11 +379,29 @@
       <p class="footer-copy">&copy; 2026 Zierfischparadies Erding · Joachim Jüttner. Alle Rechte vorbehalten.</p>
 
       <div class="footer-newsletter-wrap">
-        <form class="footer-newsletter-inline" id="newsletterForm">
-          <label for="newsletterEmail">Newsletter:</label>
-          <input type="email" id="newsletterEmail" name="EMAIL" placeholder="Deine E-Mail-Adresse" required>
+        <form
+          class="footer-newsletter-inline"
+          id="newsletterForm"
+          method="POST"
+          action="https://109b8eda.sibforms.com/serve/MUIFAHPn8bXdhkx_8PanWpNZUY8jCHQ4FGoK3AnnUMAroZ_Zjk93D6DwyQO4cy4vmaJhcpHxMcC0t4CXi0ErXsMCiTJ92akypg1KtBv68v1NEgLkGaw2ghdLcw2sMd_1kptDWkBXgH42rYmodugTENBBSNLbvBGLth2sHtMSgcm-vcMmUrvVtrLYO4eleP_RgmyCx6GG6qOEFOV48g==">
+          <label for="newsletterVorname">Vorname (optional)</label>
+          <input type="text" id="newsletterVorname" name="PRENOM" placeholder="Dein Vorname" autocomplete="given-name">
+
+          <label for="newsletterEmail">E-Mail-Adresse</label>
+          <input type="email" id="newsletterEmail" name="EMAIL" placeholder="Deine E-Mail-Adresse" autocomplete="email" required>
+
+          <label for="newsletterInteresse">Interesse (optional)</label>
+          <select id="newsletterInteresse" name="INTERESSE">
+            <option value="" selected>Keine Angabe</option>
+            <option value="Süßwasser">Süßwasser</option>
+            <option value="Meerwasser">Meerwasser</option>
+            <option value="Aquariumbau">Aquariumbau</option>
+          </select>
+
+          <input type="hidden" name="locale" value="de">
           <button type="submit" class="btn-newsletter-mini">Abonnieren</button>
-          <p class="footer-newsletter-legal">Newsletter-Anbindung (Brevo, Double-Opt-in) folgt in Phase&nbsp;5.</p>
+          <p class="footer-newsletter-legal">Hinweis: Mit der Anmeldung erklärst du dich mit der Verarbeitung deiner Daten gemäß unserer <button type="button" class="inline-link" data-modal="datenschutzModal">Datenschutzerklärung</button> einverstanden. Du erhältst danach eine Bestätigungs-E-Mail (Double-Opt-in).</p>
+          <p class="form-status" role="status" aria-live="polite" hidden></p>
         </form>
       </div>
     </div>
@@ -604,5 +622,6 @@
   <script src="assets/js/highlights.js" defer></script>
   <script src="assets/js/testimonials.js" defer></script>
   <script src="assets/js/contact-form.js" defer></script>
+  <script src="assets/js/newsletter.js" defer></script>
 </body>
 </html>
