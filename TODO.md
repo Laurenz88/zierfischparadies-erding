@@ -46,11 +46,11 @@ Ziel: 1:1-Nachbau (inhaltlich/strukturell) von https://zierfischparadies-erding.
 - [x] `docs/anleitung-newsletter.md` für Inhaber (Attribute einrichten, Kampagnen, Segmentierung, Abmeldung), inkl. Screenshot-Platzhaltern
 - [x] Keine Tracking-Cookies ohne Consent-Banner; cookiefreies Plausible Analytics als Option dokumentiert (nur auf Wunsch, nicht implementiert)
 
-## Phase 6 — Sicherheit
-- [ ] Security-Header (CSP streng, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, HSTS) via Hosting-Konfiguration
-- [ ] Kein Inline-JS ohne Nonce/Hash, keine unnötigen externen Skripte, SRI wo möglich
-- [ ] OSM-Karte per Zwei-Klick-Lösung (Datenschutz + Ladezeit)
-- [ ] E-Mail im Impressum vor Harvestern schützen (JS-Obfuskation)
+## Phase 6 — Sicherheit ✅ abgeschlossen
+- [x] Security-Header via `netlify.toml`: strenge CSP (nur docs.google.com, sibforms.com, openstreetmap.org, images.unsplash.com erlaubt), X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy (inkl. `interest-cohort=()`), HSTS
+- [x] Kein Inline-JS (alles in `assets/js/*.js`); die letzten 4 Inline-`style`-Attribute durch CSS-Klassen ersetzt, damit `style-src`/`script-src` ohne `'unsafe-inline'` auskommen; SRI nicht anwendbar, da keine fremd gehosteten Skripte/Styles (begründet in `docs/phase6-sicherheit.md`)
+- [x] OSM-Karte per Zwei-Klick-Lösung (`assets/js/map-loader.js`) — lädt erst nach Klick auf „Karte laden"
+- [x] E-Mail-Obfuskations-Utility bereitgestellt (`assets/js/obfuscate-email.js`), einsatzbereit für Phase 7
 
 ## Phase 7 — Rechtssicherheit (Deutschland)
 - [ ] Impressum (§5 DDG) & Datenschutz 1:1 übernehmen, an neue Technik anpassen (alle tatsächlich genutzten Dienste nennen)

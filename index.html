@@ -254,7 +254,7 @@
       <div class="container">
         <span class="section-label">Kontakt</span>
         <h2 class="section-title">Kontakt &amp; Anfahrt</h2>
-        <p class="section-subtitle" style="margin-bottom: 2rem;">Schreiben Sie uns – wir melden uns schnellstmöglich bei Ihnen zurück.</p>
+        <p class="section-subtitle contact-lead">Schreiben Sie uns – wir melden uns schnellstmöglich bei Ihnen zurück.</p>
         <div class="contact-grid">
           <div class="contact-form-card">
             <form
@@ -333,14 +333,13 @@
             </form>
           </div>
           <div class="contact-map-column">
-            <div class="contact-map">
-              <iframe
-                src="https://www.openstreetmap.org/export/embed.html?bbox=11.8980%2C48.3152%2C11.9060%2C48.3193&layer=mapnik&marker=48.3172438%2C11.9019466"
-                title="Standort Zierfischparadies Erding, Breslauer Str. 18"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade">
-              </iframe>
+            <div class="contact-map" id="contactMap" data-map-src="https://www.openstreetmap.org/export/embed.html?bbox=11.8980%2C48.3152%2C11.9060%2C48.3193&amp;layer=mapnik&amp;marker=48.3172438%2C11.9019466" data-map-title="Standort Zierfischparadies Erding, Breslauer Str. 18">
+              <button type="button" class="contact-map-teaser" id="mapLoadBtn">
+                <span aria-hidden="true">📍</span>
+                <span>Karte laden</span>
+              </button>
             </div>
+            <p class="contact-map-hint">Beim Laden der Karte wird eine Verbindung zu OpenStreetMap hergestellt (siehe Datenschutzerklärung).</p>
             <div class="contact-info-card">
               <div class="contact-info-item">
                 <span class="contact-info-label">Inhaber</span>
@@ -465,7 +464,7 @@
       <div class="modal-header">
         <div>
           <h2 id="aquariumbauTitle">Aquariumbau nach Maß</h2>
-          <p style="font-size:0.8rem;color:var(--text-subtle);margin-top:0.25rem;">Individuelle Planung &amp; fachgerechter Bau</p>
+          <p class="modal-subtitle">Individuelle Planung &amp; fachgerechter Bau</p>
         </div>
         <button class="modal-close" type="button" aria-label="Schließen" data-close>&times;</button>
       </div>
@@ -517,7 +516,7 @@
       <div class="modal-header">
         <div>
           <h2 id="wartungTitle">Wartung &amp; Pflege</h2>
-          <p style="font-size:0.8rem;color:var(--text-subtle);margin-top:0.25rem;">Professionelle Betreuung für Ihr Aquarium</p>
+          <p class="modal-subtitle">Professionelle Betreuung für Ihr Aquarium</p>
         </div>
         <button class="modal-close" type="button" aria-label="Schließen" data-close>&times;</button>
       </div>
@@ -569,7 +568,7 @@
       <div class="modal-header">
         <div>
           <h2 id="nachzuchtTitle">Nachzucht-Ankauf</h2>
-          <p style="font-size:0.8rem;color:var(--text-subtle);margin-top:0.25rem;">Ankauf gesunder, privater Nachzuchten</p>
+          <p class="modal-subtitle">Ankauf gesunder, privater Nachzuchten</p>
         </div>
         <button class="modal-close" type="button" aria-label="Schließen" data-close>&times;</button>
       </div>
@@ -623,5 +622,7 @@
   <script src="assets/js/testimonials.js" defer></script>
   <script src="assets/js/contact-form.js" defer></script>
   <script src="assets/js/newsletter.js" defer></script>
+  <script src="assets/js/map-loader.js" defer></script>
+  <script src="assets/js/obfuscate-email.js" defer></script>
 </body>
 </html>
