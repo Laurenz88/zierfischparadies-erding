@@ -19,12 +19,13 @@ Ziel: 1:1-Nachbau (inhaltlich/strukturell) von https://zierfischparadies-erding.
 - [x] Reale Assets vom Original gesichert (Fonts, Video, ref-/laden-Bilder, og.jpg) als Rohmaterial
 - [x] Lokaler Test: 2 echte Bugs gefunden & behoben (hero-video.js löschte auf Mobile versehentlich das Poster-Bild; Video wurde auf Desktop nie injiziert, da derselbe fehlerhafte Selektor auch dort das Frühzeitig-Abbrechen auslöste)
 
-## Phase 2 — CMS für Angebote (Google Sheets/CSV)
-- [ ] Google-Sheets/CSV-Anbindung wie im Original (Spalten: Kategorie, Name, lat. Name, Größe, Info, Preis, Streichpreis, Rabatt-%, Bild-Dateiname, Aktiv)
-- [ ] `cms/angebote-vorlage.csv` (Vorlage)
-- [ ] `docs/anleitung-angebote.md` (Laien-Anleitung mit Screenshot-Platzhaltern)
-- [ ] Fallback-Hinweis „Aktuelle Angebote im Laden erfragen" bei Ladefehler
-- [ ] Pflichthinweis Streichpreis/Omnibus-Richtlinie (PAngV) beibehalten
+## Phase 2 — CMS für Angebote (Google Sheets/CSV) ✅ abgeschlossen (Code fertig, wartet auf echtes Sheet)
+- [x] CSV-Anbindung implementiert (`assets/js/highlights.js`, eigener RFC4180-Mini-Parser, keine Abhängigkeit) — Spalten: Kategorie, Name, Lateinischer Name, Größe, Info, Preis, Streichpreis, Rabatt-%, Bild-Dateiname, Aktiv
+- [x] `cms/angebote-vorlage.csv` (Vorlage mit Beispieldaten)
+- [x] `docs/anleitung-angebote.md` (Laien-Anleitung mit Screenshot-Platzhaltern, inkl. einmaliger Einrichtung)
+- [x] Fallback-Hinweis „Aktuelle Angebote im Laden erfragen" bei Ladefehler, leerem Ergebnis oder noch nicht konfiguriertem Sheet
+- [x] Pflichthinweis Streichpreis/Omnibus-Richtlinie (PAngV) unter den Karten beibehalten
+- [ ] **Wartet auf Nutzer:** echte, veröffentlichte Google-Sheet-CSV-URL in `assets/js/highlights.js` (`SHEET_CSV_URL`) eintragen, sobald das Sheet angelegt ist
 
 ## Phase 3 — Übernahme alter Inhalte & Gästebuch
 - [ ] Alle Original-Texte wortgleich übernehmen (About, Leistungen, Modals, Info)
