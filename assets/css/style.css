@@ -585,6 +585,8 @@ a { color: inherit; }
   font-size: 1.5rem; line-height: 1; width: 44px; height: 44px; flex-shrink: 0;
 }
 .modal-close:hover, .modal-close:focus-visible { color: var(--gold-light); }
+.legal-page { padding-top: 7rem; }
+.legal-page-container { max-width: 48rem; }
 .legal-block { margin-bottom: 1.5rem; }
 .legal-block h3 { font-family: 'Poppins', sans-serif; font-size: 1rem; margin-bottom: 0.6rem; color: var(--gold-light); }
 .legal-block p { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0.6rem; }

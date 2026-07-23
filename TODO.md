@@ -52,11 +52,12 @@ Ziel: 1:1-Nachbau (inhaltlich/strukturell) von https://zierfischparadies-erding.
 - [x] OSM-Karte per Zwei-Klick-Lösung (`assets/js/map-loader.js`) — lädt erst nach Klick auf „Karte laden"
 - [x] E-Mail-Obfuskations-Utility bereitgestellt (`assets/js/obfuscate-email.js`), einsatzbereit für Phase 7
 
-## Phase 7 — Rechtssicherheit (Deutschland)
-- [ ] Impressum (§5 DDG) & Datenschutz 1:1 übernehmen, an neue Technik anpassen (alle tatsächlich genutzten Dienste nennen)
-- [ ] Als eigene Unterseiten `/impressum`, `/datenschutz` UND als Modal
-- [ ] `docs/bildquellen.md` (Bildrechte-Nachweis für alle finalen Bilder)
-- [ ] Hinweis an Nutzer: Rechtstexte juristisch prüfen lassen (z. B. eRecht24) — keine Rechtsberatung durch mich
+## Phase 7 — Rechtssicherheit (Deutschland) ✅ abgeschlossen (⚠️ juristische Prüfung ausstehend, siehe unten)
+- [x] Impressum (§5 DDG) & Datenschutz vom Original übernommen und an neue Technik angepasst: Formspree→Netlify Forms, Netlify als Hosting/Server-Logs explizit genannt, neuer Absatz zur OSM-Zwei-Klick-Karte ergänzt (im Original noch gar nicht erwähnt gewesen), Brevo/Google-Sheets-Absätze unverändert übernommen
+- [x] Als eigene Unterseiten `impressum.html`/`datenschutz.html` (Netlify liefert diese automatisch auch unter `/impressum`/`/datenschutz` aus) UND weiterhin als Modal (footer, Kontaktformular-Einwilligung, Newsletter-Hinweis verlinken alle dorthin)
+- [x] `docs/bildquellen.md`: Nachweis aller aktuell verwendeten Bild-/Video-Dateien inkl. Lizenzstatus und offener Punkte
+- [x] Alle verbliebenen Inline-Styles entfernt (auch in den neuen Unterseiten), damit die strikte CSP aus Phase 6 überall gilt
+- [ ] **Hinweis an den Nutzer (siehe Chat): Rechtstexte vor Livegang von einem Anwalt oder einem Generator wie eRecht24 gegenprüfen lassen — ich bin kein Anwalt.**
 
 ## Phase 8 — Performance & Bilder (Ziel: 100)
 - [ ] AVIF+WebP+JPEG-Fallback, responsive srcset/sizes, feste width/height, lazy loading unterhalb des Folds, `fetchpriority="high"` für Hero
