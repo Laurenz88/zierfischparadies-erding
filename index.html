@@ -257,7 +257,19 @@
         <p class="section-subtitle" style="margin-bottom: 2rem;">Schreiben Sie uns – wir melden uns schnellstmöglich bei Ihnen zurück.</p>
         <div class="contact-grid">
           <div class="contact-form-card">
-            <form action="https://formspree.io/f/xkoabeyy" method="POST" id="contactForm" class="contact-form">
+            <form
+              name="kontakt"
+              method="POST"
+              id="contactForm"
+              class="contact-form"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field">
+              <input type="hidden" name="form-name" value="kontakt">
+              <p class="honeypot-field" aria-hidden="true">
+                <label for="bot-field">Bitte leer lassen</label>
+                <input type="text" name="bot-field" id="bot-field" tabindex="-1" autocomplete="off">
+              </p>
+
               <div class="form-group">
                 <label for="anliegen">Ihr Anliegen</label>
                 <select name="anliegen" id="anliegen" required>
@@ -280,14 +292,44 @@
               </div>
               <div class="form-group">
                 <label for="email">E-Mail-Adresse</label>
-                <input type="email" name="_replyto" id="email" autocomplete="email" placeholder="ihre@email.de" required>
+                <input type="email" name="email" id="email" autocomplete="email" placeholder="ihre@email.de" required>
               </div>
+
+              <div id="dynamic-fields" class="dynamic-fields">
+                <div class="form-row dynamic-aquarium">
+                  <div class="form-group">
+                    <label for="wunschmasse">Wunschmaße (L × B × H in cm)</label>
+                    <input type="text" id="wunschmasse" name="wunschmasse" placeholder="z. B. 120 × 50 × 60">
+                  </div>
+                  <div class="form-group">
+                    <label for="besonderheiten">Besonderheiten</label>
+                    <input type="text" id="besonderheiten" name="besonderheiten" placeholder="z. B. Poolbecken, Bohrungen">
+                  </div>
+                </div>
+                <div class="form-row dynamic-nachzucht">
+                  <div class="form-group">
+                    <label for="fischart">Fischart / Gattung</label>
+                    <input type="text" id="fischart" name="fischart" placeholder="z. B. Diskus, Neon">
+                  </div>
+                  <div class="form-group">
+                    <label for="anzahl_groesse">Anzahl &amp; Größe der Tiere</label>
+                    <input type="text" id="anzahl_groesse" name="anzahl_groesse" placeholder="z. B. 20 Stück, 3–4 cm">
+                  </div>
+                </div>
+              </div>
+
               <div class="form-group">
                 <label for="nachricht">Ihre Nachricht</label>
                 <textarea name="nachricht" id="nachricht" placeholder="Wie können wir Ihnen helfen?" required></textarea>
               </div>
+
+              <label class="form-consent">
+                <input type="checkbox" name="einwilligung" id="einwilligung" required>
+                <span>Ich habe die <button type="button" class="inline-link" data-modal="datenschutzModal">Datenschutzerklärung</button> gelesen und bin mit der Verarbeitung meiner Daten zur Bearbeitung dieser Anfrage einverstanden.</span>
+              </label>
+
               <button type="submit" class="btn btn-gold">Anfrage absenden</button>
-              <p class="form-status" hidden></p>
+              <p class="form-status" role="status" aria-live="polite" hidden></p>
             </form>
           </div>
           <div class="contact-map-column">
@@ -561,5 +603,6 @@
   <script src="assets/js/lightbox.js" defer></script>
   <script src="assets/js/highlights.js" defer></script>
   <script src="assets/js/testimonials.js" defer></script>
+  <script src="assets/js/contact-form.js" defer></script>
 </body>
 </html>

@@ -32,12 +32,13 @@ Ziel: 1:1-Nachbau (inhaltlich/strukturell) von https://zierfischparadies-erding.
 - [x] `content/kundenstimmen.json` mit allen 9 Testimonials (`assets/js/testimonials.js` rendert + Slider-Logik: 1/3 Karten pro Seite, Touch-Swipe, Dots) + Transparenzhinweis im HTML beibehalten
 - [x] `docs/redirects.md`: Anker-Kompatibilität geprüft (alle Original-Anker unverändert vorhanden) — keine 301-Redirects nötig, da sich Domain/URL-Struktur/Anker nicht ändern; Domain-Umzug selbst folgt erst in Phase 10
 
-## Phase 4 — Intelligentes Kontaktformular
-- [ ] Dynamische Felder je nach „Anliegen" (wie Original)
-- [ ] Formspree vs. natives Hosting-Formular-Feature — Entscheidung begründen
-- [ ] Spam-Schutz ohne Cookies: Honeypot + Zeitfalle (<3s)
-- [ ] Client-/serverseitige Validierung, Erfolgsmeldung ohne Reload
-- [ ] DSGVO-Einwilligungs-Checkbox + Link Datenschutz, Datenminimierung
+## Phase 4 — Intelligentes Kontaktformular ✅ abgeschlossen
+- [x] Dynamische Felder je nach „Anliegen" (wie Original), inkl. Vorbelegung über Leistungs-Karten/Modals
+- [x] Formspree vs. natives Hosting-Formular-Feature — **Netlify Forms gewählt**, Begründung in `docs/phase4-kontaktformular.md` (kein zusätzlicher externer Auftragsverarbeiter, im Hosting enthalten)
+- [x] Spam-Schutz ohne Cookies: Honeypot-Feld (`bot-field`) + Zeitfalle (<3s), kein reCAPTCHA
+- [x] Client-seitige Validierung mit Feld-Fehlermeldungen + Fokus-Sprung; AJAX-Versand, Erfolg/Fehler ohne Reload (`role=status aria-live=polite`); serverseitige Grenzen dokumentiert (keine Netlify Function für Inhalts-Validierung)
+- [x] DSGVO-Einwilligungs-Checkbox mit Link zum Datenschutz-Modal, keine zusätzlichen Felder gegenüber dem Original
+- [ ] **Hinweis für Phase 7:** Datenschutzerklärung muss Netlify (nicht Formspree) als Formular-Verarbeiter nennen
 
 ## Phase 5 — Newsletter & Kundendaten
 - [ ] Brevo-Newsletter mit Double-Opt-in (wie Original)
