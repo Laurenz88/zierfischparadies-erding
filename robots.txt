@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zierfischparadies-erding.de/sitemap.xml

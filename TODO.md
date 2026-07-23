@@ -10,13 +10,14 @@ Ziel: 1:1-Nachbau (inhaltlich/strukturell) von https://zierfischparadies-erding.
 - [x] Urheberrechts-Hinweis zu „Andreas Fuchs" (Footer-Credit) an Nutzer kommuniziert — **Klärung durch Nutzer ausstehend**
 - [x] Git-Repo initialisiert
 
-## Phase 1 — Technisches Fundament
-- [ ] Stack-Entscheidung (Astro vs. reines HTML/CSS/JS) mit Begründung dokumentieren
-- [ ] Projektstruktur anlegen
-- [ ] Semantisches HTML5-Grundgerüst (ein H1, saubere Heading-Hierarchie, ARIA, Tastaturbedienbarkeit, `prefers-reduced-motion`)
-- [ ] Responsive Mobile-First-Grundlage, Breakpoints 360/768/1280px
-- [ ] Hero-Video: Quelldatei sichern, komprimierte MP4 + WebM, Poster-Bild, `preload="metadata"`, mobiles Bild statt Video prüfen
-- [ ] Reale Assets vom Original sichern (Fonts ✅, Video, ref-/laden-Bilder, og.jpg) als Rohmaterial für spätere Optimierung
+## Phase 1 — Technisches Fundament ✅ abgeschlossen
+- [x] Stack-Entscheidung (reines HTML/CSS/JS, kein Astro) mit Begründung dokumentiert → `docs/phase1-fundament.md`
+- [x] Projektstruktur angelegt (`index.html`, `assets/css|js|fonts|images|video`, `docs`, `cms`, `content`, `scripts`)
+- [x] Semantisches HTML5-Grundgerüst (ein H1, saubere Heading-Hierarchie, ARIA, Skip-Link, Fokus-Falle in Modals, Tastaturbedienbarkeit, `prefers-reduced-motion`)
+- [x] Responsive Mobile-First-Grundlage (360/768/1280px Breakpoints), per Headless-Chrome-Screenshot verifiziert
+- [x] Hero-Video: Quelldatei gesichert, komprimiert auf MP4 (5,65 MB) + WebM (6,17 MB), Poster-Bild (136 KB), `preload="metadata"`, Video wird per JS nur ab 769px und ohne `prefers-reduced-motion` nachgeladen (mobil nur Poster)
+- [x] Reale Assets vom Original gesichert (Fonts, Video, ref-/laden-Bilder, og.jpg) als Rohmaterial
+- [x] Lokaler Test: 2 echte Bugs gefunden & behoben (hero-video.js löschte auf Mobile versehentlich das Poster-Bild; Video wurde auf Desktop nie injiziert, da derselbe fehlerhafte Selektor auch dort das Frühzeitig-Abbrechen auslöste)
 
 ## Phase 2 — CMS für Angebote (Google Sheets/CSV)
 - [ ] Google-Sheets/CSV-Anbindung wie im Original (Spalten: Kategorie, Name, lat. Name, Größe, Info, Preis, Streichpreis, Rabatt-%, Bild-Dateiname, Aktiv)

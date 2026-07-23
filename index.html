@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zierfischparadies Erding | Joachim Jüttner</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <link rel="preload" href="assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/video/hero-poster.jpg" as="image" fetchpriority="high">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="#start" class="nav-logo">
+        <span class="nav-logo-icon" aria-hidden="true">🐠</span>
+        <span>Zierfischparadies</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#start">Startseite</a></li>
+        <li><a href="#ueber-uns">Über uns</a></li>
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#info">Öffnungszeiten</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li>
+          <a href="https://www.facebook.com/people/Zierfischparadies-Erding/100070092580801/?ref=tn_tnmn" target="_blank" rel="noopener" class="nav-social" aria-label="Facebook (öffnet in neuem Tab)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" id="start">
+      <img
+        class="hero-media hero-poster-img"
+        src="assets/video/hero-poster.jpg"
+        width="1280" height="720"
+        alt=""
+        fetchpriority="high"
+        decoding="async">
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
+        <span class="hero-badge">Erding · Seit über 40 Jahren</span>
+        <h1>Zierfischparadies Erding</h1>
+        <p class="hero-subtitle">Ihr Experte für gesunde Zierfische &amp; maßgeschneiderten Aquarienbau</p>
+        <a href="#kontakt" class="btn btn-gold">Jetzt beraten lassen</a>
+      </div>
+
+      <div class="hero-scroll" aria-hidden="true">
+        <span>Entdecken</span>
+        <div class="hero-scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- Über uns -->
+    <section class="section about" id="ueber-uns">
+      <div class="container about-grid">
+        <div class="about-text">
+          <span class="section-label">Über uns</span>
+          <h2 class="section-title">Über 40 Jahre Erfahrung &amp; Leidenschaft</h2>
+          <p>Mein Name ist Joachim Jüttner. Seit über vier Jahrzehnten dreht sich bei mir alles um die Aquaristik. Im Zierfischparadies Erding verkaufe ich Ihnen nicht einfach nur Zubehör – ich nehme mir Zeit für Ihre Fragen. Ganz egal, ob Sie gerade Ihr allererstes Becken planen oder als erfahrener Aquarianer nach seltenen Nachzuchten suchen.</p>
+          <p>Durch meine langjährige Zuchtpraxis weiß ich genau, worauf es ankommt: vom stabilen biologischen Gleichgewicht über die richtige Technik bis zum harmonischen Fischbesatz. Auch nach dem Kauf bin ich für Sie da, wenn im Becken mal etwas nicht nach Plan läuft. Denn ein Aquarium macht nur dann Freude, wenn es langfristig gesund bleibt.</p>
+          <div class="about-stats">
+            <div class="about-stat">
+              <div class="about-stat-number">40+</div>
+              <div class="about-stat-label">Jahre Erfahrung</div>
+            </div>
+            <div class="about-stat">
+              <div class="about-stat-number">100+</div>
+              <div class="about-stat-label">Fischarten</div>
+            </div>
+            <div class="about-stat">
+              <div class="about-stat-number">∞</div>
+              <div class="about-stat-label">Leidenschaft</div>
+            </div>
+          </div>
+        </div>
+        <div class="about-image">
+          <!-- TODO-EIGENES-FOTO: Unsplash-Platzhalter ersetzen, sobald eigenes Foto vorliegt -->
+          <img src="https://images.unsplash.com/photo-1564989769610-40bbae0aa5e9?auto=format&fit=crop&q=85&w=1200" alt="Diskusfisch im Aquarium (Platzhalterbild)" loading="lazy" width="1200" height="900">
+        </div>
+      </div>
+    </section>
+
+    <!-- Highlights & Angebote (CMS-Anbindung folgt in Phase 2) -->
+    <section class="section highlights" id="highlights">
+      <div class="container">
+        <div class="highlights-header">
+          <span class="section-label">Wöchentlich aktualisiert</span>
+          <h2 class="section-title">Aktuelle Highlights im Paradies</h2>
+        </div>
+        <div class="highlights-block">
+          <div class="highlights-block-header">
+            <h3 class="highlights-block-title">Angebote der Woche</h3>
+            <span class="badge-sale">SALE</span>
+          </div>
+          <div class="product-grid" id="angebote-grid">
+            <p class="highlights-status-msg">Die Anbindung an unsere Angebots-Verwaltung folgt in Phase&nbsp;2. Aktuelle Angebote gerne im Laden erfragen.</p>
+          </div>
+        </div>
+        <div class="highlights-block">
+          <div class="highlights-block-header">
+            <h3 class="highlights-block-title">Frische Neuzugänge</h3>
+            <span class="badge-new">NEU</span>
+          </div>
+          <div class="product-grid" id="neuheiten-grid">
+            <p class="highlights-status-msg">Die Anbindung an unsere Angebots-Verwaltung folgt in Phase&nbsp;2. Aktuelle Neuzugänge gerne im Laden erfragen.</p>
+          </div>
+        </div>
+        <p class="highlights-price-note">Alle Preise inkl. gesetzlicher MwSt. Durchgestrichene Preise: unser regulärer Preis, zugleich der niedrigste Gesamtpreis der letzten 30 Tage vor der Preissenkung. Angebote gültig solange der Vorrat reicht – nur im Ladengeschäft.</p>
+      </div>
+    </section>
+
+    <!-- Leistungen -->
+    <section class="section services" id="leistungen">
+      <div class="container">
+        <div class="services-header">
+          <span class="section-label">Unser Angebot</span>
+          <h2 class="section-title">Alles aus einer Hand</h2>
+          <p class="section-subtitle">Von der ersten Beratung bis zur professionellen Wartung – wir begleiten Sie auf dem gesamten Weg.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">🏗️</div>
+            <h3>Aquariumbau nach Maß</h3>
+            <p>Individuelle Planung, Glasstärke nach DIN und fachgerechte Vor-Ort-Verklebung – für Aquarien, die perfekt in Ihren Raum passen.</p>
+            <button type="button" class="btn btn-outline service-cta" data-modal="aquariumbauModal" data-anliegen="aquariumbau">Mehr erfahren</button>
+          </article>
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">🔧</div>
+            <h3>Wartung &amp; Pflege</h3>
+            <p>Urlaubsservice, Algenbekämpfung und regelmäßige Betreuung von Privat- und Firmenbecken – damit Ihr Aquarium dauerhaft in Bestform bleibt.</p>
+            <button type="button" class="btn btn-outline service-cta" data-modal="wartungModal" data-anliegen="wartung">Mehr erfahren</button>
+          </article>
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">🐟</div>
+            <h3>Nachzucht-Ankauf</h3>
+            <p>Ankauf von gesunden, privaten Nachzuchten. Bitte reichen Sie vorab Details zu Art und Bestand ein – wir prüfen jedes Angebot sorgfältig.</p>
+            <button type="button" class="btn btn-outline service-cta" data-modal="nachzuchtModal" data-anliegen="nachzucht">Mehr erfahren</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Info-Zentrale -->
+    <section class="section info-hub" id="info">
+      <div class="container">
+        <div class="info-hub-header">
+          <span class="section-label">Info-Zentrale</span>
+          <h2 class="section-title">Wichtige Informationen auf einen Blick</h2>
+        </div>
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-card-icon" aria-hidden="true">🕐</div>
+            <h3>Öffnungszeiten</h3>
+            <ul class="info-hours">
+              <li>Di. – Fr.: <strong>13:00 – 19:00 Uhr</strong></li>
+              <li>Sa.: <strong>9:00 – 15:00 Uhr</strong></li>
+              <li class="closed">Mo. &amp; So. geschlossen</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon" aria-hidden="true">🅿️</div>
+            <h3>Parkhinweis</h3>
+            <p>Liebe Kunden, bitte parken Sie an der Straße auf den gekennzeichneten Flächen oder in der Hofeinfahrt.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon" aria-hidden="true">📞</div>
+            <h3>Telefon</h3>
+            <p>Rufen Sie uns gerne an – wir beraten Sie persönlich.</p>
+            <a href="tel:+4981222289417" class="phone">08122 / 2289417</a>
+          </div>
+        </div>
+        <p class="info-paradies-wrap">
+          <button type="button" class="info-paradies-link" data-modal="paradiesLightbox">
+            <span aria-hidden="true">📷</span> Unser Paradies: Blick in den Laden werfen
+          </button>
+        </p>
+      </div>
+    </section>
+
+    <!-- Unsere Referenzen -->
+    <section class="section refs" id="referenzen">
+      <div class="container refs-header">
+        <span class="section-label">Galerie</span>
+        <h2 class="section-title">Unsere Referenzen &amp; Projekte</h2>
+      </div>
+      <div class="container">
+        <div class="refs-viewport">
+          <div class="refs-track">
+            <img class="refs-img" src="assets/images/ref-1.jpg" alt="Referenzprojekt: Aquarium nach Maß 1" loading="eager" width="260" height="180">
+            <img class="refs-img" src="assets/images/ref-2.jpg" alt="Referenzprojekt: Aquarium nach Maß 2" loading="lazy" width="260" height="180">
+            <img class="refs-img" src="assets/images/ref-3.jpg" alt="Referenzprojekt: Aquarium nach Maß 3" loading="lazy" width="260" height="180">
+            <img class="refs-img" src="assets/images/ref-4.jpg" alt="Referenzprojekt: Aquarium nach Maß 4" loading="lazy" width="260" height="180">
+            <img class="refs-img" src="assets/images/ref-5.jpg" alt="Referenzprojekt: Aquarium nach Maß 5" loading="lazy" width="260" height="180">
+            <img class="refs-img" src="assets/images/ref-6.jpg" alt="Referenzprojekt: Aquarium nach Maß 6" loading="lazy" width="260" height="180">
+            <img class="refs-img" src="assets/images/ref-7.jpg" alt="Referenzprojekt: Aquarium nach Maß 7" loading="lazy" width="260" height="180">
+            <img class="refs-img" src="assets/images/ref-8.jpg" alt="Referenzprojekt: Aquarium nach Maß 8" loading="lazy" width="260" height="180">
+            <img class="refs-img" src="assets/images/ref-9.jpg" alt="Referenzprojekt: Aquarium nach Maß 9" loading="lazy" width="260" height="180">
+            <img class="refs-img" src="assets/images/ref-10.jpg" alt="Referenzprojekt: Aquarium nach Maß 10" loading="lazy" width="260" height="180">
+            <!-- Duplikat fuer nahtlose CSS-Endlosschleife, fuer Screenreader ausgeblendet -->
+            <img class="refs-img" src="assets/images/ref-1.jpg" alt="" aria-hidden="true" loading="lazy" width="260" height="180">
+            <img class="refs-img" src="assets/images/ref-2.jpg" alt="" aria-hidden="true" loading="lazy" width="260" height="180">
+            <img class="refs-img" src="assets/images/ref-3.jpg" alt="" aria-hidden="true" loading="lazy" width="260" height="180">
+            <img class="refs-img" src="assets/images/ref-4.jpg" alt="" aria-hidden="true" loading="lazy" width="260" height="180">
+            <img class="refs-img" src="assets/images/ref-5.jpg" alt="" aria-hidden="true" loading="lazy" width="260" height="180">
+            <img class="refs-img" src="assets/images/ref-6.jpg" alt="" aria-hidden="true" loading="lazy" width="260" height="180">
+            <img class="refs-img" src="assets/images/ref-7.jpg" alt="" aria-hidden="true" loading="lazy" width="260" height="180">
+            <img class="refs-img" src="assets/images/ref-8.jpg" alt="" aria-hidden="true" loading="lazy" width="260" height="180">
+            <img class="refs-img" src="assets/images/ref-9.jpg" alt="" aria-hidden="true" loading="lazy" width="260" height="180">
+            <img class="refs-img" src="assets/images/ref-10.jpg" alt="" aria-hidden="true" loading="lazy" width="260" height="180">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kundenstimmen (Daten folgen in Phase 3 aus content/kundenstimmen.json) -->
+    <section class="section testimonials" id="stimmen">
+      <div class="container">
+        <div class="testimonials-header">
+          <span class="section-label">Kundenstimmen</span>
+          <h2 class="section-title">Das sagen unsere Kunden</h2>
+        </div>
+        <div class="testimonials-slider" id="testimonialsSlider">
+          <div class="testimonials-viewport">
+            <div class="testimonials-track" id="testimonialsTrack">
+              <p class="highlights-status-msg">Kundenstimmen werden in Phase&nbsp;3 eingebunden.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kontakt (dynamische Felder & Spam-Schutz folgen in Phase 4) -->
+    <section class="section" id="kontakt">
+      <div class="container">
+        <span class="section-label">Kontakt</span>
+        <h2 class="section-title">Kontakt &amp; Anfahrt</h2>
+        <p class="section-subtitle" style="margin-bottom: 2rem;">Schreiben Sie uns – wir melden uns schnellstmöglich bei Ihnen zurück.</p>
+        <div class="contact-grid">
+          <div class="contact-form-card">
+            <form action="https://formspree.io/f/xkoabeyy" method="POST" id="contactForm" class="contact-form">
+              <div class="form-group">
+                <label for="anliegen">Ihr Anliegen</label>
+                <select name="anliegen" id="anliegen" required>
+                  <option value="" disabled selected>Bitte wählen Sie aus …</option>
+                  <option value="aquariumbau">Aquariumbau nach Maß</option>
+                  <option value="wartung">Wartung &amp; Pflege</option>
+                  <option value="nachzucht">Nachzucht-Ankauf</option>
+                  <option value="allgemein">Allgemeine Anfrage</option>
+                </select>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="vorname">Ihr Vorname</label>
+                  <input type="text" name="vorname" id="vorname" autocomplete="given-name" required>
+                </div>
+                <div class="form-group">
+                  <label for="nachname">Ihr Nachname</label>
+                  <input type="text" name="nachname" id="nachname" autocomplete="family-name" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">E-Mail-Adresse</label>
+                <input type="email" name="_replyto" id="email" autocomplete="email" placeholder="ihre@email.de" required>
+              </div>
+              <div class="form-group">
+                <label for="nachricht">Ihre Nachricht</label>
+                <textarea name="nachricht" id="nachricht" placeholder="Wie können wir Ihnen helfen?" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-gold">Anfrage absenden</button>
+              <p class="form-status" hidden></p>
+            </form>
+          </div>
+          <div class="contact-map-column">
+            <div class="contact-map">
+              <iframe
+                src="https://www.openstreetmap.org/export/embed.html?bbox=11.8980%2C48.3152%2C11.9060%2C48.3193&layer=mapnik&marker=48.3172438%2C11.9019466"
+                title="Standort Zierfischparadies Erding, Breslauer Str. 18"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+            <div class="contact-info-card">
+              <div class="contact-info-item">
+                <span class="contact-info-label">Inhaber</span>
+                <span class="contact-info-value">Joachim Jüttner</span>
+              </div>
+              <div class="contact-info-item">
+                <span class="contact-info-label">Adresse</span>
+                <span class="contact-info-value">Breslauer Str. 18<br>85435 Erding</span>
+              </div>
+              <div class="contact-info-item">
+                <span class="contact-info-label">Telefon</span>
+                <span class="contact-info-value"><a href="tel:+4981222289417">08122 / 2289417</a></span>
+              </div>
+            </div>
+            <div class="contact-social-box">
+              <h4><span aria-hidden="true">📢</span> Aktuelles &amp; Sonderangebote</h4>
+              <p>Besuchen Sie uns auch auf Facebook! Dort posten wir regelmäßig unsere wöchentlichen Sonderangebote, exklusive Rabatte und brandneue Fisch-Zuzüge für Ihre Aquarien.</p>
+              <a href="https://www.facebook.com/people/Zierfischparadies-Erding/100070092580801/?ref=tn_tnmn" target="_blank" rel="noopener" class="btn btn-outline">
+                Zierfischparadies auf Facebook
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">Zierfischparadies <span>Erding</span></div>
+      <ul class="footer-links">
+        <li><button type="button" data-modal="impressumModal">Impressum</button></li>
+        <li><button type="button" data-modal="datenschutzModal">Datenschutz</button></li>
+      </ul>
+      <p class="footer-copy">&copy; 2026 Zierfischparadies Erding · Joachim Jüttner. Alle Rechte vorbehalten.</p>
+
+      <div class="footer-newsletter-wrap">
+        <form class="footer-newsletter-inline" id="newsletterForm">
+          <label for="newsletterEmail">Newsletter:</label>
+          <input type="email" id="newsletterEmail" name="EMAIL" placeholder="Deine E-Mail-Adresse" required>
+          <button type="submit" class="btn-newsletter-mini">Abonnieren</button>
+          <p class="footer-newsletter-legal">Newsletter-Anbindung (Brevo, Double-Opt-in) folgt in Phase&nbsp;5.</p>
+        </form>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Ladenbilder Lightbox -->
+  <div class="modal-overlay" id="paradiesLightbox" role="dialog" aria-modal="true" aria-label="Unser Paradies – Ladenbilder">
+    <div class="modal lightbox-modal">
+      <div class="visually-hidden lightbox-thumbs">
+        <img src="assets/images/laden-1.png" alt="Ladenansicht 1">
+        <img src="assets/images/laden-2.png" alt="Ladenansicht 2">
+        <img src="assets/images/laden-3.png" alt="Ladenansicht 3">
+        <img src="assets/images/laden-4.png" alt="Ladenansicht 4">
+        <img src="assets/images/laden-5.png" alt="Ladenansicht 5">
+        <img src="assets/images/laden-6.png" alt="Ladenansicht 6">
+        <img src="assets/images/laden-7.png" alt="Ladenansicht 7">
+        <img src="assets/images/laden-8.png" alt="Ladenansicht 8">
+      </div>
+      <div class="lightbox-body">
+        <button type="button" class="lightbox-nav lightbox-prev" id="paradiesPrev" aria-label="Vorheriges Bild">&#8249;</button>
+        <img class="lightbox-img" id="paradiesLightboxImg" src="" alt="" hidden>
+        <button type="button" class="lightbox-nav lightbox-next" id="paradiesNext" aria-label="Nächstes Bild">&#8250;</button>
+      </div>
+      <div class="lightbox-footer">
+        <span class="lightbox-title">Unser Paradies</span>
+        <span class="lightbox-counter" id="paradiesCounter"></span>
+        <button class="modal-close" type="button" aria-label="Schließen" data-close>&times;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Impressum Modal (Rechtstext folgt in Phase 7) -->
+  <div class="modal-overlay" id="impressumModal" role="dialog" aria-modal="true" aria-labelledby="impressumTitle">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="impressumTitle">Impressum</h2>
+        <button class="modal-close" type="button" aria-label="Schließen" data-close>&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Vollständiger, DSGVO-konformer Rechtstext wird in Phase&nbsp;7 ergänzt (inkl. eigener Unterseite <code>/impressum</code>).</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Datenschutz Modal (Rechtstext folgt in Phase 7) -->
+  <div class="modal-overlay" id="datenschutzModal" role="dialog" aria-modal="true" aria-labelledby="datenschutzTitle">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="datenschutzTitle">Datenschutzerklärung</h2>
+        <button class="modal-close" type="button" aria-label="Schließen" data-close>&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Vollständiger, DSGVO-konformer Rechtstext wird in Phase&nbsp;7 ergänzt (inkl. eigener Unterseite <code>/datenschutz</code>).</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Aquariumbau-Modal -->
+  <div class="modal-overlay" id="aquariumbauModal" role="dialog" aria-modal="true" aria-labelledby="aquariumbauTitle">
+    <div class="modal modal-wide">
+      <div class="modal-header">
+        <div>
+          <h2 id="aquariumbauTitle">Aquariumbau nach Maß</h2>
+          <p style="font-size:0.8rem;color:var(--text-subtle);margin-top:0.25rem;">Individuelle Planung &amp; fachgerechter Bau</p>
+        </div>
+        <button class="modal-close" type="button" aria-label="Schließen" data-close>&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="versand-grid">
+          <div>
+            <p class="section-label">Was wir bieten</p>
+            <div class="versand-step">
+              <div class="versand-icon" aria-hidden="true">📐</div>
+              <div class="versand-step-text"><strong>Individuelle Planung</strong><span>Von der ersten Skizze bis zur fertigen Zeichnung – wir planen Ihr Wunschaquarium nach Ihren Maßen und Vorstellungen.</span></div>
+            </div>
+            <div class="versand-step">
+              <div class="versand-icon" aria-hidden="true">🔬</div>
+              <div class="versand-step-text"><strong>Glasstärke nach DIN</strong><span>Alle Becken werden mit normgerechter Glasstärke berechnet und gefertigt – für maximale Sicherheit und Langlebigkeit.</span></div>
+            </div>
+            <div class="versand-step">
+              <div class="versand-icon" aria-hidden="true">🏠</div>
+              <div class="versand-step-text"><strong>Vor-Ort-Verklebung</strong><span>Aufbau und Verklebung direkt bei Ihnen zuhause. Kein Transport fertiger Becken – alles frisch vor Ort.</span></div>
+            </div>
+            <div class="versand-step">
+              <div class="versand-icon" aria-hidden="true">🌿</div>
+              <div class="versand-step-text"><strong>Einrichtung &amp; Besatz</strong><span>Auf Wunsch übernehmen wir auch die Einrichtung mit Pflanzen und Besatz – alles aus einer Hand.</span></div>
+            </div>
+          </div>
+          <div>
+            <p class="section-label">Becken-Typen</p>
+            <table class="versand-table">
+              <thead><tr><th>Typ</th><th>Größe</th></tr></thead>
+              <tbody>
+                <tr><td>Nano-Becken</td><td>ab 30 Liter</td></tr>
+                <tr><td>Standard-Aquarium</td><td>60 – 400 Liter</td></tr>
+                <tr><td>Raumteiler / Einbau</td><td>nach Maß</td></tr>
+                <tr><td>Sonderanfertigung</td><td>Poolbecken, Bohrungen etc.</td></tr>
+              </tbody>
+            </table>
+            <p class="versand-note">Jedes Becken ist ein Unikat. Wunschmaße, besondere Formen und individuelle Anforderungen auf Anfrage.</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer-bar">
+        <a href="#kontakt" class="btn btn-gold" data-close data-select-anliegen="aquariumbau">Zum Kontaktformular</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wartung-Modal -->
+  <div class="modal-overlay" id="wartungModal" role="dialog" aria-modal="true" aria-labelledby="wartungTitle">
+    <div class="modal modal-wide">
+      <div class="modal-header">
+        <div>
+          <h2 id="wartungTitle">Wartung &amp; Pflege</h2>
+          <p style="font-size:0.8rem;color:var(--text-subtle);margin-top:0.25rem;">Professionelle Betreuung für Ihr Aquarium</p>
+        </div>
+        <button class="modal-close" type="button" aria-label="Schließen" data-close>&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="versand-grid">
+          <div>
+            <p class="section-label">Unsere Leistungen</p>
+            <div class="versand-step">
+              <div class="versand-icon" aria-hidden="true">🏖️</div>
+              <div class="versand-step-text"><strong>Urlaubsservice</strong><span>Wir kümmern uns um Ihr Aquarium, während Sie verreist sind – Fütterung, Wassercheck und Pflege inklusive.</span></div>
+            </div>
+            <div class="versand-step">
+              <div class="versand-icon" aria-hidden="true">🌱</div>
+              <div class="versand-step-text"><strong>Algenbekämpfung</strong><span>Professionelle Diagnose und nachhaltige Bekämpfung von Algen – ohne Chemie, mit System.</span></div>
+            </div>
+            <div class="versand-step">
+              <div class="versand-icon" aria-hidden="true">🏢</div>
+              <div class="versand-step-text"><strong>Firmenbecken-Betreuung</strong><span>Regelmäßige Wartungsverträge für Büros, Praxen und Hotels – zuverlässig und diskret.</span></div>
+            </div>
+            <div class="versand-step">
+              <div class="versand-icon" aria-hidden="true">🔬</div>
+              <div class="versand-step-text"><strong>Wasseranalyse &amp; Optimierung</strong><span>Messung aller relevanten Wasserwerte und gezielte Korrekturmaßnahmen für ein stabiles Gleichgewicht.</span></div>
+            </div>
+          </div>
+          <div>
+            <p class="section-label">Leistungsübersicht</p>
+            <table class="versand-table">
+              <thead><tr><th>Service</th><th>Turnus</th></tr></thead>
+              <tbody>
+                <tr><td>Wasserwechsel &amp; Reinigung</td><td>wöchentlich / 2-wöchentlich</td></tr>
+                <tr><td>Filterreinigung</td><td>monatlich</td></tr>
+                <tr><td>Pflanzen &amp; Besatz-Check</td><td>je nach Bedarf</td></tr>
+                <tr><td>Urlaubsbetreuung</td><td>auf Anfrage</td></tr>
+              </tbody>
+            </table>
+            <p class="versand-note">Individuelle Wartungsverträge für Privat- und Firmenkunden. Preise auf Anfrage.</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer-bar">
+        <a href="#kontakt" class="btn btn-gold" data-close data-select-anliegen="wartung">Zum Kontaktformular</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nachzucht-Modal -->
+  <div class="modal-overlay" id="nachzuchtModal" role="dialog" aria-modal="true" aria-labelledby="nachzuchtTitle">
+    <div class="modal modal-wide">
+      <div class="modal-header">
+        <div>
+          <h2 id="nachzuchtTitle">Nachzucht-Ankauf</h2>
+          <p style="font-size:0.8rem;color:var(--text-subtle);margin-top:0.25rem;">Ankauf gesunder, privater Nachzuchten</p>
+        </div>
+        <button class="modal-close" type="button" aria-label="Schließen" data-close>&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="versand-grid">
+          <div>
+            <p class="section-label">So läuft der Ankauf ab</p>
+            <div class="versand-step">
+              <div class="versand-icon" aria-hidden="true">📋</div>
+              <div class="versand-step-text"><strong>Details einreichen</strong><span>Schicken Sie uns vorab Fischart, Gattung, Anzahl, Alter und Größe der Tiere – am besten mit Fotos.</span></div>
+            </div>
+            <div class="versand-step">
+              <div class="versand-icon" aria-hidden="true">✅</div>
+              <div class="versand-step-text"><strong>Prüfung &amp; Rückmeldung</strong><span>Wir prüfen jedes Angebot sorgfältig und melden uns schnellstmöglich mit einem Angebot zurück.</span></div>
+            </div>
+            <div class="versand-step">
+              <div class="versand-icon" aria-hidden="true">🤝</div>
+              <div class="versand-step-text"><strong>Persönliche Übergabe</strong><span>Übergabe nur gesunder, vitaler Tiere – direkt im Geschäft oder nach Absprache.</span></div>
+            </div>
+            <div class="versand-step">
+              <div class="versand-icon" aria-hidden="true">💛</div>
+              <div class="versand-step-text"><strong>Faire Konditionen</strong><span>Ehrliche Bewertung und fairer Preis – wir kaufen nur an, was wir auch guten Gewissens weiterverkaufen können.</span></div>
+            </div>
+          </div>
+          <div>
+            <p class="section-label">Besonders gesucht</p>
+            <table class="versand-table">
+              <thead><tr><th>Fischart</th><th>Besonderheit</th></tr></thead>
+              <tbody>
+                <tr><td>Diskus</td><td>Zuchtpaare, Wildfang-Nachzucht</td></tr>
+                <tr><td>Skalare</td><td>besondere Farbformen</td></tr>
+                <tr><td>L-Welse</td><td>gesunde Nachzuchten</td></tr>
+                <tr><td>Weitere Arten</td><td>auf Anfrage</td></tr>
+              </tbody>
+            </table>
+            <p class="versand-note">Nicht jede Nachzucht kann angekauft werden. Bitte vorab anfragen – wir freuen uns über jedes Angebot.</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer-bar">
+        <a href="#kontakt" class="btn btn-gold" data-close data-select-anliegen="nachzucht">Zum Kontaktformular</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/nav.js" defer></script>
+  <script src="assets/js/hero-video.js" defer></script>
+  <script src="assets/js/modals.js" defer></script>
+  <script src="assets/js/lightbox.js" defer></script>
+</body>
+</html>
