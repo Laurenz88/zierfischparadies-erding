@@ -27,10 +27,10 @@ Ziel: 1:1-Nachbau (inhaltlich/strukturell) von https://zierfischparadies-erding.
 - [x] Pflichthinweis Streichpreis/Omnibus-Richtlinie (PAngV) unter den Karten beibehalten
 - [ ] **Wartet auf Nutzer:** echte, veröffentlichte Google-Sheet-CSV-URL in `assets/js/highlights.js` (`SHEET_CSV_URL`) eintragen, sobald das Sheet angelegt ist
 
-## Phase 3 — Übernahme alter Inhalte & Gästebuch
-- [ ] Alle Original-Texte wortgleich übernehmen (About, Leistungen, Modals, Info)
-- [ ] `content/kundenstimmen.json` mit allen 9 Testimonials + Transparenzhinweis
-- [ ] `docs/redirects.md` + Hosting-Redirect-Konfiguration (301) für alte Anker/URLs
+## Phase 3 — Übernahme alter Inhalte & Gästebuch ✅ abgeschlossen
+- [x] Alle Original-Texte wortgleich übernommen (About, Leistungen, Modals, Info) — per `diff` gegen `original-site/index.html` geprüft, keine Abweichungen
+- [x] `content/kundenstimmen.json` mit allen 9 Testimonials (`assets/js/testimonials.js` rendert + Slider-Logik: 1/3 Karten pro Seite, Touch-Swipe, Dots) + Transparenzhinweis im HTML beibehalten
+- [x] `docs/redirects.md`: Anker-Kompatibilität geprüft (alle Original-Anker unverändert vorhanden) — keine 301-Redirects nötig, da sich Domain/URL-Struktur/Anker nicht ändern; Domain-Umzug selbst folgt erst in Phase 10
 
 ## Phase 4 — Intelligentes Kontaktformular
 - [ ] Dynamische Felder je nach „Anliegen" (wie Original)
