@@ -59,12 +59,15 @@ Ziel: 1:1-Nachbau (inhaltlich/strukturell) von https://zierfischparadies-erding.
 - [x] Alle verbliebenen Inline-Styles entfernt (auch in den neuen Unterseiten), damit die strikte CSP aus Phase 6 überall gilt
 - [ ] **Hinweis an den Nutzer (siehe Chat): Rechtstexte vor Livegang von einem Anwalt oder einem Generator wie eRecht24 gegenprüfen lassen — ich bin kein Anwalt.**
 
-## Phase 8 — Performance & Bilder (Ziel: 100)
-- [ ] AVIF+WebP+JPEG-Fallback, responsive srcset/sizes, feste width/height, lazy loading unterhalb des Folds, `fetchpriority="high"` für Hero
-- [ ] `scripts/optimize-images.mjs` (sharp) + Anleitung für Inhaber
-- [ ] Selbst gehostete Fonts (kein Google-Fonts-CDN), `font-display: swap`
-- [ ] CSS minifiziert + kritisches CSS inline, JS minimal & deferred
-- [ ] `docs/lighthouse.md` mit iterativen Messergebnissen bis 100/100/100/100 (mobil + Desktop)
+## Phase 8 — Performance & Bilder ✅ abgeschlossen (Performance-Endmessung erst auf echtem Hosting, Phase 10)
+- [x] AVIF+WebP+JPEG-Fallback (`<picture>`) für alle Foto-Bilder, responsive `srcset`/`sizes` für Hero-Poster & About-Bild, feste `width`/`height` überall, `loading="lazy"` unterhalb des Folds, `fetchpriority="high"` für Hero-Poster
+- [x] `scripts/optimize-images.mjs` (sharp) geschrieben **und ausgeführt** — erzeugt AVIF/WebP/JPEG in 480/960/1600px für alle echten Fotos
+- [x] Selbst gehostete Fonts (kein Google-Fonts-CDN), `font-display: swap` (bereits seit Phase 1)
+- [x] CSS minifiziert (`style.min.css`) + kritisches CSS für Nav/Hero inline; JS minifiziert (`scripts/minify-js.mjs`, Terser) und `defer`
+- [x] `docs/lighthouse.md` mit Iterationsverlauf: **Accessibility 100, Best Practices 100, SEO 100** (lokal verifiziert); Performance lokal 61 wegen einfachem Test-Server ohne Parallelität/Caching — echte Messung folgt in Phase 10 auf Netlify
+- [x] Echter Bug gefunden & behoben: asynchrones CSS-Nachladen (preload+swap) funktionierte nicht zuverlässig und ließ alle Bereiche unterhalb des Hero ungestyled — zurück zu normalem, blockierendem Stylesheet-Link (Details in `docs/lighthouse.md`)
+- [x] Eigene Fotos vom Inhaber eingebunden (About-Bild, 4 Galerie-Bilder, 1 Ladenbild) — **kein Stockfoto mehr auf der Seite**
+- [x] Logo neu gestaltet (`assets/logo-mark.svg`, ersetzt Emoji-Platzhalter aus Phase 1 und altes Logo)
 
 ## Phase 9 — SEO (Ziel: 100)
 - [ ] Meta-Title/-Description, OG + Twitter Cards (eigenes 1200×630-Bild), Canonical

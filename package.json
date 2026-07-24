@@ -1,0 +1,19 @@
+{
+  "name": "zierfischparadies-erding",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Statische Website Zierfischparadies Erding - Build-/Optimierungs-Skripte (keine Laufzeit-Abhaengigkeiten fuer die Website selbst)",
+  "type": "module",
+  "scripts": {
+    "optimize-images": "node scripts/optimize-images.mjs",
+    "minify-css": "cleancss -o assets/css/style.min.css assets/css/style.css",
+    "minify-js": "node scripts/minify-js.mjs",
+    "build-critical-css": "node scripts/build-critical-css.mjs",
+    "build": "npm run minify-css && npm run minify-js"
+  },
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "sharp": "^0.35.3",
+    "terser": "^5.49.0"
+  }
+}

@@ -4,12 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zierfischparadies Erding | Joachim Jüttner</title>
+  <meta name="description" content="Zierfischparadies Erding – Ihr Experte für gesunde Zierfische, Aquarienbau nach Maß und fachkundige Beratung von Joachim Jüttner. Seit über 40 Jahren in Erding.">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 
   <link rel="preload" href="assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/video/hero-poster.jpg" as="image" fetchpriority="high">
-  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Kritisches CSS (Nav + Hero) inline fuer schnelleren ersten Render, bevor
+       das externe Stylesheet geladen ist. Quelle: assets/css/critical.css -
+       bei Aenderungen dort pflegen und mit scripts/build-critical-css.mjs neu
+       minifizieren (Hash in netlify.toml anpassen). -->
+  <style>@font-face{font-family:Inter;font-style:normal;font-weight:100 900;font-display:swap;src:url('assets/fonts/inter-var.woff2') format('woff2')}@font-face{font-family:Poppins;font-style:normal;font-weight:600;font-display:swap;src:url('assets/fonts/poppins-600.woff2') format('woff2')}@font-face{font-family:Poppins;font-style:normal;font-weight:700;font-display:swap;src:url('assets/fonts/poppins-700.woff2') format('woff2')}@font-face{font-family:Poppins;font-style:normal;font-weight:800;font-display:swap;src:url('assets/fonts/poppins-800.woff2') format('woff2')}:root{--bg-dark:#020c1b;--bg-aqua:#0a192f;--gold:#D4AF37;--gold-light:#e8c84a;--white:#ffffff;--text-muted:rgba(255, 255, 255, 0.72);--text-subtle:rgba(255, 255, 255, 0.5);--border-subtle:rgba(255, 255, 255, 0.12);--shadow-gold:0 4px 24px rgba(212, 175, 55, 0.25);--transition:0.3s ease;--nav-height:4.5rem}@media (prefers-reduced-motion:reduce){:root{--transition:0s}}*,::after,::before{box-sizing:border-box}body,h1,h2,html,p,ul{margin:0;padding:0}ul{list-style:none}html{scroll-behavior:smooth;background:var(--bg-dark)}@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}body{font-family:Inter,system-ui,sans-serif;background:radial-gradient(circle at 50% 0,#112240 0,var(--bg-aqua) 55%,var(--bg-dark) 100%);color:var(--white);line-height:1.65;min-height:100vh;min-height:100dvh;overflow-x:hidden}img,video{max-width:100%;display:block}a{color:inherit}.container{width:100%;max-width:1200px;margin-inline:auto;padding-inline:1.25rem}.skip-link{position:absolute;top:-3rem;left:1rem;background:var(--gold);color:var(--bg-dark);padding:.6rem 1rem;border-radius:8px;font-weight:600;z-index:200;transition:top var(--transition)}.skip-link:focus{top:1rem}:focus-visible{outline:2px solid var(--gold-light);outline-offset:2px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:48px;padding:.85rem 1.75rem;font-family:Poppins,sans-serif;font-size:.95rem;font-weight:600;border:none;border-radius:50px;cursor:pointer;text-decoration:none;transition:transform var(--transition),box-shadow var(--transition),background var(--transition)}.btn-gold{background:linear-gradient(135deg,var(--gold) 0,#b8962e 100%);color:var(--bg-dark);box-shadow:var(--shadow-gold)}.btn-gold:focus-visible,.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(212,175,55,.35)}.btn-outline{background:0 0;color:var(--white);border:2px solid var(--border-subtle)}.nav{position:fixed;inset-inline:0;top:0;z-index:100;height:var(--nav-height);display:flex;align-items:center;background:0 0;transition:background var(--transition),box-shadow var(--transition)}.nav.scrolled{background:rgba(2,12,27,.92);backdrop-filter:blur(8px);box-shadow:0 2px 20px rgba(0,0,0,.35)}.nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%}.nav-logo{display:flex;align-items:center;gap:.5rem;font-family:Poppins,sans-serif;font-weight:700;font-size:1.05rem;text-decoration:none}.nav-logo-icon{width:28px;height:28px;border-radius:8px}.nav-toggle{display:flex;flex-direction:column;gap:5px;width:44px;height:44px;align-items:center;justify-content:center;background:0 0;border:none;cursor:pointer}.nav-toggle span{width:22px;height:2px;background:var(--white);transition:transform var(--transition),opacity var(--transition)}.nav-toggle.active span:first-child{transform:translateY(7px) rotate(45deg)}.nav-toggle.active span:nth-child(2){opacity:0}.nav-toggle.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}.nav-links{position:fixed;inset:var(--nav-height) 0 0 0;background:var(--bg-dark);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.75rem;transform:translateY(-100%);opacity:0;transition:transform var(--transition),opacity var(--transition)}.nav-links.open{transform:translateY(0);opacity:1}.nav-links a{font-family:Poppins,sans-serif;font-weight:500;font-size:1.1rem;text-decoration:none}.nav-social{display:inline-flex}@media (min-width:768px){.nav-toggle{display:none}.nav-links{position:static;flex-direction:row;gap:2rem;transform:none;opacity:1;background:0 0;inset:auto}.nav-links a{font-size:.95rem}}.hero{position:relative;min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}.hero-media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,12,27,.55) 0,rgba(2,12,27,.35) 45%,rgba(2,12,27,.85) 100%);z-index:1}.hero-content{position:relative;z-index:2;width:100%;min-width:0;padding:2rem 1.5rem;max-width:46rem}.hero-badge{display:inline-block;padding:.4rem 1rem;border:1px solid var(--gold);border-radius:50px;color:var(--gold-light);font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.25rem}.hero h1{font-family:Poppins,sans-serif;font-size:clamp(1.7rem, 7vw, 3.5rem);font-weight:800;line-height:1.15;margin-bottom:1rem;overflow-wrap:break-word}.hero-subtitle{font-size:clamp(1rem, 2.5vw, 1.25rem);color:var(--text-muted);margin-bottom:2rem}.hero-scroll{position:absolute;bottom:1.75rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:.5rem;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-subtle)}.hero-scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,var(--gold),transparent);animation:hero-float 2.4s ease-in-out infinite}@keyframes hero-float{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}@media (prefers-reduced-motion:reduce){.hero-scroll-line{animation:none}}</style>
+
+  <link rel="stylesheet" href="assets/css/style.min.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Zum Inhalt springen</a>
@@ -18,7 +26,7 @@
   <nav class="nav" id="nav">
     <div class="container nav-inner">
       <a href="#start" class="nav-logo">
-        <span class="nav-logo-icon" aria-hidden="true">🐠</span>
+        <img class="nav-logo-icon" src="assets/logo-mark.svg" alt="" width="28" height="28">
         <span>Zierfischparadies</span>
       </a>
       <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="navLinks">
@@ -42,13 +50,19 @@
   <main id="main">
     <!-- Hero -->
     <section class="hero" id="start">
-      <img
-        class="hero-media hero-poster-img"
-        src="assets/video/hero-poster.jpg"
-        width="1280" height="720"
-        alt=""
-        fetchpriority="high"
-        decoding="async">
+      <picture>
+        <source type="image/avif" srcset="assets/video/hero-poster-480.avif 480w, assets/video/hero-poster-960.avif 960w" sizes="100vw">
+        <source type="image/webp" srcset="assets/video/hero-poster-480.webp 480w, assets/video/hero-poster-960.webp 960w" sizes="100vw">
+        <img
+          class="hero-media hero-poster-img"
+          src="assets/video/hero-poster.jpg"
+          srcset="assets/video/hero-poster-480.jpg 480w, assets/video/hero-poster-960.jpg 960w, assets/video/hero-poster.jpg 1280w"
+          sizes="100vw"
+          width="1280" height="720"
+          alt=""
+          fetchpriority="high"
+          decoding="async">
+      </picture>
       <div class="hero-overlay"></div>
 
       <div class="hero-content">
@@ -88,8 +102,16 @@
           </div>
         </div>
         <div class="about-image">
-          <!-- TODO-EIGENES-FOTO: Unsplash-Platzhalter ersetzen, sobald eigenes Foto vorliegt -->
-          <img src="https://images.unsplash.com/photo-1564989769610-40bbae0aa5e9?auto=format&fit=crop&q=85&w=1200" alt="Diskusfisch im Aquarium (Platzhalterbild)" loading="lazy" width="1200" height="900">
+          <picture>
+            <source type="image/avif" srcset="assets/images/about-joachim-480.avif 480w, assets/images/about-joachim-960.avif 960w, assets/images/about-joachim-1600.avif 1600w" sizes="(min-width: 900px) 50vw, 100vw">
+            <source type="image/webp" srcset="assets/images/about-joachim-480.webp 480w, assets/images/about-joachim-960.webp 960w, assets/images/about-joachim-1600.webp 1600w" sizes="(min-width: 900px) 50vw, 100vw">
+            <img
+              src="assets/images/about-joachim-960.jpg"
+              srcset="assets/images/about-joachim-480.jpg 480w, assets/images/about-joachim-960.jpg 960w, assets/images/about-joachim-1600.jpg 1600w"
+              sizes="(min-width: 900px) 50vw, 100vw"
+              alt="Joachim Jüttner bei der Arbeit an einem Aquarium im Zierfischparadies Erding"
+              loading="lazy" width="1200" height="1600">
+          </picture>
         </div>
       </div>
     </section>
@@ -200,27 +222,147 @@
       <div class="container">
         <div class="refs-viewport">
           <div class="refs-track">
-            <img class="refs-img" src="assets/images/ref-1.jpg" alt="Referenzprojekt: Aquarium nach Maß 1" loading="eager" width="260" height="180">
-            <img class="refs-img" src="assets/images/ref-2.jpg" alt="Referenzprojekt: Aquarium nach Maß 2" loading="lazy" width="260" height="180">
-            <img class="refs-img" src="assets/images/ref-3.jpg" alt="Referenzprojekt: Aquarium nach Maß 3" loading="lazy" width="260" height="180">
-            <img class="refs-img" src="assets/images/ref-4.jpg" alt="Referenzprojekt: Aquarium nach Maß 4" loading="lazy" width="260" height="180">
-            <img class="refs-img" src="assets/images/ref-5.jpg" alt="Referenzprojekt: Aquarium nach Maß 5" loading="lazy" width="260" height="180">
-            <img class="refs-img" src="assets/images/ref-6.jpg" alt="Referenzprojekt: Aquarium nach Maß 6" loading="lazy" width="260" height="180">
-            <img class="refs-img" src="assets/images/ref-7.jpg" alt="Referenzprojekt: Aquarium nach Maß 7" loading="lazy" width="260" height="180">
-            <img class="refs-img" src="assets/images/ref-8.jpg" alt="Referenzprojekt: Aquarium nach Maß 8" loading="lazy" width="260" height="180">
-            <img class="refs-img" src="assets/images/ref-9.jpg" alt="Referenzprojekt: Aquarium nach Maß 9" loading="lazy" width="260" height="180">
-            <img class="refs-img" src="assets/images/ref-10.jpg" alt="Referenzprojekt: Aquarium nach Maß 10" loading="lazy" width="260" height="180">
+            <picture>
+              <source type="image/avif" srcset="assets/images/ref-1-480.avif">
+              <source type="image/webp" srcset="assets/images/ref-1-480.webp">
+              <img class="refs-img" src="assets/images/ref-1-480.jpg" alt="Referenzprojekt: Aquarium nach Maß 1" loading="lazy" width="260" height="180">
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="assets/images/ref-2-480.avif">
+              <source type="image/webp" srcset="assets/images/ref-2-480.webp">
+              <img class="refs-img" src="assets/images/ref-2-480.jpg" alt="Referenzprojekt: Aquarium nach Maß 2" loading="lazy" width="260" height="180">
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="assets/images/ref-3-480.avif">
+              <source type="image/webp" srcset="assets/images/ref-3-480.webp">
+              <img class="refs-img" src="assets/images/ref-3-480.jpg" alt="Referenzprojekt: Aquarium nach Maß 3" loading="lazy" width="260" height="180">
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="assets/images/ref-4-480.avif">
+              <source type="image/webp" srcset="assets/images/ref-4-480.webp">
+              <img class="refs-img" src="assets/images/ref-4-480.jpg" alt="Referenzprojekt: Aquarium nach Maß 4" loading="lazy" width="260" height="180">
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="assets/images/ref-5-480.avif">
+              <source type="image/webp" srcset="assets/images/ref-5-480.webp">
+              <img class="refs-img" src="assets/images/ref-5-480.jpg" alt="Referenzprojekt: Aquarium nach Maß 5" loading="lazy" width="260" height="180">
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="assets/images/ref-6-480.avif">
+              <source type="image/webp" srcset="assets/images/ref-6-480.webp">
+              <img class="refs-img" src="assets/images/ref-6-480.jpg" alt="Referenzprojekt: Aquarium nach Maß 6" loading="lazy" width="260" height="180">
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="assets/images/ref-7-480.avif">
+              <source type="image/webp" srcset="assets/images/ref-7-480.webp">
+              <img class="refs-img" src="assets/images/ref-7-480.jpg" alt="Referenzprojekt: Aquarium nach Maß 7" loading="lazy" width="260" height="180">
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="assets/images/ref-8-480.avif">
+              <source type="image/webp" srcset="assets/images/ref-8-480.webp">
+              <img class="refs-img" src="assets/images/ref-8-480.jpg" alt="Referenzprojekt: Aquarium nach Maß 8" loading="lazy" width="260" height="180">
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="assets/images/ref-9-480.avif">
+              <source type="image/webp" srcset="assets/images/ref-9-480.webp">
+              <img class="refs-img" src="assets/images/ref-9-480.jpg" alt="Referenzprojekt: Aquarium nach Maß 9" loading="lazy" width="260" height="180">
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="assets/images/ref-10-480.avif">
+              <source type="image/webp" srcset="assets/images/ref-10-480.webp">
+              <img class="refs-img" src="assets/images/ref-10-480.jpg" alt="Referenzprojekt: Aquarium nach Maß 10" loading="lazy" width="260" height="180">
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="assets/images/ref-11-480.avif">
+              <source type="image/webp" srcset="assets/images/ref-11-480.webp">
+              <img class="refs-img" src="assets/images/ref-11-480.jpg" alt="Orangefarbene Buntbarsche im Gesellschaftsbecken" loading="lazy" width="260" height="180">
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="assets/images/ref-12-480.avif">
+              <source type="image/webp" srcset="assets/images/ref-12-480.webp">
+              <img class="refs-img" src="assets/images/ref-12-480.jpg" alt="Gesellschaftsbecken mit verschiedenen Buntbarschen" loading="lazy" width="260" height="180">
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="assets/images/ref-13-480.avif">
+              <source type="image/webp" srcset="assets/images/ref-13-480.webp">
+              <img class="refs-img" src="assets/images/ref-13-480.jpg" alt="Zwergflusskrebs an einer Aquarium-Dekoration" loading="lazy" width="260" height="180">
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="assets/images/ref-14-480.avif">
+              <source type="image/webp" srcset="assets/images/ref-14-480.webp">
+              <img class="refs-img" src="assets/images/ref-14-480.jpg" alt="Panzerwels am Aquarienboden" loading="lazy" width="260" height="180">
+            </picture>
             <!-- Duplikat fuer nahtlose CSS-Endlosschleife, fuer Screenreader ausgeblendet -->
-            <img class="refs-img" src="assets/images/ref-1.jpg" alt="" aria-hidden="true" loading="lazy" width="260" height="180">
-            <img class="refs-img" src="assets/images/ref-2.jpg" alt="" aria-hidden="true" loading="lazy" width="260" height="180">
-            <img class="refs-img" src="assets/images/ref-3.jpg" alt="" aria-hidden="true" loading="lazy" width="260" height="180">
-            <img class="refs-img" src="assets/images/ref-4.jpg" alt="" aria-hidden="true" loading="lazy" width="260" height="180">
-            <img class="refs-img" src="assets/images/ref-5.jpg" alt="" aria-hidden="true" loading="lazy" width="260" height="180">
-            <img class="refs-img" src="assets/images/ref-6.jpg" alt="" aria-hidden="true" loading="lazy" width="260" height="180">
-            <img class="refs-img" src="assets/images/ref-7.jpg" alt="" aria-hidden="true" loading="lazy" width="260" height="180">
-            <img class="refs-img" src="assets/images/ref-8.jpg" alt="" aria-hidden="true" loading="lazy" width="260" height="180">
-            <img class="refs-img" src="assets/images/ref-9.jpg" alt="" aria-hidden="true" loading="lazy" width="260" height="180">
-            <img class="refs-img" src="assets/images/ref-10.jpg" alt="" aria-hidden="true" loading="lazy" width="260" height="180">
+            <picture aria-hidden="true">
+              <source type="image/avif" srcset="assets/images/ref-1-480.avif">
+              <source type="image/webp" srcset="assets/images/ref-1-480.webp">
+              <img class="refs-img" src="assets/images/ref-1-480.jpg" alt="" loading="lazy" width="260" height="180">
+            </picture>
+            <picture aria-hidden="true">
+              <source type="image/avif" srcset="assets/images/ref-2-480.avif">
+              <source type="image/webp" srcset="assets/images/ref-2-480.webp">
+              <img class="refs-img" src="assets/images/ref-2-480.jpg" alt="" loading="lazy" width="260" height="180">
+            </picture>
+            <picture aria-hidden="true">
+              <source type="image/avif" srcset="assets/images/ref-3-480.avif">
+              <source type="image/webp" srcset="assets/images/ref-3-480.webp">
+              <img class="refs-img" src="assets/images/ref-3-480.jpg" alt="" loading="lazy" width="260" height="180">
+            </picture>
+            <picture aria-hidden="true">
+              <source type="image/avif" srcset="assets/images/ref-4-480.avif">
+              <source type="image/webp" srcset="assets/images/ref-4-480.webp">
+              <img class="refs-img" src="assets/images/ref-4-480.jpg" alt="" loading="lazy" width="260" height="180">
+            </picture>
+            <picture aria-hidden="true">
+              <source type="image/avif" srcset="assets/images/ref-5-480.avif">
+              <source type="image/webp" srcset="assets/images/ref-5-480.webp">
+              <img class="refs-img" src="assets/images/ref-5-480.jpg" alt="" loading="lazy" width="260" height="180">
+            </picture>
+            <picture aria-hidden="true">
+              <source type="image/avif" srcset="assets/images/ref-6-480.avif">
+              <source type="image/webp" srcset="assets/images/ref-6-480.webp">
+              <img class="refs-img" src="assets/images/ref-6-480.jpg" alt="" loading="lazy" width="260" height="180">
+            </picture>
+            <picture aria-hidden="true">
+              <source type="image/avif" srcset="assets/images/ref-7-480.avif">
+              <source type="image/webp" srcset="assets/images/ref-7-480.webp">
+              <img class="refs-img" src="assets/images/ref-7-480.jpg" alt="" loading="lazy" width="260" height="180">
+            </picture>
+            <picture aria-hidden="true">
+              <source type="image/avif" srcset="assets/images/ref-8-480.avif">
+              <source type="image/webp" srcset="assets/images/ref-8-480.webp">
+              <img class="refs-img" src="assets/images/ref-8-480.jpg" alt="" loading="lazy" width="260" height="180">
+            </picture>
+            <picture aria-hidden="true">
+              <source type="image/avif" srcset="assets/images/ref-9-480.avif">
+              <source type="image/webp" srcset="assets/images/ref-9-480.webp">
+              <img class="refs-img" src="assets/images/ref-9-480.jpg" alt="" loading="lazy" width="260" height="180">
+            </picture>
+            <picture aria-hidden="true">
+              <source type="image/avif" srcset="assets/images/ref-10-480.avif">
+              <source type="image/webp" srcset="assets/images/ref-10-480.webp">
+              <img class="refs-img" src="assets/images/ref-10-480.jpg" alt="" loading="lazy" width="260" height="180">
+            </picture>
+            <picture aria-hidden="true">
+              <source type="image/avif" srcset="assets/images/ref-11-480.avif">
+              <source type="image/webp" srcset="assets/images/ref-11-480.webp">
+              <img class="refs-img" src="assets/images/ref-11-480.jpg" alt="" loading="lazy" width="260" height="180">
+            </picture>
+            <picture aria-hidden="true">
+              <source type="image/avif" srcset="assets/images/ref-12-480.avif">
+              <source type="image/webp" srcset="assets/images/ref-12-480.webp">
+              <img class="refs-img" src="assets/images/ref-12-480.jpg" alt="" loading="lazy" width="260" height="180">
+            </picture>
+            <picture aria-hidden="true">
+              <source type="image/avif" srcset="assets/images/ref-13-480.avif">
+              <source type="image/webp" srcset="assets/images/ref-13-480.webp">
+              <img class="refs-img" src="assets/images/ref-13-480.jpg" alt="" loading="lazy" width="260" height="180">
+            </picture>
+            <picture aria-hidden="true">
+              <source type="image/avif" srcset="assets/images/ref-14-480.avif">
+              <source type="image/webp" srcset="assets/images/ref-14-480.webp">
+              <img class="refs-img" src="assets/images/ref-14-480.jpg" alt="" loading="lazy" width="260" height="180">
+            </picture>
           </div>
         </div>
       </div>
@@ -355,7 +497,7 @@
               </div>
             </div>
             <div class="contact-social-box">
-              <h4><span aria-hidden="true">📢</span> Aktuelles &amp; Sonderangebote</h4>
+              <h3><span aria-hidden="true">📢</span> Aktuelles &amp; Sonderangebote</h3>
               <p>Besuchen Sie uns auch auf Facebook! Dort posten wir regelmäßig unsere wöchentlichen Sonderangebote, exklusive Rabatte und brandneue Fisch-Zuzüge für Ihre Aquarien.</p>
               <a href="https://www.facebook.com/people/Zierfischparadies-Erding/100070092580801/?ref=tn_tnmn" target="_blank" rel="noopener" class="btn btn-outline">
                 Zierfischparadies auf Facebook
@@ -409,15 +551,16 @@
   <!-- Ladenbilder Lightbox -->
   <div class="modal-overlay" id="paradiesLightbox" role="dialog" aria-modal="true" aria-label="Unser Paradies – Ladenbilder">
     <div class="modal lightbox-modal">
-      <div class="visually-hidden lightbox-thumbs">
-        <img src="assets/images/laden-1.png" alt="Ladenansicht 1">
-        <img src="assets/images/laden-2.png" alt="Ladenansicht 2">
-        <img src="assets/images/laden-3.png" alt="Ladenansicht 3">
-        <img src="assets/images/laden-4.png" alt="Ladenansicht 4">
-        <img src="assets/images/laden-5.png" alt="Ladenansicht 5">
-        <img src="assets/images/laden-6.png" alt="Ladenansicht 6">
-        <img src="assets/images/laden-7.png" alt="Ladenansicht 7">
-        <img src="assets/images/laden-8.png" alt="Ladenansicht 8">
+      <div class="lightbox-thumbs" hidden>
+        <picture><source type="image/avif" srcset="assets/images/laden-1-480.avif"><source type="image/webp" srcset="assets/images/laden-1-480.webp"><img src="assets/images/laden-1-480.jpg" alt="Ladenansicht 1" width="500" height="500"></picture>
+        <picture><source type="image/avif" srcset="assets/images/laden-2-480.avif"><source type="image/webp" srcset="assets/images/laden-2-480.webp"><img src="assets/images/laden-2-480.jpg" alt="Ladenansicht 2" width="500" height="500"></picture>
+        <picture><source type="image/avif" srcset="assets/images/laden-3-480.avif"><source type="image/webp" srcset="assets/images/laden-3-480.webp"><img src="assets/images/laden-3-480.jpg" alt="Ladenansicht 3" width="500" height="500"></picture>
+        <picture><source type="image/avif" srcset="assets/images/laden-4-480.avif"><source type="image/webp" srcset="assets/images/laden-4-480.webp"><img src="assets/images/laden-4-480.jpg" alt="Ladenansicht 4" width="500" height="500"></picture>
+        <picture><source type="image/avif" srcset="assets/images/laden-5-480.avif"><source type="image/webp" srcset="assets/images/laden-5-480.webp"><img src="assets/images/laden-5-480.jpg" alt="Ladenansicht 5" width="500" height="500"></picture>
+        <picture><source type="image/avif" srcset="assets/images/laden-6-480.avif"><source type="image/webp" srcset="assets/images/laden-6-480.webp"><img src="assets/images/laden-6-480.jpg" alt="Ladenansicht 6" width="500" height="500"></picture>
+        <picture><source type="image/avif" srcset="assets/images/laden-7-480.avif"><source type="image/webp" srcset="assets/images/laden-7-480.webp"><img src="assets/images/laden-7-480.jpg" alt="Ladenansicht 7" width="500" height="500"></picture>
+        <picture><source type="image/avif" srcset="assets/images/laden-8-480.avif"><source type="image/webp" srcset="assets/images/laden-8-480.webp"><img src="assets/images/laden-8-480.jpg" alt="Ladenansicht 8" width="500" height="500"></picture>
+        <picture><source type="image/avif" srcset="assets/images/laden-9-480.avif"><source type="image/webp" srcset="assets/images/laden-9-480.webp"><img src="assets/images/laden-9-480.jpg" alt="Blick auf die Futter- und Zubehör-Regale im Laden" width="480" height="211"></picture>
       </div>
       <div class="lightbox-body">
         <button type="button" class="lightbox-nav lightbox-prev" id="paradiesPrev" aria-label="Vorheriges Bild">&#8249;</button>
@@ -700,15 +843,15 @@
     </div>
   </div>
 
-  <script src="assets/js/nav.js" defer></script>
-  <script src="assets/js/hero-video.js" defer></script>
-  <script src="assets/js/modals.js" defer></script>
-  <script src="assets/js/lightbox.js" defer></script>
-  <script src="assets/js/highlights.js" defer></script>
-  <script src="assets/js/testimonials.js" defer></script>
-  <script src="assets/js/contact-form.js" defer></script>
-  <script src="assets/js/newsletter.js" defer></script>
-  <script src="assets/js/map-loader.js" defer></script>
-  <script src="assets/js/obfuscate-email.js" defer></script>
+  <script src="assets/js/nav.min.js" defer></script>
+  <script src="assets/js/hero-video.min.js" defer></script>
+  <script src="assets/js/modals.min.js" defer></script>
+  <script src="assets/js/lightbox.min.js" defer></script>
+  <script src="assets/js/highlights.min.js" defer></script>
+  <script src="assets/js/testimonials.min.js" defer></script>
+  <script src="assets/js/contact-form.min.js" defer></script>
+  <script src="assets/js/newsletter.min.js" defer></script>
+  <script src="assets/js/map-loader.min.js" defer></script>
+  <script src="assets/js/obfuscate-email.min.js" defer></script>
 </body>
 </html>

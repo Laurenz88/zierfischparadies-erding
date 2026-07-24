@@ -1,7 +1,7 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https://images.unsplash.com; font-src 'self'; media-src 'self'; connect-src 'self' https://docs.google.com https://109b8eda.sibforms.com; frame-src https://www.openstreetmap.org; form-action 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'sha256-cbrl/d7ftGw+4xDhL2Oxl7JE2W4JnH0DgW0V0z3SlWQ='; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self' https://docs.google.com https://109b8eda.sibforms.com; frame-src https://www.openstreetmap.org; form-action 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
     X-Content-Type-Options = "nosniff"
     X-Frame-Options = "DENY"
     Referrer-Policy = "strict-origin-when-cross-origin"
@@ -17,3 +17,21 @@
   for = "/assets/video/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# CSS/JS werden ueber den Dateinamen versioniert (bei Aenderungen bitte
+# den Dateinamen anpassen, z.B. style.min.css?v=2) - bis dahin ein
+# moderat langer, aber nicht "immutable" Cache.
+[[headers]]
+  for = "/assets/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/assets/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"

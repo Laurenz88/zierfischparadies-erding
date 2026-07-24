@@ -5,3 +5,12 @@ dist/
 Thumbs.db
 *.log
 .env
+
+# Roh-Fotos vom Inhaber (Original-Uploads) - verarbeitete/optimierte
+# Versionen liegen bereits in assets/images/, Rohdaten muessen nicht
+# ins Repo (Groesse, teils mehrere MB pro Foto).
+/ki 1.1/
+
+# Lighthouse-Reports sind lokale Messergebnisse, kein Quellcode.
+lighthouse-report*.json
+lighthouse-report*.html

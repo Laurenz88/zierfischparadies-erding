@@ -203,7 +203,7 @@ a { color: inherit; }
   font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.05rem;
   text-decoration: none;
 }
-.nav-logo-icon { font-size: 1.3rem; }
+.nav-logo-icon { width: 28px; height: 28px; border-radius: 8px; }
 
 .nav-toggle {
   display: flex; flex-direction: column; gap: 5px;
@@ -456,13 +456,17 @@ a { color: inherit; }
 .testimonial-location { font-size: 0.78rem; color: var(--text-subtle); }
 .testimonials-controls { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1.5rem; }
 .slider-btn {
-  width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border-subtle);
+  flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border-subtle);
   background: none; color: var(--white); cursor: pointer; font-size: 1.1rem;
 }
 .slider-btn:disabled { opacity: 0.35; cursor: not-allowed; }
-.slider-dots { display: flex; gap: 0.5rem; }
-.slider-dot { width: 8px; height: 8px; border-radius: 50%; border: none; background: var(--border-subtle); cursor: pointer; padding: 0; }
-.slider-dot.active { background: var(--gold); }
+.slider-dots { display: flex; }
+.slider-dot {
+  flex-shrink: 0; width: 24px; height: 24px; border: none; background: none; cursor: pointer; padding: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.slider-dot::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--border-subtle); }
+.slider-dot.active::before { background: var(--gold); }
 .testimonials-note { font-size: 0.78rem; color: var(--text-subtle); margin-top: 1.5rem; text-align: center; max-width: 40rem; margin-inline: auto; }
 
 /* ── Kontakt ── */
@@ -529,7 +533,7 @@ a { color: inherit; }
 .contact-info-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-subtle); }
 .contact-info-value a { text-decoration: none; }
 .contact-social-box { margin-top: 1.5rem; padding: 1.25rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); border-radius: 8px; }
-.contact-social-box h4 { font-size: 1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+.contact-social-box h3 { font-size: 1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
 .contact-social-box p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem; }
 
 /* ── Footer ── */
