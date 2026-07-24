@@ -69,11 +69,11 @@ Ziel: 1:1-Nachbau (inhaltlich/strukturell) von https://zierfischparadies-erding.
 - [x] Eigene Fotos vom Inhaber eingebunden (About-Bild, 4 Galerie-Bilder, 1 Ladenbild) — **kein Stockfoto mehr auf der Seite**
 - [x] Logo neu gestaltet (`assets/logo-mark.svg`, ersetzt Emoji-Platzhalter aus Phase 1 und altes Logo)
 
-## Phase 9 — SEO (Ziel: 100)
-- [ ] Meta-Title/-Description, OG + Twitter Cards (eigenes 1200×630-Bild), Canonical
-- [ ] JSON-LD LocalBusiness/PetStore inkl. Geo-Koordinaten, sameAs, ggf. FAQPage
-- [ ] sitemap.xml, robots.txt, sprechende Anker, beschreibende Alt-Texte mit Fischnamen
-- [ ] Lokales SEO Keyword-Fokus („Zierfische Erding" etc.) + Hinweis: Google-Unternehmensprofil einrichten/pflegen
+## Phase 9 — SEO ✅ abgeschlossen (lokal SEO/Accessibility/Best-Practices je 100 in Lighthouse)
+- [x] Meta-Title/-Description (mit lokalen Keywords), OG + Twitter Cards (eigenes `og.jpg`, bereits 1200×630), Canonical auf allen 3 Seiten
+- [x] JSON-LD `PetStore`/LocalBusiness inkl. Geo-Koordinaten, `sameAs` (Facebook); FAQPage bewusst nicht ergänzt (kein echter FAQ-Inhalt auf der Seite, siehe `docs/phase9-seo.md`)
+- [x] sitemap.xml/robots.txt vorhanden (inkl. `/impressum`, `/datenschutz`), Anker-Kompatibilität bereits in Phase 3 geprüft, Alt-Texte der neuen Galerie-Fotos beschreibend
+- [x] Lokale Keywords natürlich in Title/Description/Content verankert; Empfehlung zum Google-Unternehmensprofil in `docs/phase9-seo.md` dokumentiert
 
 ## Phase 10 — Launch: Domain-Umzug & Search Console (⛔ NUR nach expliziter Freigabe des Nutzers)
 - [ ] `docs/launch-checkliste.md`: Deployment + Vorschau-Test (alle Formulare live), DNS-Umstellung (TTL vorher senken) + HTTPS-Check, 301-Redirects aktivieren, Google Search Console (Property, Verifizierung — alter Verification-Tag `JEor7cRkWugFqFn…` prüfen, Sitemap einreichen), Bing Webmaster Tools, Nachkontrolle Indexierung/Core Web Vitals/Rankings nach 1–2 Wochen
