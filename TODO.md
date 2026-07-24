@@ -92,8 +92,11 @@ Ziel: 1:1-Nachbau (inhaltlich/strukturell) von https://zierfischparadies-erding.
 - Phase 10 (Domain-Umzug etc.) niemals ohne explizite Freigabe des Nutzers ausführen.
 
 ## Offene Klärungen an den Nutzer
-- [ ] Urheberrecht Design/Code (Andreas Fuchs) — siehe `docs/analyse.md` Abschnitt 7
-- [ ] Reale Fotos/Video vom Inhaber erhalten (aktuell nur Original-Server-Assets + Unsplash-Platzhalter)
-- [ ] Hosting-Ziel final bestätigen (Vorschlag: Netlify, Begründung in Phase 1)
-- [ ] Formspree vs. natives Hosting-Formular (Phase 4) final bestätigen
-- [ ] Zugang/Berechtigung für Google Search Console Property klären (Phase 10, erst später relevant)
+- [ ] Urheberrecht Design/Code (Andreas Fuchs) — siehe `docs/analyse.md` Abschnitt 7 (technische Umsetzung ist eigenständig neu geschrieben, siehe `docs/phase1-fundament.md`, Restrisiko bzgl. Gesamt-Look bleibt)
+- [x] Reale Fotos vom Inhaber erhalten und eingebaut (Phase 8, Ordner „ki 1.1") — Hero-Video ist weiterhin das Original-Server-Asset
+- [x] Hosting-Ziel bestätigt: Netlify (Nutzer-Entscheidung in Phase 1)
+- [x] Formspree vs. natives Hosting-Formular: Netlify Forms gewählt (Phase 4), vom Nutzer nicht widersprochen
+- [ ] Zugang/Berechtigung für Google Search Console Property klären (erst bei Phase-10-Ausführung relevant)
+- [ ] Rechtstexte (Impressum/Datenschutz) juristisch prüfen lassen (Phase 7 — noch ausstehend)
+- [ ] Echtes Google Sheet für Angebote einrichten, `SHEET_CSV_URL` in `assets/js/highlights.js` eintragen (Phase 2 — Code fertig, wartet auf Sheet)
+- [ ] Freigabe für Phase 10 (Domain-Umzug/Launch)
