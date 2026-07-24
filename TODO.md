@@ -76,7 +76,8 @@ Ziel: 1:1-Nachbau (inhaltlich/strukturell) von https://zierfischparadies-erding.
 - [x] Lokale Keywords natürlich in Title/Description/Content verankert; Empfehlung zum Google-Unternehmensprofil in `docs/phase9-seo.md` dokumentiert
 
 ## Phase 10 — Launch: Domain-Umzug & Search Console (⛔ NUR nach expliziter Freigabe des Nutzers)
-- [ ] `docs/launch-checkliste.md`: Deployment + Vorschau-Test (alle Formulare live), DNS-Umstellung (TTL vorher senken) + HTTPS-Check, 301-Redirects aktivieren, Google Search Console (Property, Verifizierung — alter Verification-Tag `JEor7cRkWugFqFn…` prüfen, Sitemap einreichen), Bing Webmaster Tools, Nachkontrolle Indexierung/Core Web Vitals/Rankings nach 1–2 Wochen
+- [x] `docs/launch-checkliste.md` erstellt (reine Dokumentation, keine Aktionen ausgeführt)
+- [ ] **Ausführung der Checkliste selbst wartet auf explizite Freigabe** — inkl. Klärung: Zugriff auf altes Google-Search-Console-Konto (Verifizierungs-Tag `JEor7cRkWugFqFn…` aus dem Original wurde nicht übernommen, siehe Checkliste Punkt 4)
 
 ## Qualitätssicherung (laufend, nach jeder Phase)
 - [ ] Screenshot-Vergleich neu vs. alt
