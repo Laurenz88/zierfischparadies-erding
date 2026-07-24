@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Zierfischparadies Erding Logo">
   <defs>
-    <linearGradient id="logoGold" x1="10" y1="6" x2="46" y2="58" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#f0d878"/>
-      <stop offset="0.55" stop-color="#D4AF37"/>
-      <stop offset="1" stop-color="#a97e1f"/>
+    <linearGradient id="logoAccent" x1="10" y1="6" x2="46" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e8c090"/>
+      <stop offset="0.55" stop-color="#d9a86c"/>
+      <stop offset="1" stop-color="#e8825a"/>
     </linearGradient>
   </defs>
-  <rect width="64" height="64" rx="16" fill="#0a192f"/>
+  <rect width="64" height="64" rx="16" fill="#0b2b2e"/>
   <!-- Skalar-Silhouette (Angelfish): Rautenkoerper, hohe Ruecken-/Bauchflosse, Gabelschwanz -->
-  <g fill="url(#logoGold)">
+  <g fill="url(#logoAccent)">
     <!-- Ruecken- und Bauchflosse (grosses Dreieck hinter dem Koerper) -->
     <path d="M32 6C24 16 24 48 32 58C40 48 40 16 32 6Z"/>
     <!-- Schwanzflosse -->
@@ -17,7 +17,7 @@
     <path d="M18 32L32 14L46 32L32 50Z"/>
   </g>
   <!-- Schleierflossen-Fäden -->
-  <path d="M48 24C52 20 56 18 59 17" stroke="url(#logoGold)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.85"/>
-  <path d="M48 40C52 44 56 46 59 47" stroke="url(#logoGold)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.85"/>
-  <circle cx="27" cy="27" r="1.8" fill="#0a192f"/>
+  <path d="M48 24C52 20 56 18 59 17" stroke="url(#logoAccent)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.85"/>
+  <path d="M48 40C52 44 56 46 59 47" stroke="url(#logoAccent)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.85"/>
+  <circle cx="27" cy="27" r="1.8" fill="#0b2b2e"/>
 </svg>

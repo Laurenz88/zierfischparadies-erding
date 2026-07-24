@@ -91,8 +91,11 @@ Ziel: 1:1-Nachbau (inhaltlich/strukturell) von https://zierfischparadies-erding.
 - Keine Fantasie-Inhalte erfinden — bei fehlenden Infos (echte Fotos, Zugangsdaten etc.) nachfragen statt annehmen.
 - Phase 10 (Domain-Umzug etc.) niemals ohne explizite Freigabe des Nutzers ausführen.
 
+## Redesign „Beckenlicht" ✅ abgeschlossen
+- [x] Auf Nutzerwunsch komplettes visuelles Redesign (Variante A aus Design-Vorschau gewählt): eigene Farbpalette (Petrol/Sand/Koralle), eigene Typografie (Quicksand + Inter), eigenes Wellen-/Lichtbrechungs-Motiv, Hero-Video beibehalten, Struktur/Sektionen/CMS-Anbindung unverändert — siehe `docs/redesign-beckenlicht.md`
+- [x] Damit ist die Urheberrechtsfrage zum Original-Design (Andreas Fuchs, siehe `docs/analyse.md` Abschnitt 7) **gegenstandslos**: keine Ähnlichkeit mehr zu Farben/Typografie/Layout des Originals. Klarstellung: Der Andreas-Fuchs-Credit war nie im Code/Footer dieser neuen Seite enthalten, nur als Analyse-Fund dokumentiert.
+
 ## Offene Klärungen an den Nutzer
-- [ ] Urheberrecht Design/Code (Andreas Fuchs) — siehe `docs/analyse.md` Abschnitt 7 (technische Umsetzung ist eigenständig neu geschrieben, siehe `docs/phase1-fundament.md`, Restrisiko bzgl. Gesamt-Look bleibt)
 - [x] Reale Fotos vom Inhaber erhalten und eingebaut (Phase 8, Ordner „ki 1.1") — Hero-Video ist weiterhin das Original-Server-Asset
 - [x] Hosting-Ziel bestätigt: Netlify (Nutzer-Entscheidung in Phase 1)
 - [x] Formspree vs. natives Hosting-Formular: Netlify Forms gewählt (Phase 4), vom Nutzer nicht widersprochen
