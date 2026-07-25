@@ -8,6 +8,14 @@
   aber exakt so heissen):
   Kategorie | Name | Lateinischer Name | Größe | Info | Preis |
   Streichpreis | Rabatt-% | Bild-Dateiname | Aktiv
+
+  "Bild-Dateiname" akzeptiert drei Formate (siehe resolveImageSrc()):
+  1. Lokaler Dateiname (liegt in assets/images/angebote/), z.B. "diskus.jpg"
+  2. Eine normale externe Bild-URL (http/https)
+  3. Ein Google-Drive-Freigabelink (App "Link kopieren" oder Browser),
+     wird automatisch in ein direkt anzeigbares Bildformat umgewandelt.
+  Laedt ein Bild nicht (kaputter Link, keine Freigabe, o.ae.), greift der
+  onerror-Fallback im <img> automatisch auf ein Platzhalterbild zurueck.
 */
 (function () {
   // "Im Web veroeffentlichen"-CSV-URL des Angebote-Sheets (siehe docs/anleitung-angebote.md).
@@ -74,9 +82,40 @@
     return v === 'ja' || v === 'yes' || v === 'true' || v === '1' || v === 'x';
   }
 
-  function imgSrc(filename) {
-    if (!has(filename)) return PLACEHOLDER;
-    return IMG_BASE + encodeURIComponent(filename.trim());
+  // Erkennt eine Google-Drive-URL (Freigabelink aus App oder Browser,
+  // "Link kopieren", offene "?id="-Links oder bereits umgewandelte
+  // googleusercontent.com-Links) und liefert die enthaltene Datei-ID,
+  // oder null, wenn keine gefunden wird.
+  function extractDriveFileId(url) {
+    var patterns = [
+      /\/file\/d\/([a-zA-Z0-9_-]{10,})/,
+      /[?&]id=([a-zA-Z0-9_-]{10,})/,
+      /googleusercontent\.com\/d\/([a-zA-Z0-9_-]{10,})/
+    ];
+    for (var i = 0; i < patterns.length; i++) {
+      var m = url.match(patterns[i]);
+      if (m) return m[1];
+    }
+    return null;
+  }
+
+  // Spalte "Bild-Dateiname" akzeptiert drei Formate: lokaler Dateiname
+  // (assets/images/angebote/...), eine normale externe Bild-URL, oder
+  // ein Google-Drive-Freigabelink (wird automatisch in ein direkt
+  // anzeigbares Format umgewandelt). Kann keine gueltige Bildquelle
+  // ermittelt werden, wird sofort der Platzhalter verwendet, statt
+  // einen von vornherein aussichtslosen Ladeversuch zu starten.
+  function resolveImageSrc(value) {
+    if (!has(value)) return PLACEHOLDER;
+    var v = value.trim();
+    if (/^https?:\/\//i.test(v)) {
+      if (/drive\.google\.com|googleusercontent\.com/i.test(v)) {
+        var fileId = extractDriveFileId(v);
+        return fileId ? 'https://lh3.googleusercontent.com/d/' + fileId + '=w800' : PLACEHOLDER;
+      }
+      return v;
+    }
+    return IMG_BASE + encodeURIComponent(v);
   }
 
   function infoLine(item) {
@@ -106,7 +145,7 @@
     return (
       '<div class="product-card">' +
         '<div class="product-card-img-wrap">' + badge +
-          '<img class="product-card-img" src="' + imgSrc(item['Bild-Dateiname']) + '"' +
+          '<img class="product-card-img" src="' + resolveImageSrc(item['Bild-Dateiname']) + '"' +
           ' alt="' + esc(name) + '" loading="lazy"' +
           ' onerror="this.onerror=null;this.src=\'' + PLACEHOLDER.replace(/'/g, '%27') + '\'">' +
         '</div>' +
