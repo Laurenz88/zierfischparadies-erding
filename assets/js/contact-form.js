@@ -45,10 +45,6 @@
   document.querySelectorAll('[data-anliegen]').forEach(function (el) {
     el.addEventListener('click', function () { selectAnliegen(el.dataset.anliegen); });
   });
-  // Von den Leistungs-Modals aus ("Zum Kontaktformular")
-  document.querySelectorAll('[data-select-anliegen]').forEach(function (el) {
-    el.addEventListener('click', function () { selectAnliegen(el.dataset.selectAnliegen); });
-  });
 
   function setStatus(message, type) {
     if (!statusEl) return;

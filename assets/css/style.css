@@ -505,6 +505,16 @@ a { color: inherit; }
 .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
   outline: none; border-color: var(--accent);
 }
+/* Ohne diese explizite Farbgebung rendern manche Browser (Chrome/Edge unter
+   Windows) das aufgeklappte <option>-Menue mit einem hellen System-Hintergrund,
+   wodurch der geerbte helle Text unlesbar wird (weiss auf weiss). */
+.form-group select option {
+  background-color: var(--bg-aqua);
+  color: var(--white);
+}
+.form-group select option:disabled {
+  color: var(--text-subtle);
+}
 .dynamic-fields { display: none; flex-direction: column; }
 .dynamic-fields.visible { display: flex; }
 .honeypot-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
@@ -593,6 +603,14 @@ a { color: inherit; }
   .modal { border-radius: var(--radius-lg); max-width: 32rem; }
   .modal.modal-wide { max-width: 48rem; }
 }
+@media (min-width: 900px) {
+  .modal.modal-wide { max-width: 68rem; }
+}
+.modal-body-split { display: grid; gap: 1.75rem; }
+@media (min-width: 900px) {
+  .modal-body-split { grid-template-columns: 1fr 1fr; align-items: start; }
+}
+.modal-contact-col .contact-form-card { padding: 1.5rem; margin: 0; }
 .modal-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
 .modal-header h2 { font-family: 'Quicksand', sans-serif; font-size: 1.35rem; font-weight: 700; }
 .modal-subtitle { font-size: 0.8rem; color: var(--text-subtle); margin-top: 0.25rem; }
@@ -615,7 +633,11 @@ a { color: inherit; }
 .versand-table th, .versand-table td { text-align: left; padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--border-subtle); }
 .versand-table th { font-family: 'Quicksand', sans-serif; }
 .versand-note { font-size: 0.8rem; color: var(--text-subtle); }
-.modal-footer-bar { margin-top: 1.25rem; }
+.modal-intro { font-size: 0.92rem; color: var(--text-muted); margin-bottom: 0.85rem; }
+.service-list { display: grid; gap: 0.65rem; margin-top: 0.6rem; }
+@media (min-width: 500px) { .service-list { grid-template-columns: 1fr 1fr; } }
+.service-list li { display: flex; align-items: center; gap: 0.6rem; font-size: 0.9rem; }
+.service-list li::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
 
 .lightbox-modal { max-width: 48rem; padding: 0; background: var(--bg-dark); }
 .lightbox-body { position: relative; display: flex; align-items: center; justify-content: center; min-height: 50vh; }

@@ -431,6 +431,20 @@
       </div>
     </section>
 
+    <!-- Eigene Galerie des Inhabers: Bilder aus content/galerie/, siehe docs/anleitung-bilder.md.
+         Wird per assets/js/owner-gallery.js automatisch befuellt und ausgeblendet, wenn leer. -->
+    <section class="section refs" id="eigene-galerie" hidden>
+      <div class="container refs-header">
+        <span class="section-label">Einblicke</span>
+        <h2 class="section-title">Weitere Eindrücke aus unserem Laden</h2>
+      </div>
+      <div class="container">
+        <div class="refs-viewport">
+          <div class="refs-track" id="ownerGalleryTrack"></div>
+        </div>
+      </div>
+    </section>
+
     <!-- Kundenstimmen (Daten folgen in Phase 3 aus content/kundenstimmen.json) -->
     <section class="section testimonials" id="stimmen">
       <div class="container">
@@ -761,44 +775,44 @@
         </div>
         <button class="modal-close" type="button" aria-label="Schließen" data-close>&times;</button>
       </div>
-      <div class="modal-body">
-        <div class="versand-grid">
-          <div>
-            <p class="section-label">Was wir bieten</p>
-            <div class="versand-step">
-              <div class="versand-icon" aria-hidden="true">📐</div>
-              <div class="versand-step-text"><strong>Individuelle Planung</strong><span>Von der ersten Skizze bis zur fertigen Zeichnung – wir planen Ihr Wunschaquarium nach Ihren Maßen und Vorstellungen.</span></div>
+      <div class="modal-body modal-body-split">
+        <div class="modal-main-col">
+          <div class="versand-grid">
+            <div>
+              <p class="section-label">Was wir bieten</p>
+              <div class="versand-step">
+                <div class="versand-icon" aria-hidden="true">📐</div>
+                <div class="versand-step-text"><strong>Individuelle Planung</strong><span>Von der ersten Skizze bis zur fertigen Zeichnung – wir planen Ihr Wunschaquarium nach Ihren Maßen und Vorstellungen.</span></div>
+              </div>
+              <div class="versand-step">
+                <div class="versand-icon" aria-hidden="true">🔬</div>
+                <div class="versand-step-text"><strong>Glasstärke nach DIN</strong><span>Alle Becken werden mit normgerechter Glasstärke berechnet und gefertigt – für maximale Sicherheit und Langlebigkeit.</span></div>
+              </div>
+              <div class="versand-step">
+                <div class="versand-icon" aria-hidden="true">🏠</div>
+                <div class="versand-step-text"><strong>Vor-Ort-Verklebung</strong><span>Aufbau und Verklebung direkt bei Ihnen zuhause. Kein Transport fertiger Becken – alles frisch vor Ort.</span></div>
+              </div>
+              <div class="versand-step">
+                <div class="versand-icon" aria-hidden="true">🌿</div>
+                <div class="versand-step-text"><strong>Einrichtung &amp; Besatz</strong><span>Auf Wunsch übernehmen wir auch die Einrichtung mit Pflanzen und Besatz – alles aus einer Hand.</span></div>
+              </div>
             </div>
-            <div class="versand-step">
-              <div class="versand-icon" aria-hidden="true">🔬</div>
-              <div class="versand-step-text"><strong>Glasstärke nach DIN</strong><span>Alle Becken werden mit normgerechter Glasstärke berechnet und gefertigt – für maximale Sicherheit und Langlebigkeit.</span></div>
+            <div>
+              <p class="section-label">Becken-Typen</p>
+              <table class="versand-table">
+                <thead><tr><th>Typ</th><th>Größe</th></tr></thead>
+                <tbody>
+                  <tr><td>Nano-Becken</td><td>ab 10 Liter</td></tr>
+                  <tr><td>Standard-Aquarium</td><td>30–3000 Liter</td></tr>
+                  <tr><td>Raumteiler / Einbau</td><td>nach Maß</td></tr>
+                  <tr><td>Sonderanfertigung</td><td>Poolbecken, Bohrungen etc.</td></tr>
+                </tbody>
+              </table>
+              <p class="versand-note">Jedes Becken ist ein Unikat. Wunschmaße, besondere Formen und individuelle Anforderungen auf Anfrage.</p>
             </div>
-            <div class="versand-step">
-              <div class="versand-icon" aria-hidden="true">🏠</div>
-              <div class="versand-step-text"><strong>Vor-Ort-Verklebung</strong><span>Aufbau und Verklebung direkt bei Ihnen zuhause. Kein Transport fertiger Becken – alles frisch vor Ort.</span></div>
-            </div>
-            <div class="versand-step">
-              <div class="versand-icon" aria-hidden="true">🌿</div>
-              <div class="versand-step-text"><strong>Einrichtung &amp; Besatz</strong><span>Auf Wunsch übernehmen wir auch die Einrichtung mit Pflanzen und Besatz – alles aus einer Hand.</span></div>
-            </div>
-          </div>
-          <div>
-            <p class="section-label">Becken-Typen</p>
-            <table class="versand-table">
-              <thead><tr><th>Typ</th><th>Größe</th></tr></thead>
-              <tbody>
-                <tr><td>Nano-Becken</td><td>ab 30 Liter</td></tr>
-                <tr><td>Standard-Aquarium</td><td>60 – 400 Liter</td></tr>
-                <tr><td>Raumteiler / Einbau</td><td>nach Maß</td></tr>
-                <tr><td>Sonderanfertigung</td><td>Poolbecken, Bohrungen etc.</td></tr>
-              </tbody>
-            </table>
-            <p class="versand-note">Jedes Becken ist ein Unikat. Wunschmaße, besondere Formen und individuelle Anforderungen auf Anfrage.</p>
           </div>
         </div>
-      </div>
-      <div class="modal-footer-bar">
-        <a href="#kontakt" class="btn btn-accent" data-close data-select-anliegen="aquariumbau">Zum Kontaktformular</a>
+        <div class="modal-contact-col" data-contact-slot></div>
       </div>
     </div>
   </div>
@@ -813,44 +827,23 @@
         </div>
         <button class="modal-close" type="button" aria-label="Schließen" data-close>&times;</button>
       </div>
-      <div class="modal-body">
-        <div class="versand-grid">
-          <div>
-            <p class="section-label">Unsere Leistungen</p>
-            <div class="versand-step">
-              <div class="versand-icon" aria-hidden="true">🏖️</div>
-              <div class="versand-step-text"><strong>Urlaubsservice</strong><span>Wir kümmern uns um Ihr Aquarium, während Sie verreist sind – Fütterung, Wassercheck und Pflege inklusive.</span></div>
-            </div>
-            <div class="versand-step">
-              <div class="versand-icon" aria-hidden="true">🌱</div>
-              <div class="versand-step-text"><strong>Algenbekämpfung</strong><span>Professionelle Diagnose und nachhaltige Bekämpfung von Algen – ohne Chemie, mit System.</span></div>
-            </div>
-            <div class="versand-step">
-              <div class="versand-icon" aria-hidden="true">🏢</div>
-              <div class="versand-step-text"><strong>Firmenbecken-Betreuung</strong><span>Regelmäßige Wartungsverträge für Büros, Praxen und Hotels – zuverlässig und diskret.</span></div>
-            </div>
-            <div class="versand-step">
-              <div class="versand-icon" aria-hidden="true">🔬</div>
-              <div class="versand-step-text"><strong>Wasseranalyse &amp; Optimierung</strong><span>Messung aller relevanten Wasserwerte und gezielte Korrekturmaßnahmen für ein stabiles Gleichgewicht.</span></div>
-            </div>
-          </div>
-          <div>
-            <p class="section-label">Leistungsübersicht</p>
-            <table class="versand-table">
-              <thead><tr><th>Service</th><th>Turnus</th></tr></thead>
-              <tbody>
-                <tr><td>Wasserwechsel &amp; Reinigung</td><td>wöchentlich / 2-wöchentlich</td></tr>
-                <tr><td>Filterreinigung</td><td>monatlich</td></tr>
-                <tr><td>Pflanzen &amp; Besatz-Check</td><td>je nach Bedarf</td></tr>
-                <tr><td>Urlaubsbetreuung</td><td>auf Anfrage</td></tr>
-              </tbody>
-            </table>
-            <p class="versand-note">Individuelle Wartungsverträge für Privat- und Firmenkunden. Preise auf Anfrage.</p>
-          </div>
+      <div class="modal-body modal-body-split">
+        <div class="modal-main-col">
+          <p class="modal-intro">Ein schönes gepflegtes Aquarium ist der Wunsch eines jeden Aquarianers.</p>
+          <p class="modal-intro">Gerne übernehmen wir die Betreuung Ihres Aquariums bei Ihnen zu Hause und bieten Ihnen einen umfassenden Pflegeservice, der folgende Leistungen beinhaltet:</p>
+          <p class="section-label">Leistungsübersicht</p>
+          <ul class="service-list">
+            <li>Wasserwechsel</li>
+            <li>Reinigung Filter</li>
+            <li>Boden- und Scheibenreinigung</li>
+            <li>Pflanzenpflege</li>
+            <li>Wasseranalyse</li>
+            <li>Problembehandlung</li>
+            <li>Neueinrichtung</li>
+            <li>Urlaubsbetreuung</li>
+          </ul>
         </div>
-      </div>
-      <div class="modal-footer-bar">
-        <a href="#kontakt" class="btn btn-accent" data-close data-select-anliegen="wartung">Zum Kontaktformular</a>
+        <div class="modal-contact-col" data-contact-slot></div>
       </div>
     </div>
   </div>
@@ -865,44 +858,27 @@
         </div>
         <button class="modal-close" type="button" aria-label="Schließen" data-close>&times;</button>
       </div>
-      <div class="modal-body">
-        <div class="versand-grid">
-          <div>
-            <p class="section-label">So läuft der Ankauf ab</p>
-            <div class="versand-step">
-              <div class="versand-icon" aria-hidden="true">📋</div>
-              <div class="versand-step-text"><strong>Details einreichen</strong><span>Schicken Sie uns vorab Fischart, Gattung, Anzahl, Alter und Größe der Tiere – am besten mit Fotos.</span></div>
-            </div>
-            <div class="versand-step">
-              <div class="versand-icon" aria-hidden="true">✅</div>
-              <div class="versand-step-text"><strong>Prüfung &amp; Rückmeldung</strong><span>Wir prüfen jedes Angebot sorgfältig und melden uns schnellstmöglich mit einem Angebot zurück.</span></div>
-            </div>
-            <div class="versand-step">
-              <div class="versand-icon" aria-hidden="true">🤝</div>
-              <div class="versand-step-text"><strong>Persönliche Übergabe</strong><span>Übergabe nur gesunder, vitaler Tiere – direkt im Geschäft oder nach Absprache.</span></div>
-            </div>
-            <div class="versand-step">
-              <div class="versand-icon" aria-hidden="true">💛</div>
-              <div class="versand-step-text"><strong>Faire Konditionen</strong><span>Ehrliche Bewertung und fairer Preis – wir kaufen nur an, was wir auch guten Gewissens weiterverkaufen können.</span></div>
-            </div>
+      <div class="modal-body modal-body-split">
+        <div class="modal-main-col">
+          <p class="section-label">So läuft der Ankauf ab</p>
+          <div class="versand-step">
+            <div class="versand-icon" aria-hidden="true">📋</div>
+            <div class="versand-step-text"><strong>Details einreichen</strong><span>Schicken Sie uns vorab Fischart, Gattung, Anzahl, Alter und Größe der Tiere – am besten mit Fotos.</span></div>
           </div>
-          <div>
-            <p class="section-label">Besonders gesucht</p>
-            <table class="versand-table">
-              <thead><tr><th>Fischart</th><th>Besonderheit</th></tr></thead>
-              <tbody>
-                <tr><td>Diskus</td><td>Zuchtpaare, Wildfang-Nachzucht</td></tr>
-                <tr><td>Skalare</td><td>besondere Farbformen</td></tr>
-                <tr><td>L-Welse</td><td>gesunde Nachzuchten</td></tr>
-                <tr><td>Weitere Arten</td><td>auf Anfrage</td></tr>
-              </tbody>
-            </table>
-            <p class="versand-note">Nicht jede Nachzucht kann angekauft werden. Bitte vorab anfragen – wir freuen uns über jedes Angebot.</p>
+          <div class="versand-step">
+            <div class="versand-icon" aria-hidden="true">✅</div>
+            <div class="versand-step-text"><strong>Prüfung &amp; Rückmeldung</strong><span>Wir prüfen jedes Angebot sorgfältig und melden uns schnellstmöglich mit einem Angebot zurück.</span></div>
+          </div>
+          <div class="versand-step">
+            <div class="versand-icon" aria-hidden="true">🤝</div>
+            <div class="versand-step-text"><strong>Persönliche Übergabe</strong><span>Übergabe nur gesunder, vitaler Tiere – direkt im Geschäft oder nach Absprache.</span></div>
+          </div>
+          <div class="versand-step">
+            <div class="versand-icon" aria-hidden="true">💛</div>
+            <div class="versand-step-text"><strong>Faire Konditionen</strong><span>Ehrliche Bewertung und fairer Preis – wir kaufen nur an, was wir auch guten Gewissens weiterverkaufen können.</span></div>
           </div>
         </div>
-      </div>
-      <div class="modal-footer-bar">
-        <a href="#kontakt" class="btn btn-accent" data-close data-select-anliegen="nachzucht">Zum Kontaktformular</a>
+        <div class="modal-contact-col" data-contact-slot></div>
       </div>
     </div>
   </div>
@@ -912,6 +888,7 @@
   <script src="assets/js/modals.min.js" defer></script>
   <script src="assets/js/lightbox.min.js" defer></script>
   <script src="assets/js/highlights.min.js" defer></script>
+  <script src="assets/js/owner-gallery.min.js" defer></script>
   <script src="assets/js/testimonials.min.js" defer></script>
   <script src="assets/js/contact-form.min.js" defer></script>
   <script src="assets/js/newsletter.min.js" defer></script>

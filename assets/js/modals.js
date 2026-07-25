@@ -4,11 +4,36 @@
   var activeModal = null;
   var lastFocused = null;
 
+  // Das Kontaktformular wird beim Oeffnen eines Leistungs-Modals mit
+  // einem Kontakt-Platzhalter ([data-contact-slot]) dorthin verschoben
+  // (nicht kopiert, damit bestehende Event-Listener erhalten bleiben)
+  // und beim Schliessen wieder an seinen Ursprungsort zurueckgestellt.
+  var contactForm = document.querySelector('.contact-form-card');
+  var contactFormHome = contactForm ? contactForm.parentNode : null;
+  var contactFormNextSibling = contactForm ? contactForm.nextSibling : null;
+
+  function moveContactFormInto(modal) {
+    if (!contactForm) return;
+    var slot = modal.querySelector('[data-contact-slot]');
+    if (!slot) return;
+    slot.appendChild(contactForm);
+  }
+
+  function restoreContactForm() {
+    if (!contactForm || !contactFormHome) return;
+    if (contactFormNextSibling && contactFormNextSibling.parentNode === contactFormHome) {
+      contactFormHome.insertBefore(contactForm, contactFormNextSibling);
+    } else {
+      contactFormHome.appendChild(contactForm);
+    }
+  }
+
   function openModal(id) {
     var modal = document.getElementById(id);
     if (!modal) return;
     lastFocused = document.activeElement;
     activeModal = modal;
+    moveContactFormInto(modal);
     modal.classList.add('active');
     document.body.classList.add('modal-open');
     var closeBtn = modal.querySelector('.modal-close, [data-close]');
@@ -19,6 +44,7 @@
     modal.classList.remove('active');
     document.body.classList.remove('modal-open');
     activeModal = null;
+    restoreContactForm();
     if (lastFocused) lastFocused.focus();
   }
 
