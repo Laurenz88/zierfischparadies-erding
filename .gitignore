@@ -10,6 +10,7 @@ Thumbs.db
 # Versionen liegen bereits in assets/images/, Rohdaten muessen nicht
 # ins Repo (Groesse, teils mehrere MB pro Foto).
 /ki 1.1/
+/Bilder für unser Paradies/
 
 # Lighthouse-Reports sind lokale Messergebnisse, kein Quellcode.
 lighthouse-report*.json
