@@ -1,12 +1,14 @@
 /*
   Eigene Galerie des Inhabers: Fotos liegen in content/galerie/, eine
-  einfache Liste ihrer Dateinamen steht in content/galerie.json (siehe
-  docs/anleitung-bilder.md). Bewusst KEIN Rate-/Sondierungsmechanismus
-  (z. B. "probiere foto-1.jpg, foto-2.jpg, ... durch"): das wuerde bei
-  jedem nicht vorhandenen Bild eine "Failed to load resource"-Meldung
-  in der Browser-Konsole erzeugen und die Lighthouse-Bewertung
-  "Best Practices" verschlechtern. Die Liste existiert stattdessen
-  immer (auch leer als "[]"), damit nie ins Leere geladen wird.
+  einfache Liste ihrer Dateinamen steht in content/galerie.txt - eine
+  Datei pro Zeile, kein JSON, keine Anfuehrungszeichen/Kommas noetig
+  (siehe docs/anleitung-fuer-inhaber.md). Bewusst KEIN Rate-/
+  Sondierungsmechanismus (z. B. "probiere foto-1.jpg, foto-2.jpg, ...
+  durch"): das wuerde bei jedem nicht vorhandenen Bild eine "Failed to
+  load resource"-Meldung in der Browser-Konsole erzeugen und die
+  Lighthouse-Bewertung "Best Practices" verschlechtern. Die Liste
+  existiert stattdessen immer (auch leer), damit nie ins Leere
+  geladen wird.
 */
 (function () {
   var section = document.getElementById('eigene-galerie');
@@ -24,10 +26,11 @@
   }
 
   function renderGallery() {
-    fetch('content/galerie.json')
-      .then(function (res) { return res.ok ? res.json() : []; })
-      .then(function (files) {
-        if (!Array.isArray(files) || !files.length) return;
+    fetch('content/galerie.txt')
+      .then(function (res) { return res.ok ? res.text() : ''; })
+      .then(function (text) {
+        var files = text.split('\n').map(function (line) { return line.trim(); }).filter(Boolean);
+        if (!files.length) return;
         var real = files.map(function (f, i) { return cardHtml(f, i + 1, false); }).join('');
         var duplicate = files.map(function (f, i) { return cardHtml(f, i + 1, true); }).join('');
         track.innerHTML = real + duplicate;
