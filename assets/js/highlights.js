@@ -10,9 +10,8 @@
   Streichpreis | Rabatt-% | Bild-Dateiname | Aktiv
 */
 (function () {
-  // TODO: Nach Veroeffentlichung des eigenen Google Sheets hier die
-  // "Im Web veroeffentlichen"-CSV-URL eintragen (siehe docs/anleitung-angebote.md).
-  var SHEET_CSV_URL = '';
+  // "Im Web veroeffentlichen"-CSV-URL des Angebote-Sheets (siehe docs/anleitung-angebote.md).
+  var SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR1aVB2-hBz375Tgf_OI9dXyZEa190xqLGl4GTJYv5bDHeH8H_VtJ6ATrXF3Sq3yDcbv-v9yVT-LhQL/pub?gid=1048116277&single=true&output=csv';
 
   var IMG_BASE = 'assets/images/angebote/';
   var PLACEHOLDER = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450'%3E%3Crect width='600' height='450' fill='%230f3437'/%3E%3Ctext x='50%25' y='48%25' dominant-baseline='middle' text-anchor='middle' fill='%23d9a86c' font-family='sans-serif' font-size='52'%3E%F0%9F%90%9F%3C/text%3E%3Ctext x='50%25' y='68%25' dominant-baseline='middle' text-anchor='middle' fill='rgba(238,245,242,0.4)' font-family='sans-serif' font-size='15'%3EKein Bild verf%C3%BCgbar%3C/text%3E%3C/svg%3E";
