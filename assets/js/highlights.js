@@ -35,12 +35,18 @@
   }
 
   // Minimaler RFC4180-CSV-Parser: unterstuetzt in Anfuehrungszeichen
-  // gesetzte Felder mit Kommas, Zeilenumbruechen und doppelten Anfuehrungszeichen.
+  // gesetzte Felder mit Kommas, Zeilenumbruechen und doppelten Anfuehrungszeichen
+  // (z. B. Preise wie "29,90€", die wegen des Kommas von Google automatisch
+  // in Anfuehrungszeichen exportiert werden). Ein evtl. fuehrender
+  // Byte-Order-Mark (manche CSV-Exporte fuegen ihn vor der ersten Spalte
+  // ein) wird entfernt, da er sonst den Namen der ersten Spalte
+  // ("Kategorie") unbemerkt verfaelschen wuerde.
   function parseCSV(text) {
     var rows = [];
     var row = [];
     var field = '';
     var inQuotes = false;
+    if (text.charCodeAt(0) === 0xFEFF) text = text.slice(1);
     text = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
 
     for (var i = 0; i < text.length; i++) {
@@ -67,19 +73,13 @@
     return rows.filter(function (r) { return r.some(function (c) { return c.trim() !== ''; }); });
   }
 
-  function rowsToObjects(rows) {
-    if (!rows.length) return [];
-    var headers = rows[0].map(function (h) { return h.trim(); });
-    return rows.slice(1).map(function (r) {
-      var obj = {};
-      headers.forEach(function (h, i) { obj[h] = (r[i] || '').trim(); });
-      return obj;
-    });
-  }
-
   function isActive(val) {
     var v = String(val || '').trim().toLowerCase();
     return v === 'ja' || v === 'yes' || v === 'true' || v === '1' || v === 'x';
+  }
+
+  function normalizeCategory(val) {
+    return String(val || '').trim().toLowerCase();
   }
 
   // Erkennt eine Google-Drive-URL (Freigabelink aus App oder Browser,
@@ -116,6 +116,62 @@
       return v;
     }
     return IMG_BASE + encodeURIComponent(v);
+  }
+
+  // Baut aus den geparsten CSV-Zeilen die Angebote-/Neuzugaenge-Listen.
+  // Ueberspringt dabei (mit erklaerender Konsolen-Warnung statt stillem
+  // Verschwinden): Zeilen mit Aktiv != ja, Zeilen mit unbekannter
+  // Kategorie (nicht "Angebot"/"Neu" - werden NICHT irgendwo einsortiert)
+  // sowie Zeilen, deren Name oder Bild-Link bereits bei einer frueheren
+  // Zeile vorkam (nur die erste Zeile eines Duplikats wird angezeigt).
+  function buildLists(rows) {
+    var angebote = [];
+    var neuheiten = [];
+    if (!rows.length) return { angebote: angebote, neuheiten: neuheiten };
+
+    var headers = rows[0].map(function (h) { return h.trim(); });
+    var seenNames = {};
+    var seenImages = {};
+
+    rows.slice(1).forEach(function (r, i) {
+      var sheetRow = i + 2; // Zeile 1 ist die Kopfzeile in Google Sheets
+      if (r.length !== headers.length) {
+        console.warn('[Highlights] Zeile ' + sheetRow + ': ' + r.length + ' statt ' + headers.length + ' Spalten erkannt - Zeile wird trotzdem so gut wie moeglich verarbeitet, bitte im Sheet pruefen (evtl. ein Komma oder Anfuehrungszeichen zu viel/zu wenig).');
+      }
+      var item = {};
+      headers.forEach(function (h, j) { item[h] = (r[j] || '').trim(); });
+
+      if (!isActive(item['Aktiv'])) return;
+
+      var kategorie = normalizeCategory(item['Kategorie']);
+      var isAngebot = kategorie === 'angebot';
+      var isNeu = kategorie === 'neu';
+      if (!isAngebot && !isNeu) {
+        console.warn('[Highlights] Zeile ' + sheetRow + ' uebersprungen: unbekannte Kategorie "' + item['Kategorie'] + '" (erwartet: "Angebot" oder "Neu").');
+        return;
+      }
+
+      var name = item['Name'] || '';
+      var nameKey = name.toLowerCase();
+      if (nameKey && seenNames[nameKey]) {
+        console.warn('[Highlights] Zeile ' + sheetRow + ' uebersprungen: Name "' + name + '" ist ein Duplikat von Zeile ' + seenNames[nameKey] + '.');
+        return;
+      }
+
+      var img = item['Bild-Dateiname'] || '';
+      var imgKey = img.toLowerCase();
+      if (imgKey && seenImages[imgKey]) {
+        console.warn('[Highlights] Zeile ' + sheetRow + ' ("' + name + '") uebersprungen: Bild-Link ist ein Duplikat von Zeile ' + seenImages[imgKey] + '.');
+        return;
+      }
+
+      if (nameKey) seenNames[nameKey] = sheetRow;
+      if (imgKey) seenImages[imgKey] = sheetRow;
+
+      if (isAngebot) { angebote.push(item); } else { neuheiten.push(item); }
+    });
+
+    return { angebote: angebote, neuheiten: neuheiten };
   }
 
   function infoLine(item) {
@@ -185,19 +241,10 @@
       var res = await fetch(SHEET_CSV_URL);
       if (!res.ok) throw new Error('HTTP ' + res.status);
       var text = await res.text();
-      var items = rowsToObjects(parseCSV(text)).filter(function (item) {
-        return isActive(item['Aktiv']);
-      });
+      var lists = buildLists(parseCSV(text));
 
-      var angebote = items.filter(function (item) {
-        return (item['Kategorie'] || '').trim().toLowerCase() === 'angebot';
-      });
-      var neuheiten = items.filter(function (item) {
-        return (item['Kategorie'] || '').trim().toLowerCase() === 'neu';
-      });
-
-      render(gridA, angebote, true, FALLBACK);
-      render(gridB, neuheiten, false, FALLBACK);
+      render(gridA, lists.angebote, true, FALLBACK);
+      render(gridB, lists.neuheiten, false, FALLBACK);
     } catch (err) {
       console.error('[Highlights] Sheet konnte nicht geladen werden:', err);
       showFallback(gridA, FALLBACK);

@@ -9,6 +9,7 @@
     "minify-css": "cleancss -o assets/css/style.min.css assets/css/style.css",
     "minify-js": "node scripts/minify-js.mjs",
     "build-critical-css": "node scripts/build-critical-css.mjs",
+    "check-sheet": "node scripts/check-sheet.mjs",
     "build": "npm run minify-css && npm run minify-js"
   },
   "devDependencies": {
