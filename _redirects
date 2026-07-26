@@ -1,0 +1,5 @@
+# Saubere URLs ohne .html-Endung. "200" = Rewrite (Inhalt wird ausgeliefert,
+# die Adresse in der Browser-Leiste bleibt die saubere URL), kein Redirect.
+/shop        /shop.html        200
+/impressum   /impressum.html   200
+/datenschutz /datenschutz.html 200

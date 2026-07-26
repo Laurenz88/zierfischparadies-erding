@@ -661,8 +661,13 @@ body.modal-open { overflow: hidden; }
 .legal-page-container { max-width: 48rem; }
 
 /* ── Shop-Teaser ("in Planung") ── */
-.shop-teaser { padding-top: 7rem; text-align: center; }
-.shop-teaser-container { max-width: 40rem; }
+.shop-teaser { position: relative; overflow: hidden; padding-top: 7rem; padding-bottom: 5rem; text-align: center; }
+.shop-teaser-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.shop-teaser-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, rgba(11, 43, 46, 0.84) 0%, rgba(11, 43, 46, 0.9) 45%, rgba(11, 43, 46, 0.97) 100%);
+}
+.shop-teaser-container { position: relative; z-index: 2; max-width: 40rem; }
 .shop-teaser .section-title { margin-bottom: 0.85rem; }
 .shop-teaser .section-subtitle { margin-inline: auto; margin-bottom: 2rem; }
 .shop-teaser-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-bottom: 2.5rem; }
