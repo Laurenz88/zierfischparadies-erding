@@ -105,17 +105,26 @@
   // anzeigbares Format umgewandelt). Kann keine gueltige Bildquelle
   // ermittelt werden, wird sofort der Platzhalter verwendet, statt
   // einen von vornherein aussichtslosen Ladeversuch zu starten.
+  //
+  // Fuer Drive-Dateien wird der "thumbnail"-Endpunkt als primaere Quelle
+  // verwendet (von Google fuer eingebettete Anzeige gedacht, zuverlaessiger
+  // als der reverse-engineerte lh3-CDN-Link) und "uc?export=view" als
+  // zweite Stufe, falls die erste Anfrage fehlschlaegt (siehe card()).
   function resolveImageSrc(value) {
-    if (!has(value)) return PLACEHOLDER;
+    if (!has(value)) return { src: PLACEHOLDER, fallback: null };
     var v = value.trim();
     if (/^https?:\/\//i.test(v)) {
       if (/drive\.google\.com|googleusercontent\.com/i.test(v)) {
         var fileId = extractDriveFileId(v);
-        return fileId ? 'https://lh3.googleusercontent.com/d/' + fileId + '=w800' : PLACEHOLDER;
+        if (!fileId) return { src: PLACEHOLDER, fallback: null };
+        return {
+          src: 'https://drive.google.com/thumbnail?id=' + fileId + '&sz=w1200',
+          fallback: 'https://drive.google.com/uc?export=view&id=' + fileId
+        };
       }
-      return v;
+      return { src: v, fallback: null };
     }
-    return IMG_BASE + encodeURIComponent(v);
+    return { src: IMG_BASE + encodeURIComponent(v), fallback: null };
   }
 
   // Baut aus den geparsten CSV-Zeilen die Angebote-/Neuzugaenge-Listen.
@@ -198,12 +207,21 @@
     var neu = has(item['Preis']) ? '<span class="' + neuClass + '">' + esc(item['Preis']) + '</span>' : '';
     if (alt || neu) pricing = '<div class="product-card-pricing">' + alt + neu + '</div>';
 
+    var img = resolveImageSrc(item['Bild-Dateiname']);
+    var placeholderEsc = PLACEHOLDER.replace(/'/g, '%27');
+    var onerrorAttr;
+    if (img.fallback) {
+      onerrorAttr = "this.onerror=function(){this.onerror=null;this.src='" + placeholderEsc + "';};this.src='" + img.fallback.replace(/'/g, '%27') + "';";
+    } else {
+      onerrorAttr = "this.onerror=null;this.src='" + placeholderEsc + "';";
+    }
+
     return (
       '<div class="product-card">' +
         '<div class="product-card-img-wrap">' + badge +
-          '<img class="product-card-img" src="' + resolveImageSrc(item['Bild-Dateiname']) + '"' +
+          '<img class="product-card-img" src="' + img.src + '"' +
           ' alt="' + esc(name) + '" loading="lazy"' +
-          ' onerror="this.onerror=null;this.src=\'' + PLACEHOLDER.replace(/'/g, '%27') + '\'">' +
+          ' onerror="' + onerrorAttr + '">' +
         '</div>' +
         '<div class="product-card-body">' + titelHtml + beschrHtml + pricing + '</div>' +
       '</div>'
