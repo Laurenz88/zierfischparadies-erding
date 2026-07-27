@@ -11,6 +11,7 @@
     "build-critical-css": "node scripts/build-critical-css.mjs",
     "check-sheet": "node scripts/check-sheet.mjs",
     "sync-bilder": "node scripts/sync-sheet-images.mjs",
+    "build-site": "node scripts/build-site.mjs",
     "build": "npm run minify-css && npm run minify-js"
   },
   "devDependencies": {

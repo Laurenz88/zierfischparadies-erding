@@ -1,3 +1,13 @@
+# Veroeffentlicht wird nicht das Repository selbst, sondern der Ordner "dist",
+# den scripts/build-site.mjs aus einer ausdruecklichen Positivliste zusammen-
+# stellt. Sonst waeren docs/, scripts/, cms/, TODO.md und vor allem
+# original-site/ (Kopie der alten Website) oeffentlich abrufbar - und die
+# unbearbeiteten Original-Fotos wuerden das Deployment unnoetig aufblaehen
+# (108 MB statt 41 MB). Details im Kopf von scripts/build-site.mjs.
+[build]
+  command = "npm run build-site"
+  publish = "dist"
+
 [[headers]]
   for = "/*"
   [headers.values]
