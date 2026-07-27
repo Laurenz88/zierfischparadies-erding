@@ -1,8 +1,9 @@
 # TODO — Zierfischparadies Erding Relaunch
 
-Ziel: 1:1-Nachbau (inhaltlich/strukturell) von https://zierfischparadies-erding.de als moderne, statische Website. Lighthouse 100/100/100/100.
+Ziel: 1:1-Nachbau (inhaltlich/strukturell) von <https://zierfischparadies-erding.de> als moderne, statische Website. Lighthouse 100/100/100/100.
 
 ## Phase 0 — Analyse des Originals ✅ abgeschlossen
+
 - [x] Live-Seite heruntergeladen (HTML) → `original-site/index.html` (Referenz, nicht Teil der neuen Seite)
 - [x] Struktur, Farbschema, Schriften, Animationen, eingebundene Dienste dokumentiert → `docs/analyse.md`
 - [x] Abgleich mit vorgegebener Sektionsliste — passt überein
@@ -11,6 +12,7 @@ Ziel: 1:1-Nachbau (inhaltlich/strukturell) von https://zierfischparadies-erding.
 - [x] Git-Repo initialisiert
 
 ## Phase 1 — Technisches Fundament ✅ abgeschlossen
+
 - [x] Stack-Entscheidung (reines HTML/CSS/JS, kein Astro) mit Begründung dokumentiert → `docs/phase1-fundament.md`
 - [x] Projektstruktur angelegt (`index.html`, `assets/css|js|fonts|images|video`, `docs`, `cms`, `content`, `scripts`)
 - [x] Semantisches HTML5-Grundgerüst (ein H1, saubere Heading-Hierarchie, ARIA, Skip-Link, Fokus-Falle in Modals, Tastaturbedienbarkeit, `prefers-reduced-motion`)
@@ -20,6 +22,7 @@ Ziel: 1:1-Nachbau (inhaltlich/strukturell) von https://zierfischparadies-erding.
 - [x] Lokaler Test: 2 echte Bugs gefunden & behoben (hero-video.js löschte auf Mobile versehentlich das Poster-Bild; Video wurde auf Desktop nie injiziert, da derselbe fehlerhafte Selektor auch dort das Frühzeitig-Abbrechen auslöste)
 
 ## Phase 2 — CMS für Angebote (Google Sheets/CSV) ✅ abgeschlossen (Code fertig, wartet auf echtes Sheet)
+
 - [x] CSV-Anbindung implementiert (`assets/js/highlights.js`, eigener RFC4180-Mini-Parser, keine Abhängigkeit) — Spalten: Kategorie, Name, Lateinischer Name, Größe, Info, Preis, Streichpreis, Rabatt-%, Bild-Dateiname, Aktiv
 - [x] `cms/angebote-vorlage.csv` (Vorlage mit Beispieldaten)
 - [x] `docs/anleitung-angebote.md` (Laien-Anleitung mit Screenshot-Platzhaltern, inkl. einmaliger Einrichtung)
@@ -28,11 +31,13 @@ Ziel: 1:1-Nachbau (inhaltlich/strukturell) von https://zierfischparadies-erding.
 - [ ] **Wartet auf Nutzer:** echte, veröffentlichte Google-Sheet-CSV-URL in `assets/js/highlights.js` (`SHEET_CSV_URL`) eintragen, sobald das Sheet angelegt ist
 
 ## Phase 3 — Übernahme alter Inhalte & Gästebuch ✅ abgeschlossen
+
 - [x] Alle Original-Texte wortgleich übernommen (About, Leistungen, Modals, Info) — per `diff` gegen `original-site/index.html` geprüft, keine Abweichungen
 - [x] `content/kundenstimmen.json` mit allen 9 Testimonials (`assets/js/testimonials.js` rendert + Slider-Logik: 1/3 Karten pro Seite, Touch-Swipe, Dots) + Transparenzhinweis im HTML beibehalten
 - [x] `docs/redirects.md`: Anker-Kompatibilität geprüft (alle Original-Anker unverändert vorhanden) — keine 301-Redirects nötig, da sich Domain/URL-Struktur/Anker nicht ändern; Domain-Umzug selbst folgt erst in Phase 10
 
 ## Phase 4 — Intelligentes Kontaktformular ✅ abgeschlossen
+
 - [x] Dynamische Felder je nach „Anliegen" (wie Original), inkl. Vorbelegung über Leistungs-Karten/Modals
 - [x] Formspree vs. natives Hosting-Formular-Feature — **Netlify Forms gewählt**, Begründung in `docs/phase4-kontaktformular.md` (kein zusätzlicher externer Auftragsverarbeiter, im Hosting enthalten)
 - [x] Spam-Schutz ohne Cookies: Honeypot-Feld (`bot-field`) + Zeitfalle (<3s), kein reCAPTCHA
@@ -41,18 +46,21 @@ Ziel: 1:1-Nachbau (inhaltlich/strukturell) von https://zierfischparadies-erding.
 - [ ] **Hinweis für Phase 7:** Datenschutzerklärung muss Netlify (nicht Formspree) als Formular-Verarbeiter nennen
 
 ## Phase 5 — Newsletter & Kundendaten ✅ abgeschlossen
+
 - [x] Brevo-Newsletter mit Double-Opt-in (wie Original, gleiche echte Formular-Action-URL aus dem Original weiterverwendet)
 - [x] Optionale Felder Vorname (`PRENOM`) und Interesse (`INTERESSE`: Süßwasser/Meerwasser/Aquariumbau) als Brevo-Kontaktattribute ergänzt
 - [x] `docs/anleitung-newsletter.md` für Inhaber (Attribute einrichten, Kampagnen, Segmentierung, Abmeldung), inkl. Screenshot-Platzhaltern
 - [x] Keine Tracking-Cookies ohne Consent-Banner; cookiefreies Plausible Analytics als Option dokumentiert (nur auf Wunsch, nicht implementiert)
 
 ## Phase 6 — Sicherheit ✅ abgeschlossen
+
 - [x] Security-Header via `netlify.toml`: strenge CSP (nur docs.google.com, sibforms.com, openstreetmap.org, images.unsplash.com erlaubt), X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy (inkl. `interest-cohort=()`), HSTS
 - [x] Kein Inline-JS (alles in `assets/js/*.js`); die letzten 4 Inline-`style`-Attribute durch CSS-Klassen ersetzt, damit `style-src`/`script-src` ohne `'unsafe-inline'` auskommen; SRI nicht anwendbar, da keine fremd gehosteten Skripte/Styles (begründet in `docs/phase6-sicherheit.md`)
 - [x] OSM-Karte per Zwei-Klick-Lösung (`assets/js/map-loader.js`) — lädt erst nach Klick auf „Karte laden"
 - [x] E-Mail-Obfuskations-Utility bereitgestellt (`assets/js/obfuscate-email.js`), einsatzbereit für Phase 7
 
 ## Phase 7 — Rechtssicherheit (Deutschland) ✅ abgeschlossen (⚠️ juristische Prüfung ausstehend, siehe unten)
+
 - [x] Impressum (§5 DDG) & Datenschutz vom Original übernommen und an neue Technik angepasst: Formspree→Netlify Forms, Netlify als Hosting/Server-Logs explizit genannt, neuer Absatz zur OSM-Zwei-Klick-Karte ergänzt (im Original noch gar nicht erwähnt gewesen), Brevo/Google-Sheets-Absätze unverändert übernommen
 - [x] Als eigene Unterseiten `impressum.html`/`datenschutz.html` (Netlify liefert diese automatisch auch unter `/impressum`/`/datenschutz` aus) UND weiterhin als Modal (footer, Kontaktformular-Einwilligung, Newsletter-Hinweis verlinken alle dorthin)
 - [x] `docs/bildquellen.md`: Nachweis aller aktuell verwendeten Bild-/Video-Dateien inkl. Lizenzstatus und offener Punkte
@@ -60,6 +68,7 @@ Ziel: 1:1-Nachbau (inhaltlich/strukturell) von https://zierfischparadies-erding.
 - [ ] **Hinweis an den Nutzer (siehe Chat): Rechtstexte vor Livegang von einem Anwalt oder einem Generator wie eRecht24 gegenprüfen lassen — ich bin kein Anwalt.**
 
 ## Phase 8 — Performance & Bilder ✅ abgeschlossen (Performance-Endmessung erst auf echtem Hosting, Phase 10)
+
 - [x] AVIF+WebP+JPEG-Fallback (`<picture>`) für alle Foto-Bilder, responsive `srcset`/`sizes` für Hero-Poster & About-Bild, feste `width`/`height` überall, `loading="lazy"` unterhalb des Folds, `fetchpriority="high"` für Hero-Poster
 - [x] `scripts/optimize-images.mjs` (sharp) geschrieben **und ausgeführt** — erzeugt AVIF/WebP/JPEG in 480/960/1600px für alle echten Fotos
 - [x] Selbst gehostete Fonts (kein Google-Fonts-CDN), `font-display: swap` (bereits seit Phase 1)
@@ -70,16 +79,31 @@ Ziel: 1:1-Nachbau (inhaltlich/strukturell) von https://zierfischparadies-erding.
 - [x] Logo neu gestaltet (`assets/logo-mark.svg`, ersetzt Emoji-Platzhalter aus Phase 1 und altes Logo)
 
 ## Phase 9 — SEO ✅ abgeschlossen (lokal SEO/Accessibility/Best-Practices je 100 in Lighthouse)
+
 - [x] Meta-Title/-Description (mit lokalen Keywords), OG + Twitter Cards (eigenes `og.jpg`, bereits 1200×630), Canonical auf allen 3 Seiten
 - [x] JSON-LD `PetStore`/LocalBusiness inkl. Geo-Koordinaten, `sameAs` (Facebook); FAQPage bewusst nicht ergänzt (kein echter FAQ-Inhalt auf der Seite, siehe `docs/phase9-seo.md`)
 - [x] sitemap.xml/robots.txt vorhanden (inkl. `/impressum`, `/datenschutz`), Anker-Kompatibilität bereits in Phase 3 geprüft, Alt-Texte der neuen Galerie-Fotos beschreibend
 - [x] Lokale Keywords natürlich in Title/Description/Content verankert; Empfehlung zum Google-Unternehmensprofil in `docs/phase9-seo.md` dokumentiert
 
 ## Phase 10 — Launch: Domain-Umzug & Search Console (⛔ NUR nach expliziter Freigabe des Nutzers)
+
 - [x] `docs/launch-checkliste.md` erstellt (reine Dokumentation, keine Aktionen ausgeführt)
 - [ ] **Ausführung der Checkliste selbst wartet auf explizite Freigabe** — inkl. Klärung: Zugriff auf altes Google-Search-Console-Konto (Verifizierungs-Tag `JEor7cRkWugFqFn…` aus dem Original wurde nicht übernommen, siehe Checkliste Punkt 4)
 
+## Phase 11 — Launch-Vorbereitung & Go-Live (laufend)
+
+- [x] **1. Restfehler-Sweep:** `html-validate` gegen alle 4 Seiten laufen lassen — 19 echte Fehler gefunden und behoben (fehlende `&nbsp;` in Telefonnummern auf allen Seiten, zu langer `<title>`, `<button>` ohne `type`, `<label>` mit zwei Controls im Kontaktformular, `<img src="">`-Anti-Pattern in der Lightbox). Fehlende `404.html` ergänzt (Netlify-Konvention) + lokaler Test-Server nachgerüstet. Markdownlint-Sweep über alle `docs/*.md` + `TODO.md` (130 → 5 verbleibende, bewusst akzeptierte Inline-HTML-Anker fürs Inhaltsverzeichnis). Sheet-Audit (`npm run check-sheet`) erneut gelaufen: 1 echter Datenfehler im **aktuell laufenden** Sheet gefunden (Brillantsalmler: Preis 3,25€ > Streichpreis 1,95€, vertauscht). Drive-Bild-Test erneut gelaufen: **alle 6 aktuellen Drive-Links zeigten kurzzeitig den Platzhalter** — Netzwerk-Log bestätigt HTTP 429 (Ratenlimit) auf dem primären Thumbnail-Endpunkt UND HTTP 403 auf dem `uc?export=view`-Fallback, mit hoher Wahrscheinlichkeit durch die eigene wiederholte Testerei in dieser Session ausgelöst, nicht durch normalen Website-Traffic. Fallback-Mechanismus hat wie vorgesehen funktioniert: kein kaputtes Bild, sauberer Platzhalter überall.
+- [ ] **2. Lighthouse-Endspurt:** alle 4 Seiten mobil + Desktop, iterieren bis 100/100/100/100, `docs/lighthouse.md` aktualisieren
+- [ ] **3. SEO-Endkontrolle:** Meta/OG/Canonical/JSON-LD/sitemap.xml/robots.txt/Alt-Texte
+- [ ] **4. Funktions-Generalprobe:** Test-Checkliste für den Nutzer (Formulare, Modals, Karte, Tel-Links, 404)
+- [ ] **5. Hosting & Deployment:** Empfehlung Cloudflare Pages vs. Netlify, Einrichtung erst nach Freigabe (⛔ Außenwirkung)
+- [ ] **6. Rechts-Check:** Impressum/Datenschutz gegen tatsächlich genutzte Dienste abgleichen
+- [ ] **7. Domain-Umzug-Anleitung** ergänzen in `docs/launch-checkliste.md` (nur Doku)
+- [ ] **8. Nach-Launch-Paket:** Search Console/Bing/Woche-1-Checkliste dokumentieren
+- [ ] **9. Übergabe-Dokument** `docs/betriebshandbuch.pdf` erstellen
+
 ## Qualitätssicherung (laufend, nach jeder Phase)
+
 - [ ] Screenshot-Vergleich neu vs. alt
 - [ ] Lighthouse-Check
 - [ ] HTML-Validierung (W3C)
@@ -87,15 +111,18 @@ Ziel: 1:1-Nachbau (inhaltlich/strukturell) von https://zierfischparadies-erding.
 - [ ] Browsertest Chrome/Firefox/Safari(iOS) — Zielgruppe eher älter & mobil: große Schrift, große Touch-Ziele, Telefonnummer überall antippbar
 
 ## Harte Einschränkungen (NICHT tun)
+
 - Keine Cookies/Tracker ohne Rücksprache. Kein jQuery, kein Bootstrap, keine unnötigen Abhängigkeiten.
 - Keine Fantasie-Inhalte erfinden — bei fehlenden Infos (echte Fotos, Zugangsdaten etc.) nachfragen statt annehmen.
 - Phase 10 (Domain-Umzug etc.) niemals ohne explizite Freigabe des Nutzers ausführen.
 
 ## Redesign „Beckenlicht" ✅ abgeschlossen
+
 - [x] Auf Nutzerwunsch komplettes visuelles Redesign (Variante A aus Design-Vorschau gewählt): eigene Farbpalette (Petrol/Sand/Koralle), eigene Typografie (Quicksand + Inter), eigenes Wellen-/Lichtbrechungs-Motiv, Hero-Video beibehalten, Struktur/Sektionen/CMS-Anbindung unverändert — siehe `docs/redesign-beckenlicht.md`
 - [x] Damit ist die Urheberrechtsfrage zum Original-Design (Andreas Fuchs, siehe `docs/analyse.md` Abschnitt 7) **gegenstandslos**: keine Ähnlichkeit mehr zu Farben/Typografie/Layout des Originals. Klarstellung: Der Andreas-Fuchs-Credit war nie im Code/Footer dieser neuen Seite enthalten, nur als Analyse-Fund dokumentiert.
 
 ## Offene Klärungen an den Nutzer
+
 - [x] Reale Fotos vom Inhaber erhalten und eingebaut (Phase 8, Ordner „ki 1.1") — Hero-Video ist weiterhin das Original-Server-Asset
 - [x] Hosting-Ziel bestätigt: Netlify (Nutzer-Entscheidung in Phase 1)
 - [x] Formspree vs. natives Hosting-Formular: Netlify Forms gewählt (Phase 4), vom Nutzer nicht widersprochen
