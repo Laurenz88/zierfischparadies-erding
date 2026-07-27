@@ -1,3 +1,11 @@
+# Hinweis zu connect-src und Google Sheets: Die CSV-URL auf docs.google.com
+# antwortet mit einer Weiterleitung auf einen wechselnden Host der Form
+# doc-XX-XX-sheets.googleusercontent.com. Fehlt dieser in connect-src, blockiert
+# der Browser die Weiterleitung und die Bereiche "Angebote der Woche" und
+# "Frische Neuzugaenge" bleiben leer. Das faellt lokal NICHT auf, weil der
+# einfache Test-Server keine CSP-Header sendet - erst auf echtem Hosting.
+# Deshalb der Platzhalter *.googleusercontent.com.
+
 # Veroeffentlicht wird nicht das Repository selbst, sondern der Ordner "dist",
 # den scripts/build-site.mjs aus einer ausdruecklichen Positivliste zusammen-
 # stellt. Sonst waeren docs/, scripts/, cms/, TODO.md und vor allem
@@ -11,7 +19,7 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    Content-Security-Policy = "default-src 'self'; script-src 'self' https://gc.zgo.at; style-src 'self' 'sha256-Q94j/021WnVEuBtYCEWztIYk4Nt2C/nYma2Jkb4ydFQ='; img-src 'self' data: https:; font-src 'self'; media-src 'self'; connect-src 'self' https://docs.google.com https://109b8eda.sibforms.com https://*.goatcounter.com; frame-src https://www.openstreetmap.org; form-action 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' https://gc.zgo.at; style-src 'self' 'sha256-Q94j/021WnVEuBtYCEWztIYk4Nt2C/nYma2Jkb4ydFQ='; img-src 'self' data: https:; font-src 'self'; media-src 'self'; connect-src 'self' https://docs.google.com https://*.googleusercontent.com https://109b8eda.sibforms.com https://*.goatcounter.com; frame-src https://www.openstreetmap.org; form-action 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
     X-Content-Type-Options = "nosniff"
     X-Frame-Options = "DENY"
     Referrer-Policy = "strict-origin-when-cross-origin"
