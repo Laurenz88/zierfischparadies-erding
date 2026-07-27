@@ -106,10 +106,14 @@
   // ermittelt werden, wird sofort der Platzhalter verwendet, statt
   // einen von vornherein aussichtslosen Ladeversuch zu starten.
   //
-  // Fuer Drive-Dateien wird der "thumbnail"-Endpunkt als primaere Quelle
-  // verwendet (von Google fuer eingebettete Anzeige gedacht, zuverlaessiger
-  // als der reverse-engineerte lh3-CDN-Link) und "uc?export=view" als
-  // zweite Stufe, falls die erste Anfrage fehlschlaegt (siehe card()).
+  // Fuer Drive-Dateien wird lh3.googleusercontent.com direkt als primaere
+  // Quelle verwendet: der "thumbnail"-Endpunkt (drive.google.com/thumbnail)
+  // leitet lediglich per 302 auf genau diesen selben lh3-Server weiter,
+  // setzt dabei aber zusaetzlich einen Drittanbieter-Cookie (NID, Domain
+  // .google.com) -- das verletzt unnoetig Lighthouse "Best Practices" und
+  // spart keine Zuverlaessigkeit, da beide Wege am Ende denselben Server
+  // treffen. "uc?export=view" bleibt als zweite Stufe, falls lh3 doch
+  // einmal fehlschlaegt (siehe card()).
   function resolveImageSrc(value) {
     if (!has(value)) return { src: PLACEHOLDER, fallback: null };
     var v = value.trim();
@@ -118,7 +122,7 @@
         var fileId = extractDriveFileId(v);
         if (!fileId) return { src: PLACEHOLDER, fallback: null };
         return {
-          src: 'https://drive.google.com/thumbnail?id=' + fileId + '&sz=w1200',
+          src: 'https://lh3.googleusercontent.com/d/' + fileId + '=w1200',
           fallback: 'https://drive.google.com/uc?export=view&id=' + fileId
         };
       }
