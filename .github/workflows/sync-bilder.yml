@@ -1,0 +1,69 @@
+# Holt automatisch die im Google Sheet verlinkten Drive-Fotos, optimiert sie
+# und committet sie ins Repository. Dadurch liefert die Website statt der
+# langsamen Drive-Links eigene, optimierte Bilder aus (AVIF/WebP, mehrere
+# Breiten, lange Cache-Zeiten).
+#
+# Fuer den Inhaber aendert sich dadurch nichts: Foto weiterhin in Drive
+# hochladen, Link ins Sheet eintragen. Der Rest passiert hier automatisch.
+#
+# Was die Log-Ausgabe bedeutet: docs/sync-log-erklaerung.md
+
+name: Angebots-Bilder synchronisieren
+
+on:
+  schedule:
+    # Alle 2 Stunden. Minute 17 statt 0, weil GitHub Laeufe zur vollen Stunde
+    # bei hoher Last stark verzoegert - ausserhalb der Spitze startet es
+    # zuverlaessiger. Hinweis: Zeitplan-Laeufe sind generell "best effort"
+    # und koennen sich um einige Minuten verschieben.
+    - cron: '17 */2 * * *'
+  # Erlaubt das manuelle Ausloesen ueber den "Actions"-Tab auf GitHub.
+  workflow_dispatch:
+
+# Zwei gleichzeitige Laeufe wuerden sich beim Committen in die Quere kommen.
+concurrency:
+  group: sync-bilder
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      # Wird gebraucht, damit der Lauf die neuen Bilder zurueck ins
+      # Repository committen darf.
+      contents: write
+
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: Node einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Abhaengigkeiten installieren
+        run: npm ci
+
+      - name: Bilder synchronisieren
+        run: npm run sync-bilder
+
+      - name: Aenderungen committen (nur wenn es welche gibt)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Nur die vom Sync verwalteten Pfade betrachten.
+          git add assets/images/angebote content/angebote-bilder.json
+
+          if git diff --staged --quiet; then
+            echo "Keine Aenderungen - kein Commit, kein Deployment."
+            exit 0
+          fi
+
+          # Kurze, sprechende Commit-Nachricht mit Anzahl geaenderter Dateien.
+          ANZAHL=$(git diff --staged --name-only | wc -l)
+          git commit -m "Angebots-Bilder automatisch synchronisiert (${ANZAHL} Datei(en))" \
+                     -m "Automatischer Lauf von scripts/sync-sheet-images.mjs."
+          git push

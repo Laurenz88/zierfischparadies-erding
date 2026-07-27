@@ -2,61 +2,10 @@
 // (dieselbe URL wie assets/js/highlights.js) und listet alle Probleme in
 // verstaendlichem Deutsch auf. Aufruf: npm run check-sheet
 //
-// Die CSV-Parsing- und Validierungs-Logik ist absichtlich eine eigene Kopie
-// (nicht importiert), weil assets/js/highlights.js fuer den Browser gedacht
-// ist (IIFE, keine Exports). Aenderungen an der Parsing-/Validierungslogik
-// dort bitte hier spiegeln.
+// CSV-Parsing und Sheet-Zugriff liegen in scripts/lib/sheet.mjs, damit sich
+// dieses Skript und scripts/sync-sheet-images.mjs dieselbe Logik teilen.
 
-import { readFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import path from 'node:path';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const highlightsPath = path.join(__dirname, '..', 'assets', 'js', 'highlights.js');
-
-function getSheetUrl() {
-  const src = readFileSync(highlightsPath, 'utf8');
-  const m = src.match(/SHEET_CSV_URL\s*=\s*'([^']+)'/);
-  if (!m || !m[1]) {
-    throw new Error('Konnte SHEET_CSV_URL nicht aus assets/js/highlights.js lesen.');
-  }
-  return m[1];
-}
-
-function parseCSV(text) {
-  const rows = [];
-  let row = [];
-  let field = '';
-  let inQuotes = false;
-  if (text.charCodeAt(0) === 0xFEFF) text = text.slice(1);
-  text = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
-
-  for (let i = 0; i < text.length; i++) {
-    const c = text[i];
-    if (inQuotes) {
-      if (c === '"') {
-        if (text[i + 1] === '"') { field += '"'; i++; }
-        else { inQuotes = false; }
-      } else {
-        field += c;
-      }
-    } else if (c === '"') {
-      inQuotes = true;
-    } else if (c === ',') {
-      row.push(field); field = '';
-    } else if (c === '\n') {
-      row.push(field); field = '';
-      rows.push(row); row = [];
-    } else {
-      field += c;
-    }
-  }
-  if (field !== '' || row.length) { row.push(field); rows.push(row); }
-  return rows.filter((r) => r.some((c) => c.trim() !== ''));
-}
-
-const ACTIVE_VALUES = ['ja', 'yes', 'true', '1', 'x'];
-const INACTIVE_VALUES = ['nein', 'no', 'false', '0', ''];
+import { getSheetUrl, fetchSheetCsv, parseCSV, ACTIVE_VALUES, INACTIVE_VALUES } from './lib/sheet.mjs';
 
 function parsePrice(val) {
   if (!val) return null;
@@ -73,9 +22,7 @@ async function main() {
 
   let text;
   try {
-    const res = await fetch(url);
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    text = await res.text();
+    text = await fetchSheetCsv(url);
   } catch (err) {
     console.error('FEHLER: Sheet konnte nicht geladen werden - ' + err.message);
     console.error('Pruefe die Internetverbindung und ob die Freigabe des Sheets noch aktiv ist.');

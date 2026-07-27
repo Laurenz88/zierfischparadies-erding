@@ -12,8 +12,16 @@
   "Bild-Dateiname" akzeptiert drei Formate (siehe resolveImageSrc()):
   1. Lokaler Dateiname (liegt in assets/images/angebote/), z.B. "diskus.jpg"
   2. Eine normale externe Bild-URL (http/https)
-  3. Ein Google-Drive-Freigabelink (App "Link kopieren" oder Browser),
-     wird automatisch in ein direkt anzeigbares Bildformat umgewandelt.
+  3. Ein Google-Drive-Freigabelink (App "Link kopieren" oder Browser).
+
+  Zu Drive-Links laeuft im Hintergrund ein automatischer Sync
+  (scripts/sync-sheet-images.mjs, per GitHub Action alle 2 Stunden): Er laedt
+  die Fotos herunter, optimiert sie (AVIF/WebP, mehrere Breiten) und legt sie
+  im Repository ab. Die Website nutzt dann bevorzugt diese schnelle eigene
+  Kopie; nur solange ein frisch eingetragenes Foto noch nicht gesynct ist,
+  laedt sie uebergangsweise direkt von Drive. Fuer den Inhaber aendert das
+  nichts - er traegt weiterhin nur den Drive-Link ins Sheet ein.
+
   Laedt ein Bild nicht (kaputter Link, keine Freigabe, o.ae.), greift der
   onerror-Fallback im <img> automatisch auf ein Platzhalterbild zurueck.
 */
@@ -22,6 +30,10 @@
   var SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR1aVB2-hBz375Tgf_OI9dXyZEa190xqLGl4GTJYv5bDHeH8H_VtJ6ATrXF3Sq3yDcbv-v9yVT-LhQL/pub?gid=1048116277&single=true&output=csv';
 
   var IMG_BASE = 'assets/images/angebote/';
+  // Liste der bereits automatisch heruntergeladenen und optimierten
+  // Drive-Fotos (wird in init() aus content/angebote-bilder.json geladen).
+  var MANIFEST_URL = 'content/angebote-bilder.json';
+  var BILDER_MANIFEST = {};
   var PLACEHOLDER = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450'%3E%3Crect width='600' height='450' fill='%230f3437'/%3E%3Ctext x='50%25' y='48%25' dominant-baseline='middle' text-anchor='middle' fill='%23d9a86c' font-family='sans-serif' font-size='52'%3E%F0%9F%90%9F%3C/text%3E%3Ctext x='50%25' y='68%25' dominant-baseline='middle' text-anchor='middle' fill='rgba(238,245,242,0.4)' font-family='sans-serif' font-size='15'%3EKein Bild verf%C3%BCgbar%3C/text%3E%3C/svg%3E";
 
   function esc(val) {
@@ -106,14 +118,21 @@
   // ermittelt werden, wird sofort der Platzhalter verwendet, statt
   // einen von vornherein aussichtslosen Ladeversuch zu starten.
   //
-  // Fuer Drive-Dateien wird lh3.googleusercontent.com direkt als primaere
-  // Quelle verwendet: der "thumbnail"-Endpunkt (drive.google.com/thumbnail)
-  // leitet lediglich per 302 auf genau diesen selben lh3-Server weiter,
-  // setzt dabei aber zusaetzlich einen Drittanbieter-Cookie (NID, Domain
-  // .google.com) -- das verletzt unnoetig Lighthouse "Best Practices" und
-  // spart keine Zuverlaessigkeit, da beide Wege am Ende denselben Server
-  // treffen. "uc?export=view" bleibt als zweite Stufe, falls lh3 doch
-  // einmal fehlschlaegt (siehe card()).
+  // Ermittelt die Bildquelle fuer eine Zeile. Reihenfolge:
+  //
+  // 1. Liegt zu einem Drive-Foto bereits eine optimierte eigene Kopie im
+  //    Repository (siehe BILDER_MANIFEST / scripts/sync-sheet-images.mjs),
+  //    wird diese bevorzugt: eigener Server, AVIF/WebP, responsive Breiten,
+  //    lange Cache-Zeiten. Das ist der Normalfall.
+  // 2. Ist ein Foto frisch ins Sheet eingetragen und der Sync noch nicht
+  //    gelaufen, wird uebergangsweise direkt von Google Drive geladen, damit
+  //    der neue Fisch sofort sichtbar ist. Nach dem naechsten Sync-Lauf
+  //    (1-2 Stunden) schaltet die Seite automatisch auf die schnelle Kopie um.
+  //
+  // Fuer Drive-Direktlinks wird lh3.googleusercontent.com verwendet: der
+  // "thumbnail"-Endpunkt leitet ohnehin per 302 genau dorthin weiter, setzt
+  // dabei aber zusaetzlich einen Drittanbieter-Cookie (NID). "uc?export=view"
+  // bleibt als zweite Stufe, falls lh3 einmal fehlschlaegt (siehe card()).
   function resolveImageSrc(value) {
     if (!has(value)) return { src: PLACEHOLDER, fallback: null };
     var v = value.trim();
@@ -121,6 +140,12 @@
       if (/drive\.google\.com|googleusercontent\.com/i.test(v)) {
         var fileId = extractDriveFileId(v);
         if (!fileId) return { src: PLACEHOLDER, fallback: null };
+
+        var lokal = BILDER_MANIFEST[fileId];
+        if (lokal && lokal.breiten && lokal.breiten.length) {
+          return { lokal: true, fileId: fileId, breiten: lokal.breiten, fallback: null };
+        }
+
         return {
           src: 'https://lh3.googleusercontent.com/d/' + fileId + '=w1200',
           fallback: 'https://drive.google.com/uc?export=view&id=' + fileId
@@ -222,13 +247,43 @@
 
     return (
       '<div class="product-card">' +
-        '<div class="product-card-img-wrap">' + badge +
-          '<img class="product-card-img" src="' + img.src + '"' +
-          ' alt="' + esc(name) + '" loading="lazy"' +
-          ' onerror="' + onerrorAttr + '">' +
+        '<div class="product-card-img-wrap">' + badge + imgMarkup(img, name, onerrorAttr) +
         '</div>' +
         '<div class="product-card-body">' + titelHtml + beschrHtml + pricing + '</div>' +
       '</div>'
+    );
+  }
+
+  // Karten sind je nach Bildschirmbreite ca. 220-380 px breit (CSS-Grid
+  // mit minmax(220px, 1fr)), auf schmalen Handys nahezu volle Breite.
+  var IMG_SIZES = '(max-width: 600px) 90vw, 300px';
+
+  // Liegt eine optimierte eigene Kopie vor, wird ein <picture> mit
+  // AVIF/WebP/JPEG und mehreren Breiten ausgeliefert (wie bei allen anderen
+  // Fotos der Seite). Sonst ein einfaches <img> auf die externe Quelle.
+  function imgMarkup(img, name, onerrorAttr) {
+    var common = ' class="product-card-img" alt="' + esc(name) + '" loading="lazy"' +
+      ' onerror="' + onerrorAttr + '">';
+
+    if (!img.lokal) {
+      return '<img src="' + img.src + '"' + common;
+    }
+
+    var base = IMG_BASE + img.fileId;
+    function srcset(ext) {
+      return img.breiten.map(function (w) {
+        return base + '-' + w + '.' + ext + ' ' + w + 'w';
+      }).join(', ');
+    }
+    var groesste = img.breiten[img.breiten.length - 1];
+
+    return (
+      '<picture>' +
+        '<source type="image/avif" srcset="' + srcset('avif') + '" sizes="' + IMG_SIZES + '">' +
+        '<source type="image/webp" srcset="' + srcset('webp') + '" sizes="' + IMG_SIZES + '">' +
+        '<img src="' + base + '-' + groesste + '.jpg"' +
+        ' srcset="' + srcset('jpg') + '" sizes="' + IMG_SIZES + '"' + common +
+      '</picture>'
     );
   }
 
@@ -260,9 +315,21 @@
     showFallback(gridB, 'Neuzugänge werden geladen …');
 
     try {
-      var res = await fetch(SHEET_CSV_URL);
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      var text = await res.text();
+      // Sheet und Bilder-Manifest parallel laden. Faellt das Manifest aus,
+      // werden lediglich die (langsameren) Drive-Links genutzt - die Seite
+      // funktioniert dann unveraendert weiter.
+      var sheetPromise = fetch(SHEET_CSV_URL).then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.text();
+      });
+      var manifestPromise = fetch(MANIFEST_URL).then(function (res) {
+        return res.ok ? res.json() : null;
+      }).catch(function () { return null; });
+
+      var manifest = await manifestPromise;
+      if (manifest && manifest.bilder) BILDER_MANIFEST = manifest.bilder;
+
+      var text = await sheetPromise;
       var lists = buildLists(parseCSV(text));
 
       render(gridA, lists.angebote, true, FALLBACK);

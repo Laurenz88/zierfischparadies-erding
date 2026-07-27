@@ -1,0 +1,54 @@
+{
+  "hinweis": "Automatisch erzeugt von scripts/sync-sheet-images.mjs. Nicht von Hand bearbeiten.",
+  "generiert": "2026-07-27T14:09:53.850Z",
+  "bilder": {
+    "14T1gl4Df_0F6MQixQ58tvX89vh9L7FRv": {
+      "hash": "d3e240943672bc95",
+      "breiten": [
+        480,
+        960
+      ],
+      "aktualisiert": "2026-07-27T14:09:11.127Z"
+    },
+    "1IKT7hmbe7Mn8WmtznACA9jKp65MWTdTM": {
+      "hash": "f9a2ae665f56aa40",
+      "breiten": [
+        480,
+        960
+      ],
+      "aktualisiert": "2026-07-27T14:09:15.549Z"
+    },
+    "1Fka6cL9ILmDyS6B7DCrMdckTueOy2930": {
+      "hash": "3f9c20679edea4e8",
+      "breiten": [
+        480,
+        960
+      ],
+      "aktualisiert": "2026-07-27T14:09:19.749Z"
+    },
+    "1ZoS6HZjb7U3-L7BcIEb_oY-MEegbna7-": {
+      "hash": "b974f20289a40220",
+      "breiten": [
+        480,
+        960
+      ],
+      "aktualisiert": "2026-07-27T14:09:22.910Z"
+    },
+    "1TITrVFE5jynh-gmDGwdNSKJVcf3gVjvf": {
+      "hash": "3fdcc3886499268b",
+      "breiten": [
+        480,
+        960
+      ],
+      "aktualisiert": "2026-07-27T14:09:27.157Z"
+    },
+    "147RJZqmg9mtFefsQNkB9DE8jA52MmAdS": {
+      "hash": "4dfbf93ba67380d0",
+      "breiten": [
+        480,
+        960
+      ],
+      "aktualisiert": "2026-07-27T14:09:29.980Z"
+    }
+  }
+}
