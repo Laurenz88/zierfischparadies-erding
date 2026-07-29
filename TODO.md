@@ -122,6 +122,14 @@ Ziel: 1:1-Nachbau (inhaltlich/strukturell) von <https://zierfischparadies-erding
 - [x] Auf Nutzerwunsch komplettes visuelles Redesign (Variante A aus Design-Vorschau gewählt): eigene Farbpalette (Petrol/Sand/Koralle), eigene Typografie (Quicksand + Inter), eigenes Wellen-/Lichtbrechungs-Motiv, Hero-Video beibehalten, Struktur/Sektionen/CMS-Anbindung unverändert — siehe `docs/redesign-beckenlicht.md`
 - [x] Damit ist die Urheberrechtsfrage zum Original-Design (Andreas Fuchs, siehe `docs/analyse.md` Abschnitt 7) **gegenstandslos**: keine Ähnlichkeit mehr zu Farben/Typografie/Layout des Originals. Klarstellung: Der Andreas-Fuchs-Credit war nie im Code/Footer dieser neuen Seite enthalten, nur als Analyse-Fund dokumentiert.
 
+## Stand Domain-Übergabe (29.07.2026)
+
+- [x] **Geklärt:** Die alte Seite läuft auf dem privaten Netlify-Konto eines Bekannten, der sie bisher betreut hat. Damit ist **Weg A** möglich (Domain-Übergabe zwischen zwei Netlify-Konten, **ohne** DNS-Änderung, Ausfall typischerweise unter fünf Minuten).
+- [x] Fertige Nachricht zum Verschicken erstellt → `docs/nachricht-domain-freigabe.md` (kurze und ausführliche Variante, plus interne Hinweise zum Timing).
+- [x] Übergabe-Ablauf inkl. **Timing-Tabelle** in `docs/launch-checkliste.md` ergänzt: Die Freigabe wird **erst angestoßen**, wenn Funktionstest, Rechtsprüfung, GitHub-Auto-Deploy und Formular-Benachrichtigung erledigt sind — eine frühe Freigabe bringt keinen Vorteil, verlängert aber die Ausfallzeit.
+- [x] Vermerkt: Der Bekannte soll sein Projekt **nicht sofort löschen** (Rückfalloption für 2–4 Wochen).
+- [ ] **Wartet auf den Bekannten:** Domain im alten Konto entfernen.
+
 ## Offene Klärungen an den Nutzer
 
 - [x] Reale Fotos vom Inhaber erhalten und eingebaut (Phase 8, Ordner „ki 1.1") — Hero-Video ist weiterhin das Original-Server-Asset

@@ -15,3 +15,13 @@ Thumbs.db
 # Lighthouse-Reports sind lokale Messergebnisse, kein Quellcode.
 lighthouse-report*.json
 lighthouse-report*.html
+
+# Local Netlify folder
+.netlify
+
+# Ablage fuer andere Projekte und Rohmaterial, die zufaellig in diesem Ordner
+# liegen, aber nicht zur Website gehoeren (z. B. "haus-1-store" aus einem
+# anderen Vorhaben, sowie die unbearbeiteten Original-Fotos "ki 1.1").
+# Ohne diesen Eintrag wuerden sie bei einem "git add -A" im Website-Repo landen.
+/Projekte/
+/haus-1-store/
