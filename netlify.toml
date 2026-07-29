@@ -19,7 +19,7 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    Content-Security-Policy = "default-src 'self'; script-src 'self' https://gc.zgo.at; style-src 'self' 'sha256-Q94j/021WnVEuBtYCEWztIYk4Nt2C/nYma2Jkb4ydFQ='; img-src 'self' data: https:; font-src 'self'; media-src 'self'; connect-src 'self' https://docs.google.com https://*.googleusercontent.com https://109b8eda.sibforms.com https://*.goatcounter.com; frame-src https://www.openstreetmap.org; form-action 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' https://gc.zgo.at; style-src 'self' 'sha256-iJlYimdFloOh/FuvlbQsx4ZnNghdlsS5ShjA+MFoRuQ='; img-src 'self' data: https:; font-src 'self'; media-src 'self'; connect-src 'self' https://docs.google.com https://*.googleusercontent.com https://109b8eda.sibforms.com https://*.goatcounter.com; frame-src https://www.openstreetmap.org; form-action 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
     X-Content-Type-Options = "nosniff"
     X-Frame-Options = "DENY"
     Referrer-Policy = "strict-origin-when-cross-origin"

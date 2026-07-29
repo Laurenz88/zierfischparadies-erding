@@ -192,9 +192,22 @@ a { color: inherit; }
 }
 .nav.scrolled {
   background: rgba(11, 43, 46, 0.9);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
 }
+/* WICHTIG: backdrop-filter muss verschwinden, sobald das mobile Menue offen
+   ist. Ein Element mit backdrop-filter (ebenso filter, transform, perspective)
+   wird zum Bezugsrahmen fuer position:fixed-Nachfahren. Das Menue ist ein
+   fixed-Kind der Nav und bezog sich dadurch nach dem Scrollen nicht mehr aufs
+   Fenster, sondern auf die nur 4,5rem hohe Navigationsleiste: Der deckende
+   Hintergrund schrumpfte auf Nav-Hoehe, die Menuepunkte quollen ungedeckt
+   darueber hinaus (auf iOS-Safari gut sichtbar). */
+.nav.menu-open.scrolled { -webkit-backdrop-filter: none; backdrop-filter: none; }
+/* Bei offenem Menue voll deckend statt 90 % - sonst schimmert der
+   Seiteninhalt hinter der Leiste durch und Logo/Ueberschrift ueberlagern
+   sich sichtbar. So bilden Leiste und Menueflaeche eine Einheit. */
+.nav.menu-open { background: var(--bg-dark); }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
 .nav-logo {
   display: flex; align-items: center; gap: 0.55rem;
@@ -213,35 +226,84 @@ a { color: inherit; }
 .nav-toggle.active span:nth-child(2) { opacity: 0; }
 .nav-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+/* Mobiles Menue: deckende Flaeche vom unteren Rand der Navigationsleiste bis
+   zum Bildschirmende. 100dvh statt 100vh, damit die ein- und ausblendende
+   Adressleiste auf dem Handy keine Luecke hinterlaesst (mit vh-Rueckfall fuer
+   aeltere Browser). Eigener z-index, damit das Menue sicher ueber allen
+   Seiteninhalten liegt. */
 .nav-links {
   position: fixed;
-  inset: var(--nav-height) 0 0 0;
+  top: var(--nav-height);
+  left: 0;
+  right: 0;
+  z-index: 120;
+  height: calc(100vh - var(--nav-height));
+  height: calc(100dvh - var(--nav-height));
   background: var(--bg-dark);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1.75rem;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 0;
+  padding: 0.5rem 0 2rem;
+  /* Falls die Liste einmal hoeher wird als der Bildschirm (kleine Geraete,
+     Querformat), bleibt sie in sich scrollbar statt abgeschnitten. */
+  overflow-y: auto;
   transform: translateY(-100%);
   opacity: 0;
-  transition: transform var(--transition), opacity var(--transition);
+  visibility: hidden;
+  transition: transform var(--transition), opacity var(--transition), visibility var(--transition);
 }
-.nav-links.open { transform: translateY(0); opacity: 1; }
-.nav-links a { font-family: 'Quicksand', sans-serif; font-weight: 600; font-size: 1.1rem; text-decoration: none; }
+.nav-links.open { transform: translateY(0); opacity: 1; visibility: visible; }
+.nav-links li { list-style: none; }
+.nav-links a {
+  font-family: 'Quicksand', sans-serif; font-weight: 600; font-size: 1.1rem;
+  text-decoration: none;
+  display: flex; align-items: center;
+  /* Grosszuegige Zeilenhoehe: bequem mit dem Daumen zu treffen, Zielgruppe
+     ist eher aelter. */
+  min-height: 56px;
+  padding: 0 1.5rem;
+  border-bottom: 1px solid rgba(238, 245, 242, 0.08);
+}
+.nav-links a:hover, .nav-links a:focus-visible { background: rgba(238, 245, 242, 0.06); }
 .nav-social { display: inline-flex; color: var(--accent-light); }
+/* Seiteninhalt hinter dem offenen Menue festhalten, damit nicht
+   "durchgescrollt" wird. */
+body.nav-open { overflow: hidden; }
 
 @media (min-width: 768px) {
   .nav-toggle { display: none; }
+  /* Ab Tablet-Breite ist die Navigation eine normale waagerechte Leiste.
+     Alle Eigenschaften des mobilen Overlays muessen hier zurueckgesetzt
+     werden, sonst wirkt z. B. die feste Hoehe auch auf dem Desktop. */
   .nav-links {
     position: static;
+    z-index: auto;
+    height: auto;
     flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
     gap: 2rem;
+    padding: 0;
+    overflow: visible;
     transform: none;
     opacity: 1;
+    visibility: visible;
     background: none;
     inset: auto;
   }
-  .nav-links a { font-size: 0.92rem; }
+  .nav-links a {
+    font-size: 0.92rem;
+    display: inline-flex;
+    min-height: 0;
+    padding: 0;
+    border-bottom: none;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible { background: none; }
+  /* Sicherheitsnetz: Wird das Fenster bei offenem Menue auf Desktopbreite
+     vergroessert, darf die Seite nicht gesperrt bleiben. */
+  body.nav-open { overflow: auto; }
 }
 
 /* ── Hero ── */
@@ -270,6 +332,44 @@ a { color: inherit; }
   z-index: 1;
 }
 .hero .caustics { z-index: 1; }
+
+/* ── Dezente Bewegung im Hero ──────────────────────────────────────────
+   Ken-Burns: sehr langsamer Zoom mit minimalem Schwenk. "alternate" laeuft
+   nach dem Hinweg wieder zurueck - dadurch ist die Schleife nahtlos, ohne
+   sichtbaren Sprung am Ende. 14s je Richtung = 28s pro vollem Durchlauf.
+
+   Bewusst NUR transform (und beim Schimmer zusaetzlich nichts weiter):
+   transform wird von der Grafikeinheit verrechnet und loest kein Neu-
+   Zeichnen des Layouts aus. Deshalb ruckelt es auch auf schwachen Geraeten
+   nicht und kostet keine Ladezeit - es kommt kein einziges Byte hinzu.
+
+   Der Text liegt in .hero-content (z-index 2) und wird NICHT animiert:
+   Ueberschrift und Buttons stehen absolut still und bleiben scharf. */
+@keyframes hero-ken-burns {
+  from { transform: scale(1) translate3d(0, 0, 0); }
+  to   { transform: scale(1.07) translate3d(-1.5%, -1%, 0); }
+}
+.hero-poster-img {
+  transform-origin: 50% 55%;
+  animation: hero-ken-burns 14s ease-in-out infinite alternate;
+}
+
+/* Wasser-Schimmer: das vorhandene Lichtmuster driftet langsam. Das Element
+   ist absichtlich groesser als der Hero (negatives inset), damit beim
+   Verschieben keine Kanten sichtbar werden. */
+@keyframes hero-schimmer {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(2.5%, 1.5%, 0); }
+}
+.hero .caustics {
+  inset: -8%;
+  animation: hero-schimmer 19s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-poster-img, .hero .caustics { animation: none; }
+  .hero .caustics { inset: 0; }
+}
 .hero-content { position: relative; z-index: 2; width: 100%; min-width: 0; padding: 2rem 1.5rem; max-width: 46rem; }
 .hero-badge {
   display: inline-flex;
@@ -333,11 +433,17 @@ a { color: inherit; }
   position: relative;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  aspect-ratio: 4 / 3;
+  /* Mobil flacher (16:9 statt 4:3, ca. ein Viertel weniger Hoehe). Nicht so
+     flach wie die Produktkarten, weil hier eine Person im Bild ist und ein
+     zu schmaler Streifen den Kopf anschneiden wuerde. */
+  aspect-ratio: 16 / 9;
   border: 1px solid rgba(217, 168, 108, 0.32);
   box-shadow: var(--shadow);
 }
 .about-image img { width: 100%; height: 100%; object-fit: cover; }
+@media (min-width: 600px) {
+  .about-image { aspect-ratio: 4 / 3; }
+}
 
 @media (min-width: 900px) {
   .about-grid { grid-template-columns: 1.1fr 1fr; }
@@ -370,8 +476,18 @@ a { color: inherit; }
   transition: transform var(--transition), border-color var(--transition);
 }
 .product-card:hover { transform: translateY(-3px); border-color: rgba(217, 168, 108, 0.35); }
-.product-card-img-wrap { position: relative; aspect-ratio: 4 / 3; }
+/* Auf dem Handy ist eine Karte nahezu bildschirmbreit. Bei 4:3 wurde das Bild
+   dadurch rund 280 px hoch - bei sechs Karten scrollt man endlos. Flacherer
+   Ausschnitt (5:2, gut halb so hoch) statt kleinerer Karte: Fische sind
+   breiter als hoch und bleiben im Querformat gut erkennbar. Feste
+   aspect-ratio + object-fit verhindern Verzerrung und Layout-Spruenge. */
+.product-card-img-wrap { position: relative; aspect-ratio: 5 / 2; }
 .product-card-img { width: 100%; height: 100%; object-fit: cover; }
+@media (min-width: 600px) {
+  /* Ab hier stehen mehrere Karten nebeneinander, die einzelne Karte ist
+     schmaler - das gewohnte 4:3 passt wieder. */
+  .product-card-img-wrap { aspect-ratio: 4 / 3; }
+}
 .product-card-corner-badge { position: absolute; top: 0.6rem; left: 0.6rem; z-index: 1; }
 .product-card-body { padding: 1rem; }
 .product-card-title { font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 0.95rem; margin-bottom: 0.25rem; }
@@ -590,6 +706,13 @@ a { color: inherit; }
   padding: 0;
 }
 .modal-overlay.active { opacity: 1; visibility: visible; }
+/* Die Rechtstext-Modals koennen aus einem bereits offenen Leistungs-Modal
+   heraus geoeffnet werden. Da alle Overlays denselben z-index hatten, hat
+   bei Gleichstand die DOM-Reihenfolge entschieden - Impressum/Datenschutz
+   stehen im HTML VOR den Leistungs-Modals und landeten dadurch dahinter:
+   Der Klick oeffnete sie, sichtbar war aber nichts. Ein hoeherer z-index
+   stellt sicher, dass sie immer obenauf liegen. */
+#impressumModal.modal-overlay, #datenschutzModal.modal-overlay { z-index: 210; }
 .modal {
   background: var(--bg-aqua);
   border: 1px solid var(--border-subtle);
