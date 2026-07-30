@@ -18,6 +18,9 @@ lighthouse-report*.html
 
 # Local Netlify folder
 .netlify
+# Wird von "netlify dev" automatisch angelegt (Edge-Functions-Bootstrap) und
+# bei jedem Start neu erzeugt - gehoert nicht zur Website.
+deno.lock
 
 # Ablage fuer andere Projekte und Rohmaterial, die zufaellig in diesem Ordner
 # liegen, aber nicht zur Website gehoeren (z. B. "haus-1-store" aus einem
