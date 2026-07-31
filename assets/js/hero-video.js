@@ -48,7 +48,10 @@
     video.playsInline = true;
 
     video.setAttribute('playsinline', '');
-    video.setAttribute('preload', 'metadata');
+    /* "auto" statt "metadata": Wir wollen das Video abspielen, nicht nur
+       seine Kopfdaten kennen. Bei "metadata" laedt manch strenger
+       konfigurierter Browser zu wenig, um selbsttaetig starten zu koennen. */
+    video.setAttribute('preload', 'auto');
     video.setAttribute('tabindex', '-1');
     video.setAttribute('aria-hidden', 'true');
     if (posterImg) video.poster = posterImg.src;
@@ -72,14 +75,56 @@
       if (posterImg) posterImg.style.opacity = '0';
     }, { once: true });
 
-    /* Autoplay zusaetzlich aktiv anstossen und Fehler abfangen. Verweigert
-       der Browser trotzdem (strenge Einstellungen, Energiesparmodus),
-       bleibt das Poster sichtbar und zoomt weiter - kein leerer Bereich. */
-    var start = video.play();
-    if (start && typeof start.catch === 'function') {
+    versucheStart(video);
+  }
+
+  /* Startversuch mit Rueckfallebene.
+
+     Manche Browser verweigern selbsttaetiges Abspielen auch dann, wenn das
+     Video stummgeschaltet ist - etwa Edge mit "Medienwiedergabe: begrenzen",
+     im Energiesparmodus oder bei aktiviertem Akkusparen. Das ist eine
+     bewusste Nutzereinstellung, gegen die man nicht ankaempfen sollte.
+
+     Deshalb: Klappt der sofortige Start nicht, bleibt das Poster sichtbar
+     (und zoomt weiter), und das Video startet beim ersten beliebigen
+     Zutun des Nutzers - Klick, Tastendruck, Scrollen oder Beruehrung.
+     Das ist von jeder Autoplay-Richtlinie erlaubt und faellt niemandem
+     unangenehm auf. */
+  function versucheStart(video) {
+    var nachgeholt = false;
+
+    function starten() {
+      var p = video.play();
+      return p && typeof p.catch === 'function' ? p : null;
+    }
+
+    function beiZutun() {
+      if (nachgeholt) return;
+      nachgeholt = true;
+      entferneZuhoerer();
+      starten();
+    }
+
+    var ereignisse = ['pointerdown', 'keydown', 'touchstart', 'scroll', 'wheel'];
+    function setzeZuhoerer() {
+      ereignisse.forEach(function (e) {
+        window.addEventListener(e, beiZutun, { once: true, passive: true });
+      });
+    }
+    function entferneZuhoerer() {
+      ereignisse.forEach(function (e) { window.removeEventListener(e, beiZutun); });
+    }
+
+    var start = starten();
+    if (start) {
       start.catch(function () {
         if (posterImg) posterImg.style.opacity = '1';
+        setzeZuhoerer();
       });
+    } else {
+      // Aeltere Browser liefern kein Promise zurueck - sicherheitshalber
+      // ebenfalls auf das erste Zutun warten.
+      setzeZuhoerer();
     }
   }
 
