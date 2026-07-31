@@ -2,6 +2,10 @@
 
 Ziel: 1:1-Nachbau (inhaltlich/strukturell) von <https://zierfischparadies-erding.de> als moderne, statische Website. Lighthouse 100/100/100/100.
 
+> **Hinweis zur Dokumentation:** Seit der Umstellung auf ein öffentliches Repository liegen die internen Unterlagen **nicht mehr hier**, sondern unter
+> `…\Desktop\zierfischparadies-intern\` — Ordner `docs\` (Anleitungen, Betriebshandbuch, Launch-Checkliste, Rechts-Check) und `original-site\` (Kopie der alten Website).
+> Verweise auf `docs/…` in Quelltext-Kommentaren beziehen sich auf diesen Ort.
+
 ## Phase 0 — Analyse des Originals ✅ abgeschlossen
 
 - [x] Live-Seite heruntergeladen (HTML) → `original-site/index.html` (Referenz, nicht Teil der neuen Seite)

@@ -105,9 +105,45 @@ async function pruefeVerweise() {
   return fehlend;
 }
 
+/*
+  Leert dist/, ohne den Ordner SELBST zu loeschen.
+
+  Wichtig, weil "dist" lokal eine Verzweigung (Junction) auf einen Ordner
+  ausserhalb von OneDrive sein kann: Ein rm() auf das Verzeichnis wuerde die
+  Verzweigung entfernen, mkdir() danach einen echten Ordner anlegen - die
+  Auslagerung waere still wieder aufgehoben und OneDrive wuerde erneut 42 MB
+  bei jedem Build synchronisieren. Auf dem Build-Server von Netlify existiert
+  dist/ ohnehin noch nicht und wird schlicht angelegt.
+*/
+async function leereDist() {
+  if (!(await exists(DIST))) { await mkdir(DIST, { recursive: true }); return; }
+  const inhalt = await readdir(DIST);
+  for (const name of inhalt) {
+    await loescheMitWiederholung(path.join(DIST, name));
+  }
+}
+
+/*
+  Unter Windows halten OneDrive, Virenscanner oder ein noch laufender Browser
+  frisch geschriebene Dateien kurz fest; das Loeschen scheitert dann mit
+  EBUSY oder EPERM. Das ist voruebergehend - nach kurzem Warten klappt es.
+  Ohne diese Wiederholung bricht der Build gelegentlich grundlos ab.
+*/
+async function loescheMitWiederholung(ziel, versuche = 5) {
+  for (let i = 1; i <= versuche; i++) {
+    try {
+      await rm(ziel, { recursive: true, force: true });
+      return;
+    } catch (err) {
+      const temporaer = err.code === 'EBUSY' || err.code === 'EPERM' || err.code === 'ENOTEMPTY';
+      if (!temporaer || i === versuche) throw err;
+      await new Promise((r) => setTimeout(r, 300 * i));
+    }
+  }
+}
+
 async function main() {
-  await rm(DIST, { recursive: true, force: true });
-  await mkdir(DIST, { recursive: true });
+  await leereDist();
 
   const kopiert = [];
   const fehlend = [];

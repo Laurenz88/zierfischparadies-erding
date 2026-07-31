@@ -22,6 +22,15 @@ lighthouse-report*.html
 # bei jedem Start neu erzeugt - gehoert nicht zur Website.
 deno.lock
 
+# Interne Unterlagen liegen bewusst AUSSERHALB des Repositorys, seit dieses
+# oeffentlich ist:
+#   C:\Users\Manuela\OneDrive\Desktop\zierfischparadies-intern\
+#     docs\          Anleitungen, Betriebshandbuch, Launch-Checkliste, Rechts-Check
+#     original-site\ Kopie der alten Website (fremde Gestaltungsarbeit)
+# Die Eintraege hier verhindern, dass sie versehentlich zurueckwandern.
+/docs/
+/original-site/
+
 # Ablage fuer andere Projekte und Rohmaterial, die zufaellig in diesem Ordner
 # liegen, aber nicht zur Website gehoeren (z. B. "haus-1-store" aus einem
 # anderen Vorhaben, sowie die unbearbeiteten Original-Fotos "ki 1.1").
