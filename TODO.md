@@ -128,8 +128,8 @@ Ziel: 1:1-Nachbau (inhaltlich/strukturell) von <https://zierfischparadies-erding
 
 ## Betriebsstand
 
-- [x] **Domain live:**  liefert die neue Seite, HTTPS-Zertifikat ausgestellt, www- und http-Weiterleitung aktiv. **MX-Einträge unverändert** auf Strato — E-Mail unberührt. Am DNS war nichts zu ändern, der A-Record zeigte bereits auf Netlify.
-- [x] **Repository öffentlich.** Nötig, weil Netlify im Free-Tarif Builds aus privaten Repos blockiert, sobald der Commit nicht von einem verifizierten Kontomitglied stammt — das betraf auch den Bilder-Sync (). Interne Unterlagen liegen seither außerhalb des Repos, auch die Versionsgeschichte wurde bereinigt.
+- [x] **Domain live:** `https://zierfischparadies-erding.de` liefert die neue Seite, HTTPS-Zertifikat ausgestellt, www- und http-Weiterleitung aktiv (je 301). **MX-Einträge unverändert** auf `smtpin.rzone.de` — E-Mail unberührt. Am DNS war nichts zu ändern, der A-Record zeigte bereits auf Netlify; es wechselte nur die Zuordnung innerhalb von Netlify.
+- [x] **Repository öffentlich.** Nötig, weil Netlify im Free-Tarif Builds aus **privaten** Repos blockiert, sobald der Commit nicht von einem verifizierten Kontomitglied stammt („Unrecognized Git contributor"). Das betraf nicht nur eigene Pushes, sondern auch den Bilder-Sync, der als `github-actions[bot]` committet — die Automatik hätte sonst nie ein Deployment ausgelöst. Ein zweites Kontomitglied ist im Free-Tarif nicht möglich (`collaborators: included=1, used=1`). Interne Unterlagen liegen seither außerhalb des Repos; die Versionsgeschichte wurde bereinigt (Sicherung: `zierfischparadies-intern\repo-sicherung-vor-historie-umschreiben.bundle`).
 
 ## Stand Domain-Übergabe (29.07.2026)
 
