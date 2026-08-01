@@ -126,6 +126,11 @@ Ziel: 1:1-Nachbau (inhaltlich/strukturell) von <https://zierfischparadies-erding
 - [x] Auf Nutzerwunsch komplettes visuelles Redesign (Variante A aus Design-Vorschau gewählt): eigene Farbpalette (Petrol/Sand/Koralle), eigene Typografie (Quicksand + Inter), eigenes Wellen-/Lichtbrechungs-Motiv, Hero-Video beibehalten, Struktur/Sektionen/CMS-Anbindung unverändert — siehe `docs/redesign-beckenlicht.md`
 - [x] Damit ist die Urheberrechtsfrage zum Original-Design (Andreas Fuchs, siehe `docs/analyse.md` Abschnitt 7) **gegenstandslos**: keine Ähnlichkeit mehr zu Farben/Typografie/Layout des Originals. Klarstellung: Der Andreas-Fuchs-Credit war nie im Code/Footer dieser neuen Seite enthalten, nur als Analyse-Fund dokumentiert.
 
+## Betriebsstand
+
+- [x] **Domain live:**  liefert die neue Seite, HTTPS-Zertifikat ausgestellt, www- und http-Weiterleitung aktiv. **MX-Einträge unverändert** auf Strato — E-Mail unberührt. Am DNS war nichts zu ändern, der A-Record zeigte bereits auf Netlify.
+- [x] **Repository öffentlich.** Nötig, weil Netlify im Free-Tarif Builds aus privaten Repos blockiert, sobald der Commit nicht von einem verifizierten Kontomitglied stammt — das betraf auch den Bilder-Sync (). Interne Unterlagen liegen seither außerhalb des Repos, auch die Versionsgeschichte wurde bereinigt.
+
 ## Stand Domain-Übergabe (29.07.2026)
 
 - [x] **Geklärt:** Die alte Seite läuft auf dem privaten Netlify-Konto eines Bekannten, der sie bisher betreut hat. Damit ist **Weg A** möglich (Domain-Übergabe zwischen zwei Netlify-Konten, **ohne** DNS-Änderung, Ausfall typischerweise unter fünf Minuten).
