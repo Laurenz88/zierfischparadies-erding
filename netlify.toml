@@ -41,15 +41,30 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# CSS/JS werden ueber den Dateinamen versioniert (bei Aenderungen bitte
-# den Dateinamen anpassen, z.B. style.min.css?v=2) - bis dahin ein
-# moderat langer, aber nicht "immutable" Cache.
+# ACHTUNG - Ausnahme, muss NACH der allgemeinen Bilderregel stehen:
+# Die Angebots-Fotos aus dem Google Sheet behalten beim Austausch ihren
+# Dateinamen (<Drive-ID>-<Breite>.<Format>). Tauscht der Inhaber ein Foto
+# unter demselben Drive-Link aus, holt der Sync es zwar korrekt neu - mit
+# "immutable" und einem Jahr Gueltigkeit wuerden wiederkehrende Besucher
+# aber bis zu ein Jahr lang das ALTE Foto sehen. Deshalb hier: eine Stunde
+# Cache, danach kurze Rueckfrage beim Server (liefert 304, wenn unveraendert).
+[[headers]]
+  for = "/assets/images/angebote/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"
+
+# CSS und JS tragen KEINE Versionsnummer im Dateinamen. Mit dem frueheren
+# "max-age=86400" sahen wiederkehrende Besucher nach einer Aenderung bis zu
+# 24 Stunden lang die alte Fassung - genau das ist beim mobilen Karussell
+# passiert. Jetzt fragt der Browser jedes Mal kurz nach; ist die Datei
+# unveraendert, antwortet der Server mit einem winzigen 304 und es wird
+# nichts uebertragen. Kosten daher minimal, dafuer immer aktuell.
 [[headers]]
   for = "/assets/css/*"
   [headers.values]
-    Cache-Control = "public, max-age=86400"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
   for = "/assets/js/*"
   [headers.values]
-    Cache-Control = "public, max-age=86400"
+    Cache-Control = "public, max-age=0, must-revalidate"
