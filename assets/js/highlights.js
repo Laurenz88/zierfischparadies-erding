@@ -338,6 +338,12 @@
       console.error('[Highlights] Sheet konnte nicht geladen werden:', err);
       showFallback(gridA, FALLBACK);
       showFallback(gridB, FALLBACK);
+    } finally {
+      /* Signal fuer assets/js/product-carousel.js: Die Karten stehen jetzt im
+         Dokument, die Positionsanzeige des mobilen Karussells kann aufgebaut
+         werden. Im finally-Zweig, damit sie auch nach einem Fehlschlag
+         aufraeumt (dann steht nur die Hinweiszeile, also keine Punkte). */
+      document.dispatchEvent(new CustomEvent('highlights:gerendert'));
     }
   }
 
