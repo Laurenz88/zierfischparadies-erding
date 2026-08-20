@@ -1,6 +1,6 @@
 {
   "hinweis": "Automatisch erzeugt von scripts/sync-sheet-images.mjs. Nicht von Hand bearbeiten.",
-  "generiert": "2026-08-17T13:06:24.676Z",
+  "generiert": "2026-08-20T18:59:33.312Z",
   "bilder": {
     "14T1gl4Df_0F6MQixQ58tvX89vh9L7FRv": {
       "hash": "d3e240943672bc95",
@@ -11,12 +11,12 @@
       "aktualisiert": "2026-07-27T14:09:11.127Z"
     },
     "1IKT7hmbe7Mn8WmtznACA9jKp65MWTdTM": {
-      "hash": "f9a2ae665f56aa40",
+      "hash": "b7847f27daafc46e",
       "breiten": [
         480,
         960
       ],
-      "aktualisiert": "2026-08-17T13:06:24.015Z"
+      "aktualisiert": "2026-08-20T18:59:31.854Z"
     },
     "1Fka6cL9ILmDyS6B7DCrMdckTueOy2930": {
       "hash": "3f9c20679edea4e8",
