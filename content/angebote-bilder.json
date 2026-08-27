@@ -1,22 +1,22 @@
 {
   "hinweis": "Automatisch erzeugt von scripts/sync-sheet-images.mjs. Nicht von Hand bearbeiten.",
-  "generiert": "2026-08-24T05:02:01.778Z",
+  "generiert": "2026-08-27T09:50:21.064Z",
   "bilder": {
     "14T1gl4Df_0F6MQixQ58tvX89vh9L7FRv": {
-      "hash": "d3e240943672bc95",
+      "hash": "dbd993c6d47db021",
       "breiten": [
         480,
         960
       ],
-      "aktualisiert": "2026-07-27T14:09:11.127Z"
+      "aktualisiert": "2026-08-27T09:50:09.065Z"
     },
     "1IKT7hmbe7Mn8WmtznACA9jKp65MWTdTM": {
-      "hash": "f9a2ae665f56aa40",
+      "hash": "f0cb2fecb9580b66",
       "breiten": [
         480,
         960
       ],
-      "aktualisiert": "2026-08-24T05:02:00.467Z"
+      "aktualisiert": "2026-08-27T09:50:14.622Z"
     },
     "1Fka6cL9ILmDyS6B7DCrMdckTueOy2930": {
       "hash": "3f9c20679edea4e8",
@@ -35,12 +35,12 @@
       "aktualisiert": "2026-07-27T14:09:22.910Z"
     },
     "1TITrVFE5jynh-gmDGwdNSKJVcf3gVjvf": {
-      "hash": "3fdcc3886499268b",
+      "hash": "3d0ac2856e8a2ea5",
       "breiten": [
         480,
         960
       ],
-      "aktualisiert": "2026-07-27T14:09:27.157Z"
+      "aktualisiert": "2026-08-27T09:50:20.729Z"
     },
     "147RJZqmg9mtFefsQNkB9DE8jA52MmAdS": {
       "hash": "4dfbf93ba67380d0",
